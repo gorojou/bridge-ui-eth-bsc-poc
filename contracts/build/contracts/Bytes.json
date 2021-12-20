@@ -1,0 +1,593 @@
+{
+  "contractName": "Bytes",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{},\"title\":\"Bytes\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/libraries/Bytes.sol\":\"Bytes\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/libraries/Bytes.sol\":{\"keccak256\":\"0xaac87fcac1962e29a85f577dafccf09d06b413fcc5bf97e821dca0b25183c310\",\"urls\":[\"bzzr://e1a3e3f8d13a8009d505b4d20029adbbcaf4c20a92ee10a223767fbb6d093dd2\"]}},\"version\":1}",
+  "bytecode": "0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a723058202b8c6d189f1d66fe24c5600e7d838b665bcc4822b366cdd3a774ccfc1004ad110029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fd00a165627a7a723058202b8c6d189f1d66fe24c5600e7d838b665bcc4822b366cdd3a774ccfc1004ad110029",
+  "sourceMap": "116:1256:32:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
+  "deployedSourceMap": "116:1256:32:-;;;;;;;;",
+  "source": "pragma solidity 0.4.24;\n\n/**\n * @title Bytes\n * @dev Helper methods to transform bytes to other solidity types.\n */\nlibrary Bytes {\n    /**\n    * @dev Converts bytes array to bytes32.\n    * Truncates bytes array if its size is more than 32 bytes.\n    * NOTE: This function does not perform any checks on the received parameter.\n    * Make sure that the _bytes argument has a correct length, not less than 32 bytes.\n    * A case when _bytes has length less than 32 will lead to the undefined behaviour,\n    * since assembly will read data from memory that is not related to the _bytes argument.\n    * @param _bytes to be converted to bytes32 type\n    * @return bytes32 type of the firsts 32 bytes array in parameter.\n    */\n    function bytesToBytes32(bytes _bytes) internal pure returns (bytes32 result) {\n        assembly {\n            result := mload(add(_bytes, 32))\n        }\n    }\n\n    /**\n    * @dev Truncate bytes array if its size is more than 20 bytes.\n    * NOTE: Similar to the bytesToBytes32 function, make sure that _bytes is not shorter than 20 bytes.\n    * @param _bytes to be converted to address type\n    * @return address included in the firsts 20 bytes of the bytes array in parameter.\n    */\n    function bytesToAddress(bytes _bytes) internal pure returns (address addr) {\n        assembly {\n            addr := mload(add(_bytes, 20))\n        }\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/libraries/Bytes.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/libraries/Bytes.sol",
+    "exportedSymbols": {
+      "Bytes": [
+        3210
+      ]
+    },
+    "id": 3211,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3191,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:32"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": "@title Bytes\n@dev Helper methods to transform bytes to other solidity types.",
+        "fullyImplemented": true,
+        "id": 3210,
+        "linearizedBaseContracts": [
+          3210
+        ],
+        "name": "Bytes",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3199,
+              "nodeType": "Block",
+              "src": "804:81:32",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "result": {
+                        "declaration": 3196,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "837:6:32",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_bytes": {
+                        "declaration": 3193,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "857:6:32",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 3198,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    result := mload(add(_bytes, 32))\n}",
+                  "src": "814:71:32"
+                }
+              ]
+            },
+            "documentation": "@dev Converts bytes array to bytes32.\nTruncates bytes array if its size is more than 32 bytes.\nNOTE: This function does not perform any checks on the received parameter.\nMake sure that the _bytes argument has a correct length, not less than 32 bytes.\nA case when _bytes has length less than 32 will lead to the undefined behaviour,\nsince assembly will read data from memory that is not related to the _bytes argument.\n@param _bytes to be converted to bytes32 type\n@return bytes32 type of the firsts 32 bytes array in parameter.",
+            "id": 3200,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "bytesToBytes32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3194,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3193,
+                  "name": "_bytes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3200,
+                  "src": "751:12:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 3192,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "751:5:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "750:14:32"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3197,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3196,
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3200,
+                  "src": "788:14:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3195,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "788:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "787:16:32"
+            },
+            "scope": 3210,
+            "src": "727:158:32",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3208,
+              "nodeType": "Block",
+              "src": "1291:79:32",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "addr": {
+                        "declaration": 3205,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1324:4:32",
+                        "valueSize": 1
+                      }
+                    },
+                    {
+                      "_bytes": {
+                        "declaration": 3202,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1342:6:32",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 3207,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    addr := mload(add(_bytes, 20))\n}",
+                  "src": "1301:69:32"
+                }
+              ]
+            },
+            "documentation": "@dev Truncate bytes array if its size is more than 20 bytes.\nNOTE: Similar to the bytesToBytes32 function, make sure that _bytes is not shorter than 20 bytes.\n@param _bytes to be converted to address type\n@return address included in the firsts 20 bytes of the bytes array in parameter.",
+            "id": 3209,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "bytesToAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3203,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3202,
+                  "name": "_bytes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3209,
+                  "src": "1240:12:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 3201,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1240:5:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1239:14:32"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3206,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3205,
+                  "name": "addr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3209,
+                  "src": "1277:12:32",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3204,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1277:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1276:14:32"
+            },
+            "scope": 3210,
+            "src": "1216:154:32",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 3211,
+        "src": "116:1256:32"
+      }
+    ],
+    "src": "0:1373:32"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/libraries/Bytes.sol",
+      "exportedSymbols": {
+        "Bytes": [
+          3210
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 3191,
+        "name": "PragmaDirective",
+        "src": "0:23:32"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "library",
+          "documentation": "@title Bytes\n@dev Helper methods to transform bytes to other solidity types.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            3210
+          ],
+          "name": "Bytes",
+          "scope": 3211
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": "@dev Converts bytes array to bytes32.\nTruncates bytes array if its size is more than 32 bytes.\nNOTE: This function does not perform any checks on the received parameter.\nMake sure that the _bytes argument has a correct length, not less than 32 bytes.\nA case when _bytes has length less than 32 will lead to the undefined behaviour,\nsince assembly will read data from memory that is not related to the _bytes argument.\n@param _bytes to be converted to bytes32 type\n@return bytes32 type of the firsts 32 bytes array in parameter.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "bytesToBytes32",
+              "payable": false,
+              "scope": 3210,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_bytes",
+                      "scope": 3200,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 3192,
+                        "name": "ElementaryTypeName",
+                        "src": "751:5:32"
+                      }
+                    ],
+                    "id": 3193,
+                    "name": "VariableDeclaration",
+                    "src": "751:12:32"
+                  }
+                ],
+                "id": 3194,
+                "name": "ParameterList",
+                "src": "750:14:32"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "result",
+                      "scope": 3200,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 3195,
+                        "name": "ElementaryTypeName",
+                        "src": "788:7:32"
+                      }
+                    ],
+                    "id": 3196,
+                    "name": "VariableDeclaration",
+                    "src": "788:14:32"
+                  }
+                ],
+                "id": 3197,
+                "name": "ParameterList",
+                "src": "787:16:32"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "result": {
+                            "declaration": 3196,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "837:6:32",
+                            "valueSize": 1
+                          }
+                        },
+                        {
+                          "_bytes": {
+                            "declaration": 3193,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "857:6:32",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    result := mload(add(_bytes, 32))\n}"
+                    },
+                    "children": [],
+                    "id": 3198,
+                    "name": "InlineAssembly",
+                    "src": "814:71:32"
+                  }
+                ],
+                "id": 3199,
+                "name": "Block",
+                "src": "804:81:32"
+              }
+            ],
+            "id": 3200,
+            "name": "FunctionDefinition",
+            "src": "727:158:32"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": "@dev Truncate bytes array if its size is more than 20 bytes.\nNOTE: Similar to the bytesToBytes32 function, make sure that _bytes is not shorter than 20 bytes.\n@param _bytes to be converted to address type\n@return address included in the firsts 20 bytes of the bytes array in parameter.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "bytesToAddress",
+              "payable": false,
+              "scope": 3210,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_bytes",
+                      "scope": 3209,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 3201,
+                        "name": "ElementaryTypeName",
+                        "src": "1240:5:32"
+                      }
+                    ],
+                    "id": 3202,
+                    "name": "VariableDeclaration",
+                    "src": "1240:12:32"
+                  }
+                ],
+                "id": 3203,
+                "name": "ParameterList",
+                "src": "1239:14:32"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "addr",
+                      "scope": 3209,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 3204,
+                        "name": "ElementaryTypeName",
+                        "src": "1277:7:32"
+                      }
+                    ],
+                    "id": 3205,
+                    "name": "VariableDeclaration",
+                    "src": "1277:12:32"
+                  }
+                ],
+                "id": 3206,
+                "name": "ParameterList",
+                "src": "1276:14:32"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "addr": {
+                            "declaration": 3205,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1324:4:32",
+                            "valueSize": 1
+                          }
+                        },
+                        {
+                          "_bytes": {
+                            "declaration": 3202,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1342:6:32",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    addr := mload(add(_bytes, 20))\n}"
+                    },
+                    "children": [],
+                    "id": 3207,
+                    "name": "InlineAssembly",
+                    "src": "1301:69:32"
+                  }
+                ],
+                "id": 3208,
+                "name": "Block",
+                "src": "1291:79:32"
+              }
+            ],
+            "id": 3209,
+            "name": "FunctionDefinition",
+            "src": "1216:154:32"
+          }
+        ],
+        "id": 3210,
+        "name": "ContractDefinition",
+        "src": "116:1256:32"
+      }
+    ],
+    "id": 3211,
+    "name": "SourceUnit",
+    "src": "0:1373:32"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.278Z",
+  "devdoc": {
+    "methods": {},
+    "title": "Bytes"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

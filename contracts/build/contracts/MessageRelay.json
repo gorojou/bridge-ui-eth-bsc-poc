@@ -1,0 +1,1276 @@
+{
+  "contractName": "MessageRelay",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_txHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "relayedMessages",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_txHash\",\"type\":\"bytes32\"}],\"name\":\"relayedMessages\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/upgradeable_contracts/MessageRelay.sol\":\"MessageRelay\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/upgradeability/EternalStorage.sol\":{\"keccak256\":\"0x8f2df79a1cda812d4be25da8f2b138f9b7492e76da1dfba21d87012e649cc51c\",\"urls\":[\"bzzr://0846d08e1b7a84e541ae31c91d2c0b34d88cf3abbd18891ec6eedeea7e958af2\"]},\"project:/contracts/upgradeable_contracts/MessageRelay.sol\":{\"keccak256\":\"0xbbf6a8282603c846c04129b7c41097c02190983c8be1d86a2d11ec8159b73a7d\",\"urls\":[\"bzzr://0c3553b6dae29bd2b5c592c5b16b7557f5e01fd54fd322b3a5480f5e6dda0182\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610166806100206000396000f3006080604052600436106100405763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166321d800ec8114610045575b600080fd5b34801561005157600080fd5b5061005d600435610071565b604080519115158252519081900360200190f35b6000600460008360405160200180807f72656c617965644d657373616765730000000000000000000000000000000000815250600f0182600019166000191681526020019150506040516020818303038152906040526040518082805190602001908083835b602083106100f65780518252601f1990920191602091820191016100d7565b51815160209384036101000a600019018019909216911617905260408051929094018290039091208652850195909552929092016000205460ff16959450505050505600a165627a7a7230582066f036cc643faeb8c1c860dce57d833f67ab7dc1855efc69be4bb9c0ec451ff20029",
+  "deployedBytecode": "0x6080604052600436106100405763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166321d800ec8114610045575b600080fd5b34801561005157600080fd5b5061005d600435610071565b604080519115158252519081900360200190f35b6000600460008360405160200180807f72656c617965644d657373616765730000000000000000000000000000000000815250600f0182600019166000191681526020019150506040516020818303038152906040526040518082805190602001908083835b602083106100f65780518252601f1990920191602091820191016100d7565b51815160209384036101000a600019018019909216911617905260408051929094018290039091208652850195909552929092016000205460ff16959450505050505600a165627a7a7230582066f036cc643faeb8c1c860dce57d833f67ab7dc1855efc69be4bb9c0ec451ff20029",
+  "sourceMap": "73:378:103:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;73:378:103;;;;;;;",
+  "deployedSourceMap": "73:378:103:-;;;;;;;;;;;;;;;;;;;;;;;119:161;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;119:161:103;;;;;;;;;;;;;;;;;;;;;;;;182:4;205:11;:68;263:7;227:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;227:44:103;;;217:55;;;;;;;;;;;;;36:153:-1;66:2;58:11;;36:153;;176:10;;164:23;;-1:-1;;139:12;;;;98:2;89:12;;;;114;36:153;;;299:10;344;;263:2;259:12;;;254:3;250:22;-1:-1;;246:30;311:9;;295:26;;;340:21;;377:20;365:33;;217:55:103;;;;;;;;;;;;;205:68;;;;;;;;;;;;-1:-1:-1;205:68:103;;;;;119:161;-1:-1:-1;;;;;119:161:103:o",
+  "source": "pragma solidity 0.4.24;\n\nimport \"../upgradeability/EternalStorage.sol\";\n\ncontract MessageRelay is EternalStorage {\n    function relayedMessages(bytes32 _txHash) public view returns (bool) {\n        return boolStorage[keccak256(abi.encodePacked(\"relayedMessages\", _txHash))];\n    }\n\n    function setRelayedMessages(bytes32 _txHash, bool _status) internal {\n        boolStorage[keccak256(abi.encodePacked(\"relayedMessages\", _txHash))] = _status;\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/MessageRelay.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/MessageRelay.sol",
+    "exportedSymbols": {
+      "MessageRelay": [
+        16404
+      ]
+    },
+    "id": 16405,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 16362,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:103"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeability/EternalStorage.sol",
+        "file": "../upgradeability/EternalStorage.sol",
+        "id": 16363,
+        "nodeType": "ImportDirective",
+        "scope": 16405,
+        "sourceUnit": 10504,
+        "src": "25:46:103",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 16364,
+              "name": "EternalStorage",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 10503,
+              "src": "98:14:103",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_EternalStorage_$10503",
+                "typeString": "contract EternalStorage"
+              }
+            },
+            "id": 16365,
+            "nodeType": "InheritanceSpecifier",
+            "src": "98:14:103"
+          }
+        ],
+        "contractDependencies": [
+          10503
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 16404,
+        "linearizedBaseContracts": [
+          16404,
+          10503
+        ],
+        "name": "MessageRelay",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 16382,
+              "nodeType": "Block",
+              "src": "188:92:103",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 16372,
+                      "name": "boolStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10498,
+                      "src": "205:11:103",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_bool_$",
+                        "typeString": "mapping(bytes32 => bool)"
+                      }
+                    },
+                    "id": 16380,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "72656c617965644d65737361676573",
+                              "id": 16376,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "244:17:103",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                "typeString": "literal_string \"relayedMessages\""
+                              },
+                              "value": "relayedMessages"
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 16377,
+                              "name": "_txHash",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16367,
+                              "src": "263:7:103",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                "typeString": "literal_string \"relayedMessages\""
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 16374,
+                              "name": "abi",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 31497,
+                              "src": "227:3:103",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_abi",
+                                "typeString": "abi"
+                              }
+                            },
+                            "id": 16375,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "encodePacked",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "227:16:103",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                              "typeString": "function () pure returns (bytes memory)"
+                            }
+                          },
+                          "id": 16378,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "227:44:103",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        ],
+                        "id": 16373,
+                        "name": "keccak256",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31504,
+                        "src": "217:9:103",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                          "typeString": "function () pure returns (bytes32)"
+                        }
+                      },
+                      "id": 16379,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "217:55:103",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "205:68:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 16371,
+                  "id": 16381,
+                  "nodeType": "Return",
+                  "src": "198:75:103"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 16383,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "relayedMessages",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16368,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16367,
+                  "name": "_txHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16383,
+                  "src": "144:15:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 16366,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "144:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "143:17:103"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16371,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16370,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16383,
+                  "src": "182:4:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16369,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "182:4:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "181:6:103"
+            },
+            "scope": 16404,
+            "src": "119:161:103",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 16402,
+              "nodeType": "Block",
+              "src": "354:95:103",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 16400,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 16390,
+                        "name": "boolStorage",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10498,
+                        "src": "364:11:103",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_bool_$",
+                          "typeString": "mapping(bytes32 => bool)"
+                        }
+                      },
+                      "id": 16398,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "hexValue": "72656c617965644d65737361676573",
+                                "id": 16394,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "403:17:103",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                  "typeString": "literal_string \"relayedMessages\""
+                                },
+                                "value": "relayedMessages"
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 16395,
+                                "name": "_txHash",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 16385,
+                                "src": "422:7:103",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                  "typeString": "literal_string \"relayedMessages\""
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "expression": {
+                                "argumentTypes": null,
+                                "id": 16392,
+                                "name": "abi",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 31497,
+                                "src": "386:3:103",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_abi",
+                                  "typeString": "abi"
+                                }
+                              },
+                              "id": 16393,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "memberName": "encodePacked",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": null,
+                              "src": "386:16:103",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                                "typeString": "function () pure returns (bytes memory)"
+                              }
+                            },
+                            "id": 16396,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "386:44:103",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 16391,
+                          "name": "keccak256",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31504,
+                          "src": "376:9:103",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
+                            "typeString": "function () pure returns (bytes32)"
+                          }
+                        },
+                        "id": 16397,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "376:55:103",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "364:68:103",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 16399,
+                      "name": "_status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16387,
+                      "src": "435:7:103",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "364:78:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 16401,
+                  "nodeType": "ExpressionStatement",
+                  "src": "364:78:103"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 16403,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setRelayedMessages",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16388,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16385,
+                  "name": "_txHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16403,
+                  "src": "314:15:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 16384,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "314:7:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16387,
+                  "name": "_status",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16403,
+                  "src": "331:12:103",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16386,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "331:4:103",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "313:31:103"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16389,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "354:0:103"
+            },
+            "scope": 16404,
+            "src": "286:163:103",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 16405,
+        "src": "73:378:103"
+      }
+    ],
+    "src": "0:452:103"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/MessageRelay.sol",
+      "exportedSymbols": {
+        "MessageRelay": [
+          16404
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 16362,
+        "name": "PragmaDirective",
+        "src": "0:23:103"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 10504,
+          "absolutePath": "project:/contracts/upgradeability/EternalStorage.sol",
+          "file": "../upgradeability/EternalStorage.sol",
+          "scope": 16405,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 16363,
+        "name": "ImportDirective",
+        "src": "25:46:103"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            10503
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            16404,
+            10503
+          ],
+          "name": "MessageRelay",
+          "scope": 16405
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "EternalStorage",
+                  "referencedDeclaration": 10503,
+                  "type": "contract EternalStorage"
+                },
+                "id": 16364,
+                "name": "UserDefinedTypeName",
+                "src": "98:14:103"
+              }
+            ],
+            "id": 16365,
+            "name": "InheritanceSpecifier",
+            "src": "98:14:103"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "relayedMessages",
+              "payable": false,
+              "scope": 16404,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_txHash",
+                      "scope": 16383,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 16366,
+                        "name": "ElementaryTypeName",
+                        "src": "144:7:103"
+                      }
+                    ],
+                    "id": 16367,
+                    "name": "VariableDeclaration",
+                    "src": "144:15:103"
+                  }
+                ],
+                "id": 16368,
+                "name": "ParameterList",
+                "src": "143:17:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 16383,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 16369,
+                        "name": "ElementaryTypeName",
+                        "src": "182:4:103"
+                      }
+                    ],
+                    "id": 16370,
+                    "name": "VariableDeclaration",
+                    "src": "182:4:103"
+                  }
+                ],
+                "id": 16371,
+                "name": "ParameterList",
+                "src": "181:6:103"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 16371
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10498,
+                              "type": "mapping(bytes32 => bool)",
+                              "value": "boolStorage"
+                            },
+                            "id": 16372,
+                            "name": "Identifier",
+                            "src": "205:11:103"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bytes32",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_bytes_memory_ptr",
+                                      "typeString": "bytes memory"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 31504,
+                                  "type": "function () pure returns (bytes32)",
+                                  "value": "keccak256"
+                                },
+                                "id": 16373,
+                                "name": "Identifier",
+                                "src": "217:9:103"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "bytes memory",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                          "typeString": "literal_string \"relayedMessages\""
+                                        },
+                                        {
+                                          "typeIdentifier": "t_bytes32",
+                                          "typeString": "bytes32"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "member_name": "encodePacked",
+                                      "referencedDeclaration": null,
+                                      "type": "function () pure returns (bytes memory)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 31497,
+                                          "type": "abi",
+                                          "value": "abi"
+                                        },
+                                        "id": 16374,
+                                        "name": "Identifier",
+                                        "src": "227:3:103"
+                                      }
+                                    ],
+                                    "id": 16375,
+                                    "name": "MemberAccess",
+                                    "src": "227:16:103"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "72656c617965644d65737361676573",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "string",
+                                      "type": "literal_string \"relayedMessages\"",
+                                      "value": "relayedMessages"
+                                    },
+                                    "id": 16376,
+                                    "name": "Literal",
+                                    "src": "244:17:103"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 16367,
+                                      "type": "bytes32",
+                                      "value": "_txHash"
+                                    },
+                                    "id": 16377,
+                                    "name": "Identifier",
+                                    "src": "263:7:103"
+                                  }
+                                ],
+                                "id": 16378,
+                                "name": "FunctionCall",
+                                "src": "227:44:103"
+                              }
+                            ],
+                            "id": 16379,
+                            "name": "FunctionCall",
+                            "src": "217:55:103"
+                          }
+                        ],
+                        "id": 16380,
+                        "name": "IndexAccess",
+                        "src": "205:68:103"
+                      }
+                    ],
+                    "id": 16381,
+                    "name": "Return",
+                    "src": "198:75:103"
+                  }
+                ],
+                "id": 16382,
+                "name": "Block",
+                "src": "188:92:103"
+              }
+            ],
+            "id": 16383,
+            "name": "FunctionDefinition",
+            "src": "119:161:103"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "setRelayedMessages",
+              "payable": false,
+              "scope": 16404,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_txHash",
+                      "scope": 16403,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 16384,
+                        "name": "ElementaryTypeName",
+                        "src": "314:7:103"
+                      }
+                    ],
+                    "id": 16385,
+                    "name": "VariableDeclaration",
+                    "src": "314:15:103"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_status",
+                      "scope": 16403,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 16386,
+                        "name": "ElementaryTypeName",
+                        "src": "331:4:103"
+                      }
+                    ],
+                    "id": 16387,
+                    "name": "VariableDeclaration",
+                    "src": "331:12:103"
+                  }
+                ],
+                "id": 16388,
+                "name": "ParameterList",
+                "src": "313:31:103"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16389,
+                "name": "ParameterList",
+                "src": "354:0:103"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10498,
+                                  "type": "mapping(bytes32 => bool)",
+                                  "value": "boolStorage"
+                                },
+                                "id": 16390,
+                                "name": "Identifier",
+                                "src": "364:11:103"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "bytes32",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_bytes_memory_ptr",
+                                          "typeString": "bytes memory"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 31504,
+                                      "type": "function () pure returns (bytes32)",
+                                      "value": "keccak256"
+                                    },
+                                    "id": 16391,
+                                    "name": "Identifier",
+                                    "src": "376:9:103"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "bytes memory",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_stringliteral_e0c44d78b78c163c456987ff495763ca1faba122c94df94564847af67c76b44e",
+                                              "typeString": "literal_string \"relayedMessages\""
+                                            },
+                                            {
+                                              "typeIdentifier": "t_bytes32",
+                                              "typeString": "bytes32"
+                                            }
+                                          ],
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "member_name": "encodePacked",
+                                          "referencedDeclaration": null,
+                                          "type": "function () pure returns (bytes memory)"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 31497,
+                                              "type": "abi",
+                                              "value": "abi"
+                                            },
+                                            "id": 16392,
+                                            "name": "Identifier",
+                                            "src": "386:3:103"
+                                          }
+                                        ],
+                                        "id": 16393,
+                                        "name": "MemberAccess",
+                                        "src": "386:16:103"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "72656c617965644d65737361676573",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "string",
+                                          "type": "literal_string \"relayedMessages\"",
+                                          "value": "relayedMessages"
+                                        },
+                                        "id": 16394,
+                                        "name": "Literal",
+                                        "src": "403:17:103"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 16385,
+                                          "type": "bytes32",
+                                          "value": "_txHash"
+                                        },
+                                        "id": 16395,
+                                        "name": "Identifier",
+                                        "src": "422:7:103"
+                                      }
+                                    ],
+                                    "id": 16396,
+                                    "name": "FunctionCall",
+                                    "src": "386:44:103"
+                                  }
+                                ],
+                                "id": 16397,
+                                "name": "FunctionCall",
+                                "src": "376:55:103"
+                              }
+                            ],
+                            "id": 16398,
+                            "name": "IndexAccess",
+                            "src": "364:68:103"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16387,
+                              "type": "bool",
+                              "value": "_status"
+                            },
+                            "id": 16399,
+                            "name": "Identifier",
+                            "src": "435:7:103"
+                          }
+                        ],
+                        "id": 16400,
+                        "name": "Assignment",
+                        "src": "364:78:103"
+                      }
+                    ],
+                    "id": 16401,
+                    "name": "ExpressionStatement",
+                    "src": "364:78:103"
+                  }
+                ],
+                "id": 16402,
+                "name": "Block",
+                "src": "354:95:103"
+              }
+            ],
+            "id": 16403,
+            "name": "FunctionDefinition",
+            "src": "286:163:103"
+          }
+        ],
+        "id": 16404,
+        "name": "ContractDefinition",
+        "src": "73:378:103"
+      }
+    ],
+    "id": 16405,
+    "name": "SourceUnit",
+    "src": "0:452:103"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.961Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

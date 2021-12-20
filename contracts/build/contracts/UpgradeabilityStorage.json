@@ -1,0 +1,613 @@
+{
+  "contractName": "UpgradeabilityStorage",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "implementation",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"implementation()\":{\"details\":\"Tells the address of the current implementation\",\"return\":\"address of the current implementation\"},\"version()\":{\"details\":\"Tells the version name of the current implementation\",\"return\":\"uint256 representing the name of the current version\"}},\"title\":\"UpgradeabilityStorage\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/upgradeability/UpgradeabilityStorage.sol\":\"UpgradeabilityStorage\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/upgradeability/UpgradeabilityStorage.sol\":{\"keccak256\":\"0xffdb68109e05bd97ad22afd48bd618a32a78164af970f3439467921c8a66908f\",\"urls\":[\"bzzr://ad4a283f557e95ff7574310e0e66ed38417cd3e8be98420191d0eb23aa9a8db1\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060fa8061001f6000396000f30060806040526004361060485763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166354fd4d508114604d5780635c60da1b146071575b600080fd5b348015605857600080fd5b50605f60ac565b60408051918252519081900360200190f35b348015607c57600080fd5b50608360b2565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005490565b60015473ffffffffffffffffffffffffffffffffffffffff16905600a165627a7a72305820fdd682a6f30962b5add5e2a6badc5b81d93d370014319c5f47472c42020372060029",
+  "deployedBytecode": "0x60806040526004361060485763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166354fd4d508114604d5780635c60da1b146071575b600080fd5b348015605857600080fd5b50605f60ac565b60408051918252519081900360200190f35b348015607c57600080fd5b50608360b2565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005490565b60015473ffffffffffffffffffffffffffffffffffffffff16905600a165627a7a72305820fdd682a6f30962b5add5e2a6badc5b81d93d370014319c5f47472c42020372060029",
+  "sourceMap": "164:661:73:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;164:661:73;;;;;;;",
+  "deployedSourceMap": "164:661:73:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;513:83;;8:9:-1;5:2;;;30:1;27;20:12;5:2;513:83:73;;;;;;;;;;;;;;;;;;;;728:95;;8:9:-1;5:2;;;30:1;27;20:12;5:2;728:95:73;;;;;;;;;;;;;;;;;;;;;;;513:83;555:7;581:8;513:83;:::o;728:95::-;801:15;;;;728:95;:::o",
+  "source": "pragma solidity 0.4.24;\n\n/**\n * @title UpgradeabilityStorage\n * @dev This contract holds all the necessary state variables to support the upgrade functionality\n */\ncontract UpgradeabilityStorage {\n    // Version name of the current implementation\n    uint256 internal _version;\n\n    // Address of the current implementation\n    address internal _implementation;\n\n    /**\n    * @dev Tells the version name of the current implementation\n    * @return uint256 representing the name of the current version\n    */\n    function version() external view returns (uint256) {\n        return _version;\n    }\n\n    /**\n    * @dev Tells the address of the current implementation\n    * @return address of the current implementation\n    */\n    function implementation() public view returns (address) {\n        return _implementation;\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeability/UpgradeabilityStorage.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeability/UpgradeabilityStorage.sol",
+    "exportedSymbols": {
+      "UpgradeabilityStorage": [
+        10747
+      ]
+    },
+    "id": 10748,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 10726,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:73"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title UpgradeabilityStorage\n@dev This contract holds all the necessary state variables to support the upgrade functionality",
+        "fullyImplemented": true,
+        "id": 10747,
+        "linearizedBaseContracts": [
+          10747
+        ],
+        "name": "UpgradeabilityStorage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 10728,
+            "name": "_version",
+            "nodeType": "VariableDeclaration",
+            "scope": 10747,
+            "src": "251:25:73",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 10727,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "251:7:73",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 10730,
+            "name": "_implementation",
+            "nodeType": "VariableDeclaration",
+            "scope": 10747,
+            "src": "328:32:73",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 10729,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "328:7:73",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 10737,
+              "nodeType": "Block",
+              "src": "564:32:73",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 10735,
+                    "name": "_version",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 10728,
+                    "src": "581:8:73",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 10734,
+                  "id": 10736,
+                  "nodeType": "Return",
+                  "src": "574:15:73"
+                }
+              ]
+            },
+            "documentation": "@dev Tells the version name of the current implementation\n@return uint256 representing the name of the current version",
+            "id": 10738,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "version",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10731,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "529:2:73"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 10734,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10733,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10738,
+                  "src": "555:7:73",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 10732,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "555:7:73",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "554:9:73"
+            },
+            "scope": 10747,
+            "src": "513:83:73",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 10745,
+              "nodeType": "Block",
+              "src": "784:39:73",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 10743,
+                    "name": "_implementation",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 10730,
+                    "src": "801:15:73",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 10742,
+                  "id": 10744,
+                  "nodeType": "Return",
+                  "src": "794:22:73"
+                }
+              ]
+            },
+            "documentation": "@dev Tells the address of the current implementation\n@return address of the current implementation",
+            "id": 10746,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "implementation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10739,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "751:2:73"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 10742,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 10741,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10746,
+                  "src": "775:7:73",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 10740,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "775:7:73",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "774:9:73"
+            },
+            "scope": 10747,
+            "src": "728:95:73",
+            "stateMutability": "view",
+            "superFunction": 10626,
+            "visibility": "public"
+          }
+        ],
+        "scope": 10748,
+        "src": "164:661:73"
+      }
+    ],
+    "src": "0:826:73"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeability/UpgradeabilityStorage.sol",
+      "exportedSymbols": {
+        "UpgradeabilityStorage": [
+          10747
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 10726,
+        "name": "PragmaDirective",
+        "src": "0:23:73"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title UpgradeabilityStorage\n@dev This contract holds all the necessary state variables to support the upgrade functionality",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            10747
+          ],
+          "name": "UpgradeabilityStorage",
+          "scope": 10748
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "_version",
+              "scope": 10747,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 10727,
+                "name": "ElementaryTypeName",
+                "src": "251:7:73"
+              }
+            ],
+            "id": 10728,
+            "name": "VariableDeclaration",
+            "src": "251:25:73"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "_implementation",
+              "scope": 10747,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 10729,
+                "name": "ElementaryTypeName",
+                "src": "328:7:73"
+              }
+            ],
+            "id": 10730,
+            "name": "VariableDeclaration",
+            "src": "328:32:73"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": "@dev Tells the version name of the current implementation\n@return uint256 representing the name of the current version",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "version",
+              "payable": false,
+              "scope": 10747,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10731,
+                "name": "ParameterList",
+                "src": "529:2:73"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 10738,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 10732,
+                        "name": "ElementaryTypeName",
+                        "src": "555:7:73"
+                      }
+                    ],
+                    "id": 10733,
+                    "name": "VariableDeclaration",
+                    "src": "555:7:73"
+                  }
+                ],
+                "id": 10734,
+                "name": "ParameterList",
+                "src": "554:9:73"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 10734
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 10728,
+                          "type": "uint256",
+                          "value": "_version"
+                        },
+                        "id": 10735,
+                        "name": "Identifier",
+                        "src": "581:8:73"
+                      }
+                    ],
+                    "id": 10736,
+                    "name": "Return",
+                    "src": "574:15:73"
+                  }
+                ],
+                "id": 10737,
+                "name": "Block",
+                "src": "564:32:73"
+              }
+            ],
+            "id": 10738,
+            "name": "FunctionDefinition",
+            "src": "513:83:73"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": "@dev Tells the address of the current implementation\n@return address of the current implementation",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "implementation",
+              "payable": false,
+              "scope": 10747,
+              "stateMutability": "view",
+              "superFunction": 10626,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 10739,
+                "name": "ParameterList",
+                "src": "751:2:73"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 10746,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 10740,
+                        "name": "ElementaryTypeName",
+                        "src": "775:7:73"
+                      }
+                    ],
+                    "id": 10741,
+                    "name": "VariableDeclaration",
+                    "src": "775:7:73"
+                  }
+                ],
+                "id": 10742,
+                "name": "ParameterList",
+                "src": "774:9:73"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 10742
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 10730,
+                          "type": "address",
+                          "value": "_implementation"
+                        },
+                        "id": 10743,
+                        "name": "Identifier",
+                        "src": "801:15:73"
+                      }
+                    ],
+                    "id": 10744,
+                    "name": "Return",
+                    "src": "794:22:73"
+                  }
+                ],
+                "id": 10745,
+                "name": "Block",
+                "src": "784:39:73"
+              }
+            ],
+            "id": 10746,
+            "name": "FunctionDefinition",
+            "src": "728:95:73"
+          }
+        ],
+        "id": 10747,
+        "name": "ContractDefinition",
+        "src": "164:661:73"
+      }
+    ],
+    "id": 10748,
+    "name": "SourceUnit",
+    "src": "0:826:73"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.758Z",
+  "devdoc": {
+    "methods": {
+      "implementation()": {
+        "details": "Tells the address of the current implementation",
+        "return": "address of the current implementation"
+      },
+      "version()": {
+        "details": "Tells the version name of the current implementation",
+        "return": "uint256 representing the name of the current version"
+      }
+    },
+    "title": "UpgradeabilityStorage"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

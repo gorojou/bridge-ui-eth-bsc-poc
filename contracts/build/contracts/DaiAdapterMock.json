@@ -1,0 +1,424 @@
+{
+  "contractName": "DaiAdapterMock",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dai",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_dai",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"dai\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_dai\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/mocks/DaiAdapterMock.sol\":\"DaiAdapterMock\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/mocks/DaiAdapterMock.sol\":{\"keccak256\":\"0xcfc539c02c437291cf427f093fd4ff0fbc457900b4c03c15fab490ea819d09f5\",\"urls\":[\"bzzr://1d901566ea973c6ff6c0a3c4a40bd411cbb759c32ad44472b71688e10f3cd60f\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051602080610117833981016040525160008054600160a060020a03909216600160a060020a031990921691909117905560c6806100516000396000f300608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663f4b9fa7581146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582054c9e836aca19c2801bf4506cbbda851057054b3b375b89e0c13d794513105c80029",
+  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663f4b9fa7581146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582054c9e836aca19c2801bf4506cbbda851057054b3b375b89e0c13d794513105c80029",
+  "sourceMap": "25:117:43:-;;;80:60;8:9:-1;5:2;;;30:1;27;20:12;5:2;80:60:43;;;;;;;;;;;;;123:3;:10;;-1:-1:-1;;;;;123:10:43;;;-1:-1:-1;;;;;;123:10:43;;;;;;;;;25:117;;;;;;",
+  "deployedSourceMap": "25:117:43:-;;;;;;;;;;;;;;;;;;;;;;;55:18;;8:9:-1;5:2;;;30:1;27;20:12;5:2;55:18:43;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity 0.4.24;\n\ncontract DaiAdapterMock {\n    address public dai;\n\n    constructor(address _dai) public {\n        dai = _dai;\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/mocks/DaiAdapterMock.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/mocks/DaiAdapterMock.sol",
+    "exportedSymbols": {
+      "DaiAdapterMock": [
+        5760
+      ]
+    },
+    "id": 5761,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5747,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:43"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5760,
+        "linearizedBaseContracts": [
+          5760
+        ],
+        "name": "DaiAdapterMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5749,
+            "name": "dai",
+            "nodeType": "VariableDeclaration",
+            "scope": 5760,
+            "src": "55:18:43",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 5748,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "55:7:43",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5758,
+              "nodeType": "Block",
+              "src": "113:27:43",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5756,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5754,
+                      "name": "dai",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5749,
+                      "src": "123:3:43",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5755,
+                      "name": "_dai",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5751,
+                      "src": "129:4:43",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "123:10:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 5757,
+                  "nodeType": "ExpressionStatement",
+                  "src": "123:10:43"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5759,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5752,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5751,
+                  "name": "_dai",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5759,
+                  "src": "92:12:43",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5750,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "92:7:43",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "91:14:43"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5753,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "113:0:43"
+            },
+            "scope": 5760,
+            "src": "80:60:43",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5761,
+        "src": "25:117:43"
+      }
+    ],
+    "src": "0:143:43"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/mocks/DaiAdapterMock.sol",
+      "exportedSymbols": {
+        "DaiAdapterMock": [
+          5760
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 5747,
+        "name": "PragmaDirective",
+        "src": "0:23:43"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            5760
+          ],
+          "name": "DaiAdapterMock",
+          "scope": 5761
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "dai",
+              "scope": 5760,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 5748,
+                "name": "ElementaryTypeName",
+                "src": "55:7:43"
+              }
+            ],
+            "id": 5749,
+            "name": "VariableDeclaration",
+            "src": "55:18:43"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "payable": false,
+              "scope": 5760,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_dai",
+                      "scope": 5759,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 5750,
+                        "name": "ElementaryTypeName",
+                        "src": "92:7:43"
+                      }
+                    ],
+                    "id": 5751,
+                    "name": "VariableDeclaration",
+                    "src": "92:12:43"
+                  }
+                ],
+                "id": 5752,
+                "name": "ParameterList",
+                "src": "91:14:43"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5753,
+                "name": "ParameterList",
+                "src": "113:0:43"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5749,
+                              "type": "address",
+                              "value": "dai"
+                            },
+                            "id": 5754,
+                            "name": "Identifier",
+                            "src": "123:3:43"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5751,
+                              "type": "address",
+                              "value": "_dai"
+                            },
+                            "id": 5755,
+                            "name": "Identifier",
+                            "src": "129:4:43"
+                          }
+                        ],
+                        "id": 5756,
+                        "name": "Assignment",
+                        "src": "123:10:43"
+                      }
+                    ],
+                    "id": 5757,
+                    "name": "ExpressionStatement",
+                    "src": "123:10:43"
+                  }
+                ],
+                "id": 5758,
+                "name": "Block",
+                "src": "113:27:43"
+              }
+            ],
+            "id": 5759,
+            "name": "FunctionDefinition",
+            "src": "80:60:43"
+          }
+        ],
+        "id": 5760,
+        "name": "ContractDefinition",
+        "src": "25:117:43"
+      }
+    ],
+    "id": 5761,
+    "name": "SourceUnit",
+    "src": "0:143:43"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.440Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

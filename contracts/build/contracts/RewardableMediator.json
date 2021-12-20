@@ -1,0 +1,3157 @@
+{
+  "contractName": "RewardableMediator",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "feeAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "FeeDistributed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_feeManager",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeManagerContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "feeManagerContract",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./Ownable.sol\";\nimport \"openzeppelin-solidity/contracts/AddressUtils.sol\";\nimport \"../interfaces/IMediatorFeeManager.sol\";\n\n/**\n* @title RewardableMediator\n* @dev Common functionality to interact with mediator fee manager contract methods.\n*/\ncontract RewardableMediator is Ownable {\n    event FeeDistributed(uint256 feeAmount, bytes32 indexed messageId);\n\n    bytes32 internal constant FEE_MANAGER_CONTRACT = 0x779a349c5bee7817f04c960f525ee3e2f2516078c38c68a3149787976ee837e5; // keccak256(abi.encodePacked(\"feeManagerContract\"))\n    bytes4 internal constant ON_TOKEN_TRANSFER = 0xa4c0ed36; // onTokenTransfer(address,uint256,bytes)\n\n    /**\n    * @dev Sets the fee manager contract address. Only the owner can call this method.\n    * @param _feeManager the address of the fee manager contract.\n    */\n    function setFeeManagerContract(address _feeManager) external onlyOwner {\n        _setFeeManagerContract(_feeManager);\n    }\n\n    /**\n    * @dev Internal function for enabling new / disabling fee manage contract.\n    * @param _feeManager the address of the fee manager contract.\n    */\n    function _setFeeManagerContract(address _feeManager) internal {\n        require(_feeManager == address(0) || AddressUtils.isContract(_feeManager));\n        addressStorage[FEE_MANAGER_CONTRACT] = _feeManager;\n    }\n\n    /**\n    * @dev Tells the fee manager contract address\n    * @return the address of the fee manager contract.\n    */\n    function feeManagerContract() public view returns (IMediatorFeeManager) {\n        return IMediatorFeeManager(addressStorage[FEE_MANAGER_CONTRACT]);\n    }\n\n    /**\n    * @dev Distributes the provided amount of fees.\n    * @param _feeManager address of the fee manager contract\n    * @param _fee total amount to be distributed to the list of reward accounts.\n    * @param _messageId id of the message that generated fee distribution\n    */\n    function distributeFee(IMediatorFeeManager _feeManager, uint256 _fee, bytes32 _messageId) internal {\n        onFeeDistribution(_feeManager, _fee);\n        _feeManager.call(abi.encodeWithSelector(ON_TOKEN_TRANSFER, address(this), _fee, \"\"));\n        emit FeeDistributed(_fee, _messageId);\n    }\n\n    /* solcov ignore next */\n    function onFeeDistribution(address _feeManager, uint256 _fee) internal;\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/RewardableMediator.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/RewardableMediator.sol",
+    "exportedSymbols": {
+      "RewardableMediator": [
+        16940
+      ]
+    },
+    "id": 16941,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 16832,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:108"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/Ownable.sol",
+        "file": "./Ownable.sol",
+        "id": 16833,
+        "nodeType": "ImportDirective",
+        "scope": 16941,
+        "sourceUnit": 16556,
+        "src": "25:23:108",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "id": 16834,
+        "nodeType": "ImportDirective",
+        "scope": 16941,
+        "sourceUnit": 19,
+        "src": "49:58:108",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IMediatorFeeManager.sol",
+        "file": "../interfaces/IMediatorFeeManager.sol",
+        "id": 16835,
+        "nodeType": "ImportDirective",
+        "scope": 16941,
+        "sourceUnit": 3026,
+        "src": "108:47:108",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 16836,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 16555,
+              "src": "307:7:108",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$16555",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 16837,
+            "nodeType": "InheritanceSpecifier",
+            "src": "307:7:108"
+          }
+        ],
+        "contractDependencies": [
+          10503,
+          16555
+        ],
+        "contractKind": "contract",
+        "documentation": "@title RewardableMediator\n@dev Common functionality to interact with mediator fee manager contract methods.",
+        "fullyImplemented": false,
+        "id": 16940,
+        "linearizedBaseContracts": [
+          16940,
+          16555,
+          10503
+        ],
+        "name": "RewardableMediator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 16843,
+            "name": "FeeDistributed",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 16842,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16839,
+                  "indexed": false,
+                  "name": "feeAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16843,
+                  "src": "342:17:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 16838,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "342:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16841,
+                  "indexed": true,
+                  "name": "messageId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16843,
+                  "src": "361:25:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 16840,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "361:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "341:46:108"
+            },
+            "src": "321:67:108"
+          },
+          {
+            "constant": true,
+            "id": 16846,
+            "name": "FEE_MANAGER_CONTRACT",
+            "nodeType": "VariableDeclaration",
+            "scope": 16940,
+            "src": "394:115:108",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 16844,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "394:7:108",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307837373961333439633562656537383137663034633936306635323565653365326632353136303738633338633638613331343937383739373665653833376535",
+              "id": 16845,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "443:66:108",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_54097686535627803633828242569651132507022115257117556183158408617880076171237_by_1",
+                "typeString": "int_const 5409...(69 digits omitted)...1237"
+              },
+              "value": "0x779a349c5bee7817f04c960f525ee3e2f2516078c38c68a3149787976ee837e5"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": true,
+            "id": 16849,
+            "name": "ON_TOKEN_TRANSFER",
+            "nodeType": "VariableDeclaration",
+            "scope": 16940,
+            "src": "568:55:108",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes4",
+              "typeString": "bytes4"
+            },
+            "typeName": {
+              "id": 16847,
+              "name": "bytes4",
+              "nodeType": "ElementaryTypeName",
+              "src": "568:6:108",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes4",
+                "typeString": "bytes4"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "30786134633065643336",
+              "id": 16848,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "613:10:108",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2764107062_by_1",
+                "typeString": "int_const 2764107062"
+              },
+              "value": "0xa4c0ed36"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16860,
+              "nodeType": "Block",
+              "src": "911:52:108",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 16857,
+                        "name": "_feeManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16851,
+                        "src": "944:11:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 16856,
+                      "name": "_setFeeManagerContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16886,
+                      "src": "921:22:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 16858,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "921:35:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16859,
+                  "nodeType": "ExpressionStatement",
+                  "src": "921:35:108"
+                }
+              ]
+            },
+            "documentation": "@dev Sets the fee manager contract address. Only the owner can call this method.\n@param _feeManager the address of the fee manager contract.",
+            "id": 16861,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 16854,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 16853,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 16470,
+                  "src": "901:9:108",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "901:9:108"
+              }
+            ],
+            "name": "setFeeManagerContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16851,
+                  "name": "_feeManager",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16861,
+                  "src": "871:19:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16850,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "871:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "870:21:108"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16855,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "911:0:108"
+            },
+            "scope": 16940,
+            "src": "840:123:108",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 16885,
+              "nodeType": "Block",
+              "src": "1191:151:108",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 16876,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 16871,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "id": 16867,
+                            "name": "_feeManager",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16863,
+                            "src": "1209:11:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "hexValue": "30",
+                                "id": 16869,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "number",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1232:1:108",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_rational_0_by_1",
+                                  "typeString": "int_const 0"
+                                },
+                                "value": "0"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_rational_0_by_1",
+                                  "typeString": "int_const 0"
+                                }
+                              ],
+                              "id": 16868,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "1224:7:108",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_address_$",
+                                "typeString": "type(address)"
+                              },
+                              "typeName": "address"
+                            },
+                            "id": 16870,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1224:10:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "1209:25:108",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "||",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 16874,
+                              "name": "_feeManager",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16863,
+                              "src": "1262:11:108",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 16872,
+                              "name": "AddressUtils",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 18,
+                              "src": "1238:12:108",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_AddressUtils_$18_$",
+                                "typeString": "type(library AddressUtils)"
+                              }
+                            },
+                            "id": 16873,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "isContract",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 17,
+                            "src": "1238:23:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                              "typeString": "function (address) view returns (bool)"
+                            }
+                          },
+                          "id": 16875,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1238:36:108",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "1209:65:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 16866,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        31513,
+                        31514
+                      ],
+                      "referencedDeclaration": 31513,
+                      "src": "1201:7:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 16877,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1201:74:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16878,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1201:74:108"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 16883,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 16879,
+                        "name": "addressStorage",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10490,
+                        "src": "1285:14:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_address_$",
+                          "typeString": "mapping(bytes32 => address)"
+                        }
+                      },
+                      "id": 16881,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 16880,
+                        "name": "FEE_MANAGER_CONTRACT",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16846,
+                        "src": "1300:20:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1285:36:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 16882,
+                      "name": "_feeManager",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16863,
+                      "src": "1324:11:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1285:50:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 16884,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1285:50:108"
+                }
+              ]
+            },
+            "documentation": "@dev Internal function for enabling new / disabling fee manage contract.\n@param _feeManager the address of the fee manager contract.",
+            "id": 16886,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "_setFeeManagerContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16864,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16863,
+                  "name": "_feeManager",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16886,
+                  "src": "1161:19:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16862,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1161:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1160:21:108"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16865,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1191:0:108"
+            },
+            "scope": 16940,
+            "src": "1129:213:108",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16897,
+              "nodeType": "Block",
+              "src": "1540:81:108",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 16892,
+                          "name": "addressStorage",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 10490,
+                          "src": "1577:14:108",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_bytes32_$_t_address_$",
+                            "typeString": "mapping(bytes32 => address)"
+                          }
+                        },
+                        "id": 16894,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 16893,
+                          "name": "FEE_MANAGER_CONTRACT",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16846,
+                          "src": "1592:20:108",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1577:36:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 16891,
+                      "name": "IMediatorFeeManager",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3025,
+                      "src": "1557:19:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_IMediatorFeeManager_$3025_$",
+                        "typeString": "type(contract IMediatorFeeManager)"
+                      }
+                    },
+                    "id": 16895,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1557:57:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                      "typeString": "contract IMediatorFeeManager"
+                    }
+                  },
+                  "functionReturnParameters": 16890,
+                  "id": 16896,
+                  "nodeType": "Return",
+                  "src": "1550:64:108"
+                }
+              ]
+            },
+            "documentation": "@dev Tells the fee manager contract address\n@return the address of the fee manager contract.",
+            "id": 16898,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "feeManagerContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16887,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1495:2:108"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16889,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16898,
+                  "src": "1519:19:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                    "typeString": "contract IMediatorFeeManager"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 16888,
+                    "name": "IMediatorFeeManager",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 3025,
+                    "src": "1519:19:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                      "typeString": "contract IMediatorFeeManager"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1518:21:108"
+            },
+            "scope": 16940,
+            "src": "1468:153:108",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 16931,
+              "nodeType": "Block",
+              "src": "2009:194:108",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 16908,
+                        "name": "_feeManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16900,
+                        "src": "2037:11:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                          "typeString": "contract IMediatorFeeManager"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16909,
+                        "name": "_fee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16902,
+                        "src": "2050:4:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                          "typeString": "contract IMediatorFeeManager"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 16907,
+                      "name": "onFeeDistribution",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16939,
+                      "src": "2019:17:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 16910,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2019:36:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16911,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2019:36:108"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 16917,
+                            "name": "ON_TOKEN_TRANSFER",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16849,
+                            "src": "2105:17:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes4",
+                              "typeString": "bytes4"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 16919,
+                                "name": "this",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 31819,
+                                "src": "2132:4:108",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_contract$_RewardableMediator_$16940",
+                                  "typeString": "contract RewardableMediator"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_RewardableMediator_$16940",
+                                  "typeString": "contract RewardableMediator"
+                                }
+                              ],
+                              "id": 16918,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "2124:7:108",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_address_$",
+                                "typeString": "type(address)"
+                              },
+                              "typeName": "address"
+                            },
+                            "id": 16920,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2124:13:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 16921,
+                            "name": "_fee",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16902,
+                            "src": "2139:4:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "",
+                            "id": 16922,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2145:2:108",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            },
+                            "value": ""
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_bytes4",
+                              "typeString": "bytes4"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 16915,
+                            "name": "abi",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 31497,
+                            "src": "2082:3:108",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_abi",
+                              "typeString": "abi"
+                            }
+                          },
+                          "id": 16916,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "encodeWithSelector",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2082:22:108",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_abiencodewithselector_pure$_t_bytes4_$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function (bytes4) pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 16923,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2082:66:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 16912,
+                        "name": "_feeManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16900,
+                        "src": "2065:11:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                          "typeString": "contract IMediatorFeeManager"
+                        }
+                      },
+                      "id": 16914,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "call",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2065:16:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_barecall_payable$__$returns$_t_bool_$",
+                        "typeString": "function () payable returns (bool)"
+                      }
+                    },
+                    "id": 16924,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2065:84:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 16925,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2065:84:108"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 16927,
+                        "name": "_fee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16902,
+                        "src": "2179:4:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 16928,
+                        "name": "_messageId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16904,
+                        "src": "2185:10:108",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 16926,
+                      "name": "FeeDistributed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 16843,
+                      "src": "2164:14:108",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_bytes32_$returns$__$",
+                        "typeString": "function (uint256,bytes32)"
+                      }
+                    },
+                    "id": 16929,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2164:32:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 16930,
+                  "nodeType": "EmitStatement",
+                  "src": "2159:37:108"
+                }
+              ]
+            },
+            "documentation": "@dev Distributes the provided amount of fees.\n@param _feeManager address of the fee manager contract\n@param _fee total amount to be distributed to the list of reward accounts.\n@param _messageId id of the message that generated fee distribution",
+            "id": 16932,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "distributeFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16905,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16900,
+                  "name": "_feeManager",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16932,
+                  "src": "1933:31:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                    "typeString": "contract IMediatorFeeManager"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 16899,
+                    "name": "IMediatorFeeManager",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 3025,
+                    "src": "1933:19:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                      "typeString": "contract IMediatorFeeManager"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16902,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16932,
+                  "src": "1966:12:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 16901,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1966:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16904,
+                  "name": "_messageId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16932,
+                  "src": "1980:18:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 16903,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1980:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1932:67:108"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16906,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2009:0:108"
+            },
+            "scope": 16940,
+            "src": "1910:293:108",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 16939,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "onFeeDistribution",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16937,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16934,
+                  "name": "_feeManager",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16939,
+                  "src": "2265:19:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 16933,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2265:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 16936,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16939,
+                  "src": "2286:12:108",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 16935,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2286:7:108",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2264:35:108"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16938,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2308:0:108"
+            },
+            "scope": 16940,
+            "src": "2238:71:108",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 16941,
+        "src": "276:2035:108"
+      }
+    ],
+    "src": "0:2312:108"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/RewardableMediator.sol",
+      "exportedSymbols": {
+        "RewardableMediator": [
+          16940
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 16832,
+        "name": "PragmaDirective",
+        "src": "0:23:108"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 16556,
+          "absolutePath": "project:/contracts/upgradeable_contracts/Ownable.sol",
+          "file": "./Ownable.sol",
+          "scope": 16941,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 16833,
+        "name": "ImportDirective",
+        "src": "25:23:108"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 19,
+          "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "scope": 16941,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 16834,
+        "name": "ImportDirective",
+        "src": "49:58:108"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 3026,
+          "absolutePath": "project:/contracts/interfaces/IMediatorFeeManager.sol",
+          "file": "../interfaces/IMediatorFeeManager.sol",
+          "scope": 16941,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 16835,
+        "name": "ImportDirective",
+        "src": "108:47:108"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            10503,
+            16555
+          ],
+          "contractKind": "contract",
+          "documentation": "@title RewardableMediator\n@dev Common functionality to interact with mediator fee manager contract methods.",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            16940,
+            16555,
+            10503
+          ],
+          "name": "RewardableMediator",
+          "scope": 16941
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Ownable",
+                  "referencedDeclaration": 16555,
+                  "type": "contract Ownable"
+                },
+                "id": 16836,
+                "name": "UserDefinedTypeName",
+                "src": "307:7:108"
+              }
+            ],
+            "id": 16837,
+            "name": "InheritanceSpecifier",
+            "src": "307:7:108"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "FeeDistributed"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "feeAmount",
+                      "scope": 16843,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 16838,
+                        "name": "ElementaryTypeName",
+                        "src": "342:7:108"
+                      }
+                    ],
+                    "id": 16839,
+                    "name": "VariableDeclaration",
+                    "src": "342:17:108"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "messageId",
+                      "scope": 16843,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 16840,
+                        "name": "ElementaryTypeName",
+                        "src": "361:7:108"
+                      }
+                    ],
+                    "id": 16841,
+                    "name": "VariableDeclaration",
+                    "src": "361:25:108"
+                  }
+                ],
+                "id": 16842,
+                "name": "ParameterList",
+                "src": "341:46:108"
+              }
+            ],
+            "id": 16843,
+            "name": "EventDefinition",
+            "src": "321:67:108"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "FEE_MANAGER_CONTRACT",
+              "scope": 16940,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes32",
+                  "type": "bytes32"
+                },
+                "id": 16844,
+                "name": "ElementaryTypeName",
+                "src": "394:7:108"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "307837373961333439633562656537383137663034633936306635323565653365326632353136303738633338633638613331343937383739373665653833376535",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 5409...(69 digits omitted)...1237",
+                  "value": "0x779a349c5bee7817f04c960f525ee3e2f2516078c38c68a3149787976ee837e5"
+                },
+                "id": 16845,
+                "name": "Literal",
+                "src": "443:66:108"
+              }
+            ],
+            "id": 16846,
+            "name": "VariableDeclaration",
+            "src": "394:115:108"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "ON_TOKEN_TRANSFER",
+              "scope": 16940,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes4",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes4",
+                  "type": "bytes4"
+                },
+                "id": 16847,
+                "name": "ElementaryTypeName",
+                "src": "568:6:108"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "30786134633065643336",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 2764107062",
+                  "value": "0xa4c0ed36"
+                },
+                "id": 16848,
+                "name": "Literal",
+                "src": "613:10:108"
+              }
+            ],
+            "id": 16849,
+            "name": "VariableDeclaration",
+            "src": "568:55:108"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Sets the fee manager contract address. Only the owner can call this method.\n@param _feeManager the address of the fee manager contract.",
+              "implemented": true,
+              "isConstructor": false,
+              "name": "setFeeManagerContract",
+              "payable": false,
+              "scope": 16940,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_feeManager",
+                      "scope": 16861,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 16850,
+                        "name": "ElementaryTypeName",
+                        "src": "871:7:108"
+                      }
+                    ],
+                    "id": 16851,
+                    "name": "VariableDeclaration",
+                    "src": "871:19:108"
+                  }
+                ],
+                "id": 16852,
+                "name": "ParameterList",
+                "src": "870:21:108"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16855,
+                "name": "ParameterList",
+                "src": "911:0:108"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 16470,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 16853,
+                    "name": "Identifier",
+                    "src": "901:9:108"
+                  }
+                ],
+                "id": 16854,
+                "name": "ModifierInvocation",
+                "src": "901:9:108"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16886,
+                              "type": "function (address)",
+                              "value": "_setFeeManagerContract"
+                            },
+                            "id": 16856,
+                            "name": "Identifier",
+                            "src": "921:22:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16851,
+                              "type": "address",
+                              "value": "_feeManager"
+                            },
+                            "id": 16857,
+                            "name": "Identifier",
+                            "src": "944:11:108"
+                          }
+                        ],
+                        "id": 16858,
+                        "name": "FunctionCall",
+                        "src": "921:35:108"
+                      }
+                    ],
+                    "id": 16859,
+                    "name": "ExpressionStatement",
+                    "src": "921:35:108"
+                  }
+                ],
+                "id": 16860,
+                "name": "Block",
+                "src": "911:52:108"
+              }
+            ],
+            "id": 16861,
+            "name": "FunctionDefinition",
+            "src": "840:123:108"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Internal function for enabling new / disabling fee manage contract.\n@param _feeManager the address of the fee manager contract.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "_setFeeManagerContract",
+              "payable": false,
+              "scope": 16940,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_feeManager",
+                      "scope": 16886,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 16862,
+                        "name": "ElementaryTypeName",
+                        "src": "1161:7:108"
+                      }
+                    ],
+                    "id": 16863,
+                    "name": "VariableDeclaration",
+                    "src": "1161:19:108"
+                  }
+                ],
+                "id": 16864,
+                "name": "ParameterList",
+                "src": "1160:21:108"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16865,
+                "name": "ParameterList",
+                "src": "1191:0:108"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                31513,
+                                31514
+                              ],
+                              "referencedDeclaration": 31513,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 16866,
+                            "name": "Identifier",
+                            "src": "1201:7:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_bool",
+                                "typeString": "bool"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "||",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "==",
+                                  "type": "bool"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 16863,
+                                      "type": "address",
+                                      "value": "_feeManager"
+                                    },
+                                    "id": 16867,
+                                    "name": "Identifier",
+                                    "src": "1209:11:108"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "address",
+                                      "type_conversion": true
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_rational_0_by_1",
+                                              "typeString": "int_const 0"
+                                            }
+                                          ],
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "type": "type(address)",
+                                          "value": "address"
+                                        },
+                                        "id": 16868,
+                                        "name": "ElementaryTypeNameExpression",
+                                        "src": "1224:7:108"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "30",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "number",
+                                          "type": "int_const 0",
+                                          "value": "0"
+                                        },
+                                        "id": 16869,
+                                        "name": "Literal",
+                                        "src": "1232:1:108"
+                                      }
+                                    ],
+                                    "id": 16870,
+                                    "name": "FunctionCall",
+                                    "src": "1224:10:108"
+                                  }
+                                ],
+                                "id": 16871,
+                                "name": "BinaryOperation",
+                                "src": "1209:25:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "bool",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "isContract",
+                                      "referencedDeclaration": 17,
+                                      "type": "function (address) view returns (bool)"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 18,
+                                          "type": "type(library AddressUtils)",
+                                          "value": "AddressUtils"
+                                        },
+                                        "id": 16872,
+                                        "name": "Identifier",
+                                        "src": "1238:12:108"
+                                      }
+                                    ],
+                                    "id": 16873,
+                                    "name": "MemberAccess",
+                                    "src": "1238:23:108"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 16863,
+                                      "type": "address",
+                                      "value": "_feeManager"
+                                    },
+                                    "id": 16874,
+                                    "name": "Identifier",
+                                    "src": "1262:11:108"
+                                  }
+                                ],
+                                "id": 16875,
+                                "name": "FunctionCall",
+                                "src": "1238:36:108"
+                              }
+                            ],
+                            "id": 16876,
+                            "name": "BinaryOperation",
+                            "src": "1209:65:108"
+                          }
+                        ],
+                        "id": 16877,
+                        "name": "FunctionCall",
+                        "src": "1201:74:108"
+                      }
+                    ],
+                    "id": 16878,
+                    "name": "ExpressionStatement",
+                    "src": "1201:74:108"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10490,
+                                  "type": "mapping(bytes32 => address)",
+                                  "value": "addressStorage"
+                                },
+                                "id": 16879,
+                                "name": "Identifier",
+                                "src": "1285:14:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16846,
+                                  "type": "bytes32",
+                                  "value": "FEE_MANAGER_CONTRACT"
+                                },
+                                "id": 16880,
+                                "name": "Identifier",
+                                "src": "1300:20:108"
+                              }
+                            ],
+                            "id": 16881,
+                            "name": "IndexAccess",
+                            "src": "1285:36:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16863,
+                              "type": "address",
+                              "value": "_feeManager"
+                            },
+                            "id": 16882,
+                            "name": "Identifier",
+                            "src": "1324:11:108"
+                          }
+                        ],
+                        "id": 16883,
+                        "name": "Assignment",
+                        "src": "1285:50:108"
+                      }
+                    ],
+                    "id": 16884,
+                    "name": "ExpressionStatement",
+                    "src": "1285:50:108"
+                  }
+                ],
+                "id": 16885,
+                "name": "Block",
+                "src": "1191:151:108"
+              }
+            ],
+            "id": 16886,
+            "name": "FunctionDefinition",
+            "src": "1129:213:108"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": "@dev Tells the fee manager contract address\n@return the address of the fee manager contract.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "feeManagerContract",
+              "payable": false,
+              "scope": 16940,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16887,
+                "name": "ParameterList",
+                "src": "1495:2:108"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 16898,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IMediatorFeeManager",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMediatorFeeManager",
+                          "referencedDeclaration": 3025,
+                          "type": "contract IMediatorFeeManager"
+                        },
+                        "id": 16888,
+                        "name": "UserDefinedTypeName",
+                        "src": "1519:19:108"
+                      }
+                    ],
+                    "id": 16889,
+                    "name": "VariableDeclaration",
+                    "src": "1519:19:108"
+                  }
+                ],
+                "id": 16890,
+                "name": "ParameterList",
+                "src": "1518:21:108"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 16890
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "contract IMediatorFeeManager",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3025,
+                              "type": "type(contract IMediatorFeeManager)",
+                              "value": "IMediatorFeeManager"
+                            },
+                            "id": 16891,
+                            "name": "Identifier",
+                            "src": "1557:19:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10490,
+                                  "type": "mapping(bytes32 => address)",
+                                  "value": "addressStorage"
+                                },
+                                "id": 16892,
+                                "name": "Identifier",
+                                "src": "1577:14:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16846,
+                                  "type": "bytes32",
+                                  "value": "FEE_MANAGER_CONTRACT"
+                                },
+                                "id": 16893,
+                                "name": "Identifier",
+                                "src": "1592:20:108"
+                              }
+                            ],
+                            "id": 16894,
+                            "name": "IndexAccess",
+                            "src": "1577:36:108"
+                          }
+                        ],
+                        "id": 16895,
+                        "name": "FunctionCall",
+                        "src": "1557:57:108"
+                      }
+                    ],
+                    "id": 16896,
+                    "name": "Return",
+                    "src": "1550:64:108"
+                  }
+                ],
+                "id": 16897,
+                "name": "Block",
+                "src": "1540:81:108"
+              }
+            ],
+            "id": 16898,
+            "name": "FunctionDefinition",
+            "src": "1468:153:108"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Distributes the provided amount of fees.\n@param _feeManager address of the fee manager contract\n@param _fee total amount to be distributed to the list of reward accounts.\n@param _messageId id of the message that generated fee distribution",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "distributeFee",
+              "payable": false,
+              "scope": 16940,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_feeManager",
+                      "scope": 16932,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IMediatorFeeManager",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMediatorFeeManager",
+                          "referencedDeclaration": 3025,
+                          "type": "contract IMediatorFeeManager"
+                        },
+                        "id": 16899,
+                        "name": "UserDefinedTypeName",
+                        "src": "1933:19:108"
+                      }
+                    ],
+                    "id": 16900,
+                    "name": "VariableDeclaration",
+                    "src": "1933:31:108"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 16932,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 16901,
+                        "name": "ElementaryTypeName",
+                        "src": "1966:7:108"
+                      }
+                    ],
+                    "id": 16902,
+                    "name": "VariableDeclaration",
+                    "src": "1966:12:108"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_messageId",
+                      "scope": 16932,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 16903,
+                        "name": "ElementaryTypeName",
+                        "src": "1980:7:108"
+                      }
+                    ],
+                    "id": 16904,
+                    "name": "VariableDeclaration",
+                    "src": "1980:18:108"
+                  }
+                ],
+                "id": 16905,
+                "name": "ParameterList",
+                "src": "1932:67:108"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16906,
+                "name": "ParameterList",
+                "src": "2009:0:108"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_IMediatorFeeManager_$3025",
+                                  "typeString": "contract IMediatorFeeManager"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16939,
+                              "type": "function (address,uint256)",
+                              "value": "onFeeDistribution"
+                            },
+                            "id": 16907,
+                            "name": "Identifier",
+                            "src": "2019:17:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16900,
+                              "type": "contract IMediatorFeeManager",
+                              "value": "_feeManager"
+                            },
+                            "id": 16908,
+                            "name": "Identifier",
+                            "src": "2037:11:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16902,
+                              "type": "uint256",
+                              "value": "_fee"
+                            },
+                            "id": 16909,
+                            "name": "Identifier",
+                            "src": "2050:4:108"
+                          }
+                        ],
+                        "id": 16910,
+                        "name": "FunctionCall",
+                        "src": "2019:36:108"
+                      }
+                    ],
+                    "id": 16911,
+                    "name": "ExpressionStatement",
+                    "src": "2019:36:108"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes_memory_ptr",
+                                  "typeString": "bytes memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "call",
+                              "referencedDeclaration": null,
+                              "type": "function () payable returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16900,
+                                  "type": "contract IMediatorFeeManager",
+                                  "value": "_feeManager"
+                                },
+                                "id": 16912,
+                                "name": "Identifier",
+                                "src": "2065:11:108"
+                              }
+                            ],
+                            "id": 16914,
+                            "name": "MemberAccess",
+                            "src": "2065:16:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bytes memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_bytes4",
+                                      "typeString": "bytes4"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                                      "typeString": "literal_string \"\""
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "member_name": "encodeWithSelector",
+                                  "referencedDeclaration": null,
+                                  "type": "function (bytes4) pure returns (bytes memory)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 31497,
+                                      "type": "abi",
+                                      "value": "abi"
+                                    },
+                                    "id": 16915,
+                                    "name": "Identifier",
+                                    "src": "2082:3:108"
+                                  }
+                                ],
+                                "id": 16916,
+                                "name": "MemberAccess",
+                                "src": "2082:22:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16849,
+                                  "type": "bytes4",
+                                  "value": "ON_TOKEN_TRANSFER"
+                                },
+                                "id": 16917,
+                                "name": "Identifier",
+                                "src": "2105:17:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "address",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_contract$_RewardableMediator_$16940",
+                                          "typeString": "contract RewardableMediator"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)",
+                                      "value": "address"
+                                    },
+                                    "id": 16918,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "2124:7:108"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 31819,
+                                      "type": "contract RewardableMediator",
+                                      "value": "this"
+                                    },
+                                    "id": 16919,
+                                    "name": "Identifier",
+                                    "src": "2132:4:108"
+                                  }
+                                ],
+                                "id": 16920,
+                                "name": "FunctionCall",
+                                "src": "2124:13:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16902,
+                                  "type": "uint256",
+                                  "value": "_fee"
+                                },
+                                "id": 16921,
+                                "name": "Identifier",
+                                "src": "2139:4:108"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"\"",
+                                  "value": ""
+                                },
+                                "id": 16922,
+                                "name": "Literal",
+                                "src": "2145:2:108"
+                              }
+                            ],
+                            "id": 16923,
+                            "name": "FunctionCall",
+                            "src": "2082:66:108"
+                          }
+                        ],
+                        "id": 16924,
+                        "name": "FunctionCall",
+                        "src": "2065:84:108"
+                      }
+                    ],
+                    "id": 16925,
+                    "name": "ExpressionStatement",
+                    "src": "2065:84:108"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16843,
+                              "type": "function (uint256,bytes32)",
+                              "value": "FeeDistributed"
+                            },
+                            "id": 16926,
+                            "name": "Identifier",
+                            "src": "2164:14:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16902,
+                              "type": "uint256",
+                              "value": "_fee"
+                            },
+                            "id": 16927,
+                            "name": "Identifier",
+                            "src": "2179:4:108"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 16904,
+                              "type": "bytes32",
+                              "value": "_messageId"
+                            },
+                            "id": 16928,
+                            "name": "Identifier",
+                            "src": "2185:10:108"
+                          }
+                        ],
+                        "id": 16929,
+                        "name": "FunctionCall",
+                        "src": "2164:32:108"
+                      }
+                    ],
+                    "id": 16930,
+                    "name": "EmitStatement",
+                    "src": "2159:37:108"
+                  }
+                ],
+                "id": 16931,
+                "name": "Block",
+                "src": "2009:194:108"
+              }
+            ],
+            "id": 16932,
+            "name": "FunctionDefinition",
+            "src": "1910:293:108"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "onFeeDistribution",
+              "payable": false,
+              "scope": 16940,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_feeManager",
+                      "scope": 16939,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 16933,
+                        "name": "ElementaryTypeName",
+                        "src": "2265:7:108"
+                      }
+                    ],
+                    "id": 16934,
+                    "name": "VariableDeclaration",
+                    "src": "2265:19:108"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 16939,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 16935,
+                        "name": "ElementaryTypeName",
+                        "src": "2286:7:108"
+                      }
+                    ],
+                    "id": 16936,
+                    "name": "VariableDeclaration",
+                    "src": "2286:12:108"
+                  }
+                ],
+                "id": 16937,
+                "name": "ParameterList",
+                "src": "2264:35:108"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16938,
+                "name": "ParameterList",
+                "src": "2308:0:108"
+              }
+            ],
+            "id": 16939,
+            "name": "FunctionDefinition",
+            "src": "2238:71:108"
+          }
+        ],
+        "id": 16940,
+        "name": "ContractDefinition",
+        "src": "276:2035:108"
+      }
+    ],
+    "id": 16941,
+    "name": "SourceUnit",
+    "src": "0:2312:108"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.974Z",
+  "devdoc": {
+    "methods": {
+      "feeManagerContract()": {
+        "details": "Tells the fee manager contract address",
+        "return": "the address of the fee manager contract."
+      },
+      "owner()": {
+        "details": "Tells the address of the owner",
+        "return": "the address of the owner"
+      },
+      "setFeeManagerContract(address)": {
+        "details": "Sets the fee manager contract address. Only the owner can call this method.",
+        "params": {
+          "_feeManager": "the address of the fee manager contract."
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "newOwner": "the address to transfer ownership to."
+        }
+      }
+    },
+    "title": "RewardableMediator"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,1407 @@
+{
+  "contractName": "ERC677BridgeForBurnableMintableToken",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "erc677token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_day",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalSpentPerDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExecutionDailyLimit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCurrentDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "executionDailyLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_day",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalExecutedPerDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withinExecutionLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "executionMaxPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxAvailablePerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_minPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMinPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "name": "_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onTokenTransfer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDailyLimit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_maxPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimalShift",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withinLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_maxPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExecutionMaxPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "DailyLimitChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "ExecutionDailyLimitChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./ERC677Bridge.sol\";\nimport \"../interfaces/IBurnableMintableERC677Token.sol\";\n\ncontract ERC677BridgeForBurnableMintableToken is ERC677Bridge {\n    function bridgeSpecificActionsOnTokenTransfer(ERC677 _token, address _from, uint256 _value, bytes _data) internal {\n        IBurnableMintableERC677Token(_token).burn(_value);\n        fireEventOnTokenTransfer(chooseReceiver(_from, _data), _value);\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/ERC677BridgeForBurnableMintableToken.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/ERC677BridgeForBurnableMintableToken.sol",
+    "exportedSymbols": {
+      "ERC677BridgeForBurnableMintableToken": [
+        15588
+      ]
+    },
+    "id": 15589,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 15556,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:94"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/ERC677Bridge.sol",
+        "file": "./ERC677Bridge.sol",
+        "id": 15557,
+        "nodeType": "ImportDirective",
+        "scope": 15589,
+        "sourceUnit": 15555,
+        "src": "25:28:94",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IBurnableMintableERC677Token.sol",
+        "file": "../interfaces/IBurnableMintableERC677Token.sol",
+        "id": 15558,
+        "nodeType": "ImportDirective",
+        "scope": 15589,
+        "sourceUnit": 2915,
+        "src": "54:56:94",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 15559,
+              "name": "ERC677Bridge",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 15554,
+              "src": "161:12:94",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC677Bridge_$15554",
+                "typeString": "contract ERC677Bridge"
+              }
+            },
+            "id": 15560,
+            "nodeType": "InheritanceSpecifier",
+            "src": "161:12:94"
+          }
+        ],
+        "contractDependencies": [
+          2737,
+          10503,
+          11327,
+          14153,
+          15191,
+          15409,
+          15554,
+          15594,
+          16443,
+          16555
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 15588,
+        "linearizedBaseContracts": [
+          15588,
+          15554,
+          16443,
+          11327,
+          15191,
+          15594,
+          2737,
+          14153,
+          15409,
+          16555,
+          10503
+        ],
+        "name": "ERC677BridgeForBurnableMintableToken",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 15586,
+              "nodeType": "Block",
+              "src": "294:138:94",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 15575,
+                        "name": "_value",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15566,
+                        "src": "346:6:94",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 15572,
+                            "name": "_token",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15562,
+                            "src": "333:6:94",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_ERC677_$2706",
+                              "typeString": "contract ERC677"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_ERC677_$2706",
+                              "typeString": "contract ERC677"
+                            }
+                          ],
+                          "id": 15571,
+                          "name": "IBurnableMintableERC677Token",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2914,
+                          "src": "304:28:94",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IBurnableMintableERC677Token_$2914_$",
+                            "typeString": "type(contract IBurnableMintableERC677Token)"
+                          }
+                        },
+                        "id": 15573,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "304:36:94",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IBurnableMintableERC677Token_$2914",
+                          "typeString": "contract IBurnableMintableERC677Token"
+                        }
+                      },
+                      "id": 15574,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "burn",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2906,
+                      "src": "304:41:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256) external"
+                      }
+                    },
+                    "id": 15576,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "304:49:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 15577,
+                  "nodeType": "ExpressionStatement",
+                  "src": "304:49:94"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 15580,
+                            "name": "_from",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15564,
+                            "src": "403:5:94",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          {
+                            "argumentTypes": null,
+                            "id": 15581,
+                            "name": "_data",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 15568,
+                            "src": "410:5:94",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            },
+                            {
+                              "typeIdentifier": "t_bytes_memory_ptr",
+                              "typeString": "bytes memory"
+                            }
+                          ],
+                          "id": 15579,
+                          "name": "chooseReceiver",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 15185,
+                          "src": "388:14:94",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$_t_bytes_memory_ptr_$returns$_t_address_$",
+                            "typeString": "function (address,bytes memory) view returns (address)"
+                          }
+                        },
+                        "id": 15582,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "388:28:94",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 15583,
+                        "name": "_value",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 15566,
+                        "src": "418:6:94",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 15578,
+                      "name": "fireEventOnTokenTransfer",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 15553,
+                      "src": "363:24:94",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 15584,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "363:62:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 15585,
+                  "nodeType": "ExpressionStatement",
+                  "src": "363:62:94"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 15587,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "bridgeSpecificActionsOnTokenTransfer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 15569,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 15562,
+                  "name": "_token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15587,
+                  "src": "226:13:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC677_$2706",
+                    "typeString": "contract ERC677"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 15561,
+                    "name": "ERC677",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2706,
+                    "src": "226:6:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC677_$2706",
+                      "typeString": "contract ERC677"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15564,
+                  "name": "_from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15587,
+                  "src": "241:13:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 15563,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "241:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15566,
+                  "name": "_value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15587,
+                  "src": "256:14:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 15565,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:7:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 15568,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15587,
+                  "src": "272:11:94",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 15567,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:5:94",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "225:59:94"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 15570,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "294:0:94"
+            },
+            "scope": 15588,
+            "src": "180:252:94",
+            "stateMutability": "nonpayable",
+            "superFunction": 15546,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 15589,
+        "src": "112:322:94"
+      }
+    ],
+    "src": "0:435:94"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/ERC677BridgeForBurnableMintableToken.sol",
+      "exportedSymbols": {
+        "ERC677BridgeForBurnableMintableToken": [
+          15588
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 15556,
+        "name": "PragmaDirective",
+        "src": "0:23:94"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 15555,
+          "absolutePath": "project:/contracts/upgradeable_contracts/ERC677Bridge.sol",
+          "file": "./ERC677Bridge.sol",
+          "scope": 15589,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 15557,
+        "name": "ImportDirective",
+        "src": "25:28:94"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 2915,
+          "absolutePath": "project:/contracts/interfaces/IBurnableMintableERC677Token.sol",
+          "file": "../interfaces/IBurnableMintableERC677Token.sol",
+          "scope": 15589,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 15558,
+        "name": "ImportDirective",
+        "src": "54:56:94"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            2737,
+            10503,
+            11327,
+            14153,
+            15191,
+            15409,
+            15554,
+            15594,
+            16443,
+            16555
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            15588,
+            15554,
+            16443,
+            11327,
+            15191,
+            15594,
+            2737,
+            14153,
+            15409,
+            16555,
+            10503
+          ],
+          "name": "ERC677BridgeForBurnableMintableToken",
+          "scope": 15589
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "ERC677Bridge",
+                  "referencedDeclaration": 15554,
+                  "type": "contract ERC677Bridge"
+                },
+                "id": 15559,
+                "name": "UserDefinedTypeName",
+                "src": "161:12:94"
+              }
+            ],
+            "id": 15560,
+            "name": "InheritanceSpecifier",
+            "src": "161:12:94"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "bridgeSpecificActionsOnTokenTransfer",
+              "payable": false,
+              "scope": 15588,
+              "stateMutability": "nonpayable",
+              "superFunction": 15546,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_token",
+                      "scope": 15587,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract ERC677",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "ERC677",
+                          "referencedDeclaration": 2706,
+                          "type": "contract ERC677"
+                        },
+                        "id": 15561,
+                        "name": "UserDefinedTypeName",
+                        "src": "226:6:94"
+                      }
+                    ],
+                    "id": 15562,
+                    "name": "VariableDeclaration",
+                    "src": "226:13:94"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_from",
+                      "scope": 15587,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 15563,
+                        "name": "ElementaryTypeName",
+                        "src": "241:7:94"
+                      }
+                    ],
+                    "id": 15564,
+                    "name": "VariableDeclaration",
+                    "src": "241:13:94"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_value",
+                      "scope": 15587,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 15565,
+                        "name": "ElementaryTypeName",
+                        "src": "256:7:94"
+                      }
+                    ],
+                    "id": 15566,
+                    "name": "VariableDeclaration",
+                    "src": "256:14:94"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_data",
+                      "scope": 15587,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 15567,
+                        "name": "ElementaryTypeName",
+                        "src": "272:5:94"
+                      }
+                    ],
+                    "id": 15568,
+                    "name": "VariableDeclaration",
+                    "src": "272:11:94"
+                  }
+                ],
+                "id": 15569,
+                "name": "ParameterList",
+                "src": "225:59:94"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15570,
+                "name": "ParameterList",
+                "src": "294:0:94"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "burn",
+                              "referencedDeclaration": 2906,
+                              "type": "function (uint256) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "contract IBurnableMintableERC677Token",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_contract$_ERC677_$2706",
+                                          "typeString": "contract ERC677"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 2914,
+                                      "type": "type(contract IBurnableMintableERC677Token)",
+                                      "value": "IBurnableMintableERC677Token"
+                                    },
+                                    "id": 15571,
+                                    "name": "Identifier",
+                                    "src": "304:28:94"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 15562,
+                                      "type": "contract ERC677",
+                                      "value": "_token"
+                                    },
+                                    "id": 15572,
+                                    "name": "Identifier",
+                                    "src": "333:6:94"
+                                  }
+                                ],
+                                "id": 15573,
+                                "name": "FunctionCall",
+                                "src": "304:36:94"
+                              }
+                            ],
+                            "id": 15574,
+                            "name": "MemberAccess",
+                            "src": "304:41:94"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 15566,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 15575,
+                            "name": "Identifier",
+                            "src": "346:6:94"
+                          }
+                        ],
+                        "id": 15576,
+                        "name": "FunctionCall",
+                        "src": "304:49:94"
+                      }
+                    ],
+                    "id": 15577,
+                    "name": "ExpressionStatement",
+                    "src": "304:49:94"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 15553,
+                              "type": "function (address,uint256)",
+                              "value": "fireEventOnTokenTransfer"
+                            },
+                            "id": 15578,
+                            "name": "Identifier",
+                            "src": "363:24:94"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "address",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bytes_memory_ptr",
+                                      "typeString": "bytes memory"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 15185,
+                                  "type": "function (address,bytes memory) view returns (address)",
+                                  "value": "chooseReceiver"
+                                },
+                                "id": 15579,
+                                "name": "Identifier",
+                                "src": "388:14:94"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 15564,
+                                  "type": "address",
+                                  "value": "_from"
+                                },
+                                "id": 15580,
+                                "name": "Identifier",
+                                "src": "403:5:94"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 15568,
+                                  "type": "bytes memory",
+                                  "value": "_data"
+                                },
+                                "id": 15581,
+                                "name": "Identifier",
+                                "src": "410:5:94"
+                              }
+                            ],
+                            "id": 15582,
+                            "name": "FunctionCall",
+                            "src": "388:28:94"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 15566,
+                              "type": "uint256",
+                              "value": "_value"
+                            },
+                            "id": 15583,
+                            "name": "Identifier",
+                            "src": "418:6:94"
+                          }
+                        ],
+                        "id": 15584,
+                        "name": "FunctionCall",
+                        "src": "363:62:94"
+                      }
+                    ],
+                    "id": 15585,
+                    "name": "ExpressionStatement",
+                    "src": "363:62:94"
+                  }
+                ],
+                "id": 15586,
+                "name": "Block",
+                "src": "294:138:94"
+              }
+            ],
+            "id": 15587,
+            "name": "FunctionDefinition",
+            "src": "180:252:94"
+          }
+        ],
+        "id": 15588,
+        "name": "ContractDefinition",
+        "src": "112:322:94"
+      }
+    ],
+    "id": 15589,
+    "name": "SourceUnit",
+    "src": "0:435:94"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.928Z",
+  "devdoc": {
+    "methods": {
+      "decimalShift()": {
+        "details": "Returns the value of foreign-to-home decimal shift.",
+        "return": "decimal shift."
+      },
+      "maxAvailablePerTx()": {
+        "details": "Retrieves maximum available bridge amount per one transaction taking into account maxPerTx() and dailyLimit() parameters.",
+        "return": "minimum of maxPerTx parameter and remaining daily quota."
+      },
+      "owner()": {
+        "details": "Tells the address of the owner",
+        "return": "the address of the owner"
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "newOwner": "the address to transfer ownership to."
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

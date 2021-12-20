@@ -1,0 +1,2434 @@
+{
+  "contractName": "ForeignFeeManagerAMBNativeToErc20",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_account",
+          "type": "address"
+        }
+      ],
+      "name": "removeRewardAccount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rewardAccountsCount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setFee",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateFee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onTokenTransfer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "fee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_account",
+          "type": "address"
+        }
+      ],
+      "name": "addRewardAccount",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rewardAccountsList",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_fee",
+          "type": "uint256"
+        },
+        {
+          "name": "_rewardAccountList",
+          "type": "address[]"
+        },
+        {
+          "name": "_mediatorContract",
+          "type": "address"
+        },
+        {
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipRenounced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newToken",
+          "type": "address"
+        }
+      ],
+      "name": "setToken",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_newToken\",\"type\":\"address\"}],\"name\":\"setToken\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_account\",\"type\":\"address\"}],\"name\":\"removeRewardAccount\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rewardAccountsCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"setFee\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"calculateFee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"_value\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"onTokenTransfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"fee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_account\",\"type\":\"address\"}],\"name\":\"addRewardAccount\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rewardAccountsList\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_fee\",\"type\":\"uint256\"},{\"name\":\"_rewardAccountList\",\"type\":\"address[]\"},{\"name\":\"_mediatorContract\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"fee\",\"type\":\"uint256\"}],\"name\":\"FeeUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"}],\"name\":\"OwnershipRenounced\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"addRewardAccount(address)\":{\"details\":\"Adds a new account to the list of accounts to receive rewards for the operations. Only the owner can call this method.\",\"params\":{\"_account\":\"new reward account\"}},\"calculateFee(uint256)\":{\"details\":\"Calculates the fee amount to be subtracted from the value.\",\"params\":{\"_value\":\"the base value from which fees are calculated\"}},\"onTokenTransfer(address,uint256,bytes)\":{\"details\":\"ERC677 transfer callback function, received fee is distributed.\",\"params\":{\"_value\":\"amount of transferred tokens\"}},\"removeRewardAccount(address)\":{\"details\":\"Removes an account from the list of accounts to receive rewards for the operations. Only the owner can call this method. finds the element, swaps it with the last element, and then deletes it;\",\"params\":{\"_account\":\"to be removed return boolean whether the element was found and deleted\"}},\"renounceOwnership()\":{\"details\":\"Allows the current owner to relinquish control of the contract.\"},\"rewardAccountsCount()\":{\"details\":\"Tells the amount of accounts in the list of reward accounts.\",\"return\":\"amount of accounts.\"},\"rewardAccountsList()\":{\"details\":\"Tells the list of accounts that receives rewards for the operations.\",\"return\":\"the list of reward accounts\"},\"setFee(uint256)\":{\"details\":\"Sets the fee percentage amount for the mediator operations. Only the owner can call this method.\",\"params\":{\"_fee\":\"the fee percentage\"}},\"setToken(address)\":{\"details\":\"Sets the token address. Only the owner can call this method.\",\"params\":{\"_newToken\":\"address of the token in which the fees will be received.\"}},\"transferOwnership(address)\":{\"details\":\"Allows the current owner to transfer control of the contract to a newOwner.\",\"params\":{\"_newOwner\":\"The address to transfer ownership to.\"}}},\"title\":\"ForeignFeeManagerAMBNativeToErc20\"},\"userdoc\":{\"methods\":{\"renounceOwnership()\":{\"notice\":\"Renouncing to ownership will leave the contract without an owner. It will not be possible to call the functions with the `onlyOwner` modifier anymore.\"}}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/upgradeable_contracts/amb_native_to_erc20/ForeignFeeManagerAMBNativeToErc20.sol\":\"ForeignFeeManagerAMBNativeToErc20\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"openzeppelin-solidity/contracts/AddressUtils.sol\":{\"keccak256\":\"0x5ed3dc711dbb34917afff3c753adf3b0580514d1339cfedaa5a73645d8ac9b56\",\"urls\":[\"bzzr://d597eeb695a3d64766453239e973ddd65994c258ab8d5cab0d90103033ce85fc\"]},\"openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xa1c5e1d9ebbf654d332ca8e7a5c04a6a6a9d142eeaab3b988c2c909c81a62bef\",\"urls\":[\"bzzr://d062fb4a1b6de1f036ee0e73364a2532c4757eb68e95dd8c5cbb2d17b8732c6a\"]},\"openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0x84c7090c27cf3657b73d9e26b6b316975fa0bd233b8169f254de0c3b3acfaefc\",\"urls\":[\"bzzr://b983355647976c1daa5de581a1b6a41be9c5adc17cce257b8679649db78f8a11\"]},\"openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol\":{\"keccak256\":\"0x516a17244073b518096ced7c8c94924cb29746ef0a4b6cc6cde125ac0406a419\",\"urls\":[\"bzzr://7addb1b5cad767651b9bcd688ba5b08769c1f3b70a470e34752a7717756d090d\"]},\"project:/contracts/upgradeable_contracts/BaseMediatorFeeManager.sol\":{\"keccak256\":\"0xaf3b16e33b9dbbdcb0f52d3fc52e44d467b7fff6f4bb7237f83ef9b019fdf142\",\"urls\":[\"bzzr://23c1e8307a10da9f487900ffe62a5a278dad36d70a7bae79429915dee959b877\"]},\"project:/contracts/upgradeable_contracts/amb_native_to_erc20/ForeignFeeManagerAMBNativeToErc20.sol\":{\"keccak256\":\"0xf81edfe242f2f7fcacf80eafecf239986c35a5c376344b280c22e6f98cf86aa8\",\"urls\":[\"bzzr://be3fc00e8a98adb1a40b30ab6fb8e35502223026f9738d2eb720fc5302fb0c97\"]}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b5060405162000dce38038062000dce83398101604090815281516020830151918301516060840151608085015160008054600160a060020a031916331781559395929092019290919085908590859085906200007b82640100000000620009086200017f82021704565b15156200008757600080fd5b600083511180156200009b57506032835111155b1515620000a757600080fd5b620000bb8564010000000062000187810204565b620000cf84640100000000620001f8810204565b5060038054600160a060020a031916600160a060020a03831617905560005b82518110156200013f576200012a83828151811015156200010b57fe5b906020019060200201516200024a640100000000026401000000009004565b15156200013657600080fd5b600101620000ee565b825162000154906002906020860190620002c0565b505050505050620001748162000279640100000000026401000000009004565b505050505062000354565b6000903b1190565b600160a060020a03811615156200019d57600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a360008054600160a060020a031916600160a060020a0392909216919091179055565b80670de0b6b3a764000081106200020e57600080fd5b60018290556040805183815290517f8c4d35e54a3f2ef1134138fd8ea3daee6a3c89e10d2665996babdf70261e2c769181900360200190a15050565b6000600160a060020a03821615801590620002735750600354600160a060020a03838116911614155b92915050565b6200029281640100000000620009086200017f82021704565b15156200029e57600080fd5b60048054600160a060020a031916600160a060020a0392909216919091179055565b82805482825590600052602060002090810192821562000318579160200282015b82811115620003185782518254600160a060020a031916600160a060020a03909116178255602090920191600190910190620002e1565b50620003269291506200032a565b5090565b6200035191905b8082111562000326578054600160a060020a031916815560010162000331565b90565b610a6a80620003646000396000f3006080604052600436106100c45763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663144fa6d781146100c95780634692d9b4146100ec5780635ab73f011461012157806369fe0e2d14610148578063715018a6146101605780638da5cb5b1461017557806399a5d747146101a6578063a4c0ed36146101be578063ddca3f43146101ef578063e219bdc614610204578063f2fde38b14610225578063fc0c546a14610246578063fdcbe9cd1461025b575b600080fd5b3480156100d557600080fd5b506100ea600160a060020a03600435166102c0565b005b3480156100f857600080fd5b5061010d600160a060020a03600435166102e3565b604080519115158252519081900360200190f35b34801561012d57600080fd5b5061013661041c565b60408051918252519081900360200190f35b34801561015457600080fd5b506100ea600435610423565b34801561016c57600080fd5b506100ea610443565b34801561018157600080fd5b5061018a6104af565b60408051600160a060020a039092168252519081900360200190f35b3480156101b257600080fd5b506101366004356104be565b3480156101ca57600080fd5b5061010d60048035600160a060020a03169060248035916044359182019101356104f3565b3480156101fb57600080fd5b50610136610509565b34801561021057600080fd5b506100ea600160a060020a036004351661050f565b34801561023157600080fd5b506100ea600160a060020a03600435166105bb565b34801561025257600080fd5b5061018a6105db565b34801561026757600080fd5b506102706105ea565b60408051602080825283518183015283519192839290830191858101910280838360005b838110156102ac578181015183820152602001610294565b505050509050019250505060405180910390f35b600054600160a060020a031633146102d757600080fd5b6102e08161064c565b50565b6000805481908190600160a060020a031633146102ff57600080fd5b61030761041c565b9150600090505b818110156100c45783600160a060020a031660028281548110151561032f57fe5b600091825260209091200154600160a060020a0316141561040d5760028054600019840190811061035c57fe5b60009182526020909120015460028054600160a060020a03909216918390811061038257fe5b6000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790556002805460001984019081106103ca57fe5b6000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff1916905560028054906104039060001983016109f7565b5060019250610415565b60010161030e565b5050919050565b6002545b90565b600054600160a060020a0316331461043a57600080fd5b6102e08161068f565b600054600160a060020a0316331461045a57600080fd5b60008054604051600160a060020a03909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b600054600160a060020a031681565b60006104ed670de0b6b3a76400006104e1600154856106e090919063ffffffff16565b9063ffffffff61070916565b92915050565b60006104fe8461071e565b506001949350505050565b60015481565b600054600160a060020a0316331461052657600080fd5b61052f816107fd565b151561053a57600080fd5b61054381610828565b1561054d57600080fd5b60025460321161055c57600080fd5b600280546001810182556000919091527f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace01805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a031633146105d257600080fd5b6102e08161088b565b600454600160a060020a031681565b6060600280548060200260200160405190810160405280929190818152602001828054801561064257602002820191906000526020600020905b8154600160a060020a03168152600190910190602001808311610624575b5050505050905090565b61065581610908565b151561066057600080fd5b6004805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b80670de0b6b3a764000081106106a457600080fd5b60018290556040805183815290517f8c4d35e54a3f2ef1134138fd8ea3daee6a3c89e10d2665996babdf70261e2c769181900360200190a15050565b60008215156106f1575060006104ed565b5081810281838281151561070157fe5b04146104ed57fe5b6000818381151561071657fe5b049392505050565b60008060008060008061072f61041c565b955085151561073d576107f4565b61074d878763ffffffff61070916565b945061076f610762868863ffffffff6106e016565b889063ffffffff61091016565b925060008311156107865761078386610922565b93505b600091505b858210156107f45750836000831180156107a457508184145b156107bc576107b9818463ffffffff61094716565b90505b6107e96002838154811015156107ce57fe5b600091825260209091200154600160a060020a031682610954565b60019091019061078b565b50505050505050565b6000600160a060020a038216158015906104ed575050600354600160a060020a039081169116141590565b6000805b61083461041c565b8110156108805782600160a060020a031660028281548110151561085457fe5b600091825260209091200154600160a060020a031614156108785760019150610885565b60010161082c565b600091505b50919050565b600160a060020a03811615156108a057600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b6000903b1190565b60008282111561091c57fe5b50900390565b60008161093643600163ffffffff61091016565b4081151561094057fe5b0692915050565b818101828110156104ed57fe5b60048054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a0386811694820194909452602481018590529051929091169163a9059cbb916044808201926020929091908290030181600087803b1580156109c757600080fd5b505af11580156109db573d6000803e3d6000fd5b505050506040513d60208110156109f157600080fd5b50505050565b815481835581811115610a1b57600083815260209020610a1b918101908301610a20565b505050565b61042091905b80821115610a3a5760008155600101610a26565b50905600a165627a7a723058204d656bba9d03a787bf69b0680a27211221701bfd3c34567de86f2d0fe30217b70029",
+  "deployedBytecode": "0x6080604052600436106100c45763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663144fa6d781146100c95780634692d9b4146100ec5780635ab73f011461012157806369fe0e2d14610148578063715018a6146101605780638da5cb5b1461017557806399a5d747146101a6578063a4c0ed36146101be578063ddca3f43146101ef578063e219bdc614610204578063f2fde38b14610225578063fc0c546a14610246578063fdcbe9cd1461025b575b600080fd5b3480156100d557600080fd5b506100ea600160a060020a03600435166102c0565b005b3480156100f857600080fd5b5061010d600160a060020a03600435166102e3565b604080519115158252519081900360200190f35b34801561012d57600080fd5b5061013661041c565b60408051918252519081900360200190f35b34801561015457600080fd5b506100ea600435610423565b34801561016c57600080fd5b506100ea610443565b34801561018157600080fd5b5061018a6104af565b60408051600160a060020a039092168252519081900360200190f35b3480156101b257600080fd5b506101366004356104be565b3480156101ca57600080fd5b5061010d60048035600160a060020a03169060248035916044359182019101356104f3565b3480156101fb57600080fd5b50610136610509565b34801561021057600080fd5b506100ea600160a060020a036004351661050f565b34801561023157600080fd5b506100ea600160a060020a03600435166105bb565b34801561025257600080fd5b5061018a6105db565b34801561026757600080fd5b506102706105ea565b60408051602080825283518183015283519192839290830191858101910280838360005b838110156102ac578181015183820152602001610294565b505050509050019250505060405180910390f35b600054600160a060020a031633146102d757600080fd5b6102e08161064c565b50565b6000805481908190600160a060020a031633146102ff57600080fd5b61030761041c565b9150600090505b818110156100c45783600160a060020a031660028281548110151561032f57fe5b600091825260209091200154600160a060020a0316141561040d5760028054600019840190811061035c57fe5b60009182526020909120015460028054600160a060020a03909216918390811061038257fe5b6000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790556002805460001984019081106103ca57fe5b6000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff1916905560028054906104039060001983016109f7565b5060019250610415565b60010161030e565b5050919050565b6002545b90565b600054600160a060020a0316331461043a57600080fd5b6102e08161068f565b600054600160a060020a0316331461045a57600080fd5b60008054604051600160a060020a03909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b600054600160a060020a031681565b60006104ed670de0b6b3a76400006104e1600154856106e090919063ffffffff16565b9063ffffffff61070916565b92915050565b60006104fe8461071e565b506001949350505050565b60015481565b600054600160a060020a0316331461052657600080fd5b61052f816107fd565b151561053a57600080fd5b61054381610828565b1561054d57600080fd5b60025460321161055c57600080fd5b600280546001810182556000919091527f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace01805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a031633146105d257600080fd5b6102e08161088b565b600454600160a060020a031681565b6060600280548060200260200160405190810160405280929190818152602001828054801561064257602002820191906000526020600020905b8154600160a060020a03168152600190910190602001808311610624575b5050505050905090565b61065581610908565b151561066057600080fd5b6004805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b80670de0b6b3a764000081106106a457600080fd5b60018290556040805183815290517f8c4d35e54a3f2ef1134138fd8ea3daee6a3c89e10d2665996babdf70261e2c769181900360200190a15050565b60008215156106f1575060006104ed565b5081810281838281151561070157fe5b04146104ed57fe5b6000818381151561071657fe5b049392505050565b60008060008060008061072f61041c565b955085151561073d576107f4565b61074d878763ffffffff61070916565b945061076f610762868863ffffffff6106e016565b889063ffffffff61091016565b925060008311156107865761078386610922565b93505b600091505b858210156107f45750836000831180156107a457508184145b156107bc576107b9818463ffffffff61094716565b90505b6107e96002838154811015156107ce57fe5b600091825260209091200154600160a060020a031682610954565b60019091019061078b565b50505050505050565b6000600160a060020a038216158015906104ed575050600354600160a060020a039081169116141590565b6000805b61083461041c565b8110156108805782600160a060020a031660028281548110151561085457fe5b600091825260209091200154600160a060020a031614156108785760019150610885565b60010161082c565b600091505b50919050565b600160a060020a03811615156108a057600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b6000903b1190565b60008282111561091c57fe5b50900390565b60008161093643600163ffffffff61091016565b4081151561094057fe5b0692915050565b818101828110156104ed57fe5b60048054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a0386811694820194909452602481018590529051929091169163a9059cbb916044808201926020929091908290030181600087803b1580156109c757600080fd5b505af11580156109db573d6000803e3d6000fd5b505050506040513d60208110156109f157600080fd5b50505050565b815481835581811115610a1b57600083815260209020610a1b918101908301610a20565b505050565b61042091905b80821115610a3a5760008155600101610a26565b50905600a165627a7a723058204d656bba9d03a787bf69b0680a27211221701bfd3c34567de86f2d0fe30217b70029",
+  "sourceMap": "427:1601:133:-;;;882:252;8:9:-1;5:2;;;30:1;27;20:12;5:2;882:252:133;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1658:9:77;567:18:2;;-1:-1:-1;;;;;;567:18:2;575:10;567:18;;;882:252:133;;;;;;;;;;;;;;;;;;1394:42:77;882:252:133;1394:23:77;;;;;;:42;:::i;:::-;1386:51;;;;;;;;1483:1;1455:18;:25;:29;:81;;;;;652:2;1488:18;:25;:48;;1455:81;1447:90;;;;;;;;1547:26;1566:6;1547:18;;;;:26;:::i;:::-;1583:13;1591:4;1583:7;;;;:13;:::i;:::-;-1:-1:-1;1606:16:77;:36;;-1:-1:-1;;;;;;1606:36:77;-1:-1:-1;;;;;1606:36:77;;;;;-1:-1:-1;1653:127:77;1677:18;:25;1673:1;:29;1653:127;;;1731:37;1746:18;1765:1;1746:21;;;;;;;;;;;;;;;;;;1731:14;;;:37;;;:::i;:::-;1723:46;;;;;;;;1704:3;;1653:127;;;1789:35;;;;:14;;:35;;;;;:::i;:::-;;1270:561;;;;;1110:17:133;1120:6;1110:9;;;:17;;;:::i;:::-;882:252;;;;;427:1601;;438:578:0;496:4;971:18;;1003:8;;438:578::o;1512:171:2:-;-1:-1:-1;;;;;1582:23:2;;;;1574:32;;;;;;1638:5;;;1617:38;;-1:-1:-1;;;;;1617:38:2;;;;1638:5;;;1617:38;;;1661:5;:17;;-1:-1:-1;;;;;;1661:17:2;-1:-1:-1;;;;;1661:17:2;;;;;;;;;;1512:171::o;2241:113:77:-;2290:4;591:7;814:14;;806:23;;;;;;2306:3;:10;;;2331:16;;;;;;;;;;;;;;;;;2241:113;;:::o;2605:144::-;2665:4;-1:-1:-1;;;;;2688:22:77;;;;;;:54;;-1:-1:-1;2726:16:77;;-1:-1:-1;;;;;2714:28:77;;;2726:16;;2714:28;;2688:54;2681:61;2605:144;-1:-1:-1;;2605:144:77:o;1544:134:133:-;1609:34;1633:9;1609:23;;;;;;:34;:::i;:::-;1601:43;;;;;;;;1654:5;:17;;-1:-1:-1;;;;;;1654:17:133;-1:-1:-1;;;;;1654:17:133;;;;;;;;;;1544:134::o;427:1601::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;427:1601:133;-1:-1:-1;;;;;427:1601:133;;;;;;;;;;;-1:-1:-1;427:1601:133;;;;;;;-1:-1:-1;427:1601:133;;;-1:-1:-1;427:1601:133;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;-1:-1:-1;;;;;;427:1601:133;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "427:1601:133:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1313:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1313:93:133;-1:-1:-1;;;;;1313:93:133;;;;;;;3542:564:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;3542:564:77;-1:-1:-1;;;;;3542:564:77;;;;;;;;;;;;;;;;;;;;;;;4233:106;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4233:106:77;;;;;;;;;;;;;;;;;;;;2520:79;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2520:79:77;;;;;1001:111:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1001:111:2;;;;238:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:20:2;;;;;;;;-1:-1:-1;;;;;238:20:2;;;;;;;;;;;;;;1988:122:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1988:122:77;;;;;5189:140;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;5189:140:77;;;;-1:-1:-1;;;;;5189:140:77;;;;;;;;;;;;;;;;661:18;;8:9:-1;5:2;;;30:1;27;20:12;5:2;661:18:77;;;;2947:259;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2947:259:77;-1:-1:-1;;;;;2947:259:77;;;;;1274:103:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1274:103:2;-1:-1:-1;;;;;1274:103:2;;;;;502:20:133;;8:9:-1;5:2;;;30:1;27;20:12;5:2;502:20:133;;;;4944:100:77;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4944:100:77;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8::-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;4944:100:77;;;;;;;;;;;;;;;;;1313:93:133;719:5:2;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;1379:20:133;1389:9;1379;:20::i;:::-;1313:93;:::o;3542:564:77:-;3617:4;719:5:2;;3617:4:77;;;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;3657:21:77;:19;:21::i;:::-;3633:45;;3705:1;3693:13;;3688:317;3712:13;3708:1;:17;3688:317;;;3771:8;-1:-1:-1;;;;;3750:29:77;:14;3765:1;3750:17;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;3750:17:77;:29;3746:249;;;3819:14;:33;;-1:-1:-1;;3834:17:77;;;3819:33;;;;;;;;;;;;;;;;3799:14;:17;;-1:-1:-1;;;;;3819:33:77;;;;3814:1;;3799:17;;;;;;;;;;;;;;;:53;;-1:-1:-1;;3799:53:77;-1:-1:-1;;;;;3799:53:77;;;;;;;;;;3877:14;:33;;-1:-1:-1;;3892:17:77;;;3877:33;;;;;;;;;;;;;;;3870:40;;-1:-1:-1;;3870:40:77;;;3928:14;:23;;;;;-1:-1:-1;;3928:23:77;;;:::i;:::-;;3976:4;3969:11;;;;3746:249;3727:3;;3688:317;;731:1:2;3542:564:77;;;;;:::o;4233:106::-;4311:14;:21;4233:106;;:::o;2520:79::-;719:5:2;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;2579:13:77;2587:4;2579:7;:13::i;1001:111:2:-;719:5;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;1077:5;;;1058:25;;-1:-1:-1;;;;;1077:5:2;;;;1058:25;;;1105:1;1089:18;;-1:-1:-1;;1089:18:2;;;1001:111::o;238:20::-;;;-1:-1:-1;;;;;238:20:2;;:::o;1988:122:77:-;2049:7;2075:28;591:7;2075:15;2086:3;;2075:6;:10;;:15;;;;:::i;:::-;:19;:28;:19;:28;:::i;:::-;2068:35;1988:122;-1:-1:-1;;1988:122:77:o;5189:140::-;5264:4;5280:21;5294:6;5280:13;:21::i;:::-;-1:-1:-1;5318:4:77;5189:140;;;;;;:::o;661:18::-;;;;:::o;2947:259::-;719:5:2;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;3028:24:77;3043:8;3028:14;:24::i;:::-;3020:33;;;;;;;;3072:25;3088:8;3072:15;:25::i;:::-;3071:26;3063:35;;;;;;3116:14;:21;652:2;-1:-1:-1;3108:52:77;;;;;;3170:14;27:10:-1;;39:1;23:18;;45:23;;-1:-1;3170:29:77;;;;;;;;-1:-1:-1;;3170:29:77;-1:-1:-1;;;;;3170:29:77;;;;;;;;;;2947:259::o;1274:103:2:-;719:5;;-1:-1:-1;;;;;719:5:2;705:10;:19;697:28;;;;;;1343:29;1362:9;1343:18;:29::i;502:20:133:-;;;-1:-1:-1;;;;;502:20:133;;:::o;4944:100:77:-;4995:9;5023:14;5016:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;5016:21:77;;;;;;;;;;;;;;;;;;;;;;;4944:100;:::o;1544:134:133:-;1609:34;1633:9;1609:23;:34::i;:::-;1601:43;;;;;;;;1654:5;:17;;-1:-1:-1;;1654:17:133;-1:-1:-1;;;;;1654:17:133;;;;;;;;;;1544:134::o;2241:113:77:-;2290:4;591:7;814:14;;806:23;;;;;;2306:3;:10;;;2331:16;;;;;;;;;;;;;;;;;2241:113;;:::o;203:380:1:-;263:9;489:7;;485:36;;;-1:-1:-1;513:1:1;506:8;;485:36;-1:-1:-1;531:7:1;;;536:2;531;:7;551:6;;;;;;;;:12;544:20;;;665:283;725:7;941:2;936;:7;;;;;;;;;665:283;-1:-1:-1;;;665:283:1:o;5670:1078:77:-;5726:21;6186;6243:26;6279:12;6442:9;6495:23;5750:21;:19;:21::i;:::-;5726:45;-1:-1:-1;5785:18:77;;5781:396;;;6160:7;;5781:396;6210:23;:4;6219:13;6210:23;:8;:23;:::i;:::-;6186:47;-1:-1:-1;6294:42:77;6303:32;6186:47;6321:13;6303:32;:17;:32;:::i;:::-;6294:4;;:42;:8;:42;:::i;:::-;6279:57;;6357:1;6350:4;:8;6346:81;;;6395:21;6402:13;6395:6;:21::i;:::-;6374:42;;6346:81;6454:1;6442:13;;6437:305;6461:13;6457:1;:17;6437:305;;;-1:-1:-1;6521:13:77;6559:1;6552:8;;:35;;;;;6586:1;6564:18;:23;6552:35;6548:117;;;6625:25;:15;6645:4;6625:25;:19;:25;:::i;:::-;6607:43;;6548:117;6678:53;6696:14;6711:1;6696:17;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6696:17:77;6715:15;6678:17;:53::i;:::-;6476:3;;;;;6437:305;;;5670:1078;;;;;;;:::o;2605:144::-;2665:4;-1:-1:-1;;;;;2688:22:77;;;;;;:54;;-1:-1:-1;;2726:16:77;;-1:-1:-1;;;;;2726:16:77;;;2714:28;;;;;2605:144::o;4536:265::-;4602:4;;4618:155;4642:21;:19;:21::i;:::-;4638:1;:25;4618:155;;;4709:8;-1:-1:-1;;;;;4688:29:77;:14;4703:1;4688:17;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4688:17:77;:29;4684:79;;;4744:4;4737:11;;;;4684:79;4665:3;;4618:155;;;4789:5;4782:12;;4536:265;;;;;:::o;1512:171:2:-;-1:-1:-1;;;;;1582:23:2;;;;1574:32;;;;;;1638:5;;;1617:38;;-1:-1:-1;;;;;1617:38:2;;;;1638:5;;;1617:38;;;1661:5;:17;;-1:-1:-1;;1661:17:2;-1:-1:-1;;;;;1661:17:2;;;;;;;;;;1512:171::o;438:578:0:-;496:4;971:18;;1003:8;;438:578::o;1060:116:1:-;1120:7;1142:8;;;;1135:16;;;;-1:-1:-1;1164:7:1;;;1060:116::o;6936:136:77:-;6991:7;7059:6;7035:19;:12;7052:1;7035:19;:16;:19;:::i;:::-;7025:30;7017:48;;;;;;;;;6936:136;-1:-1:-1;;6936:136:77:o;1238:128:1:-;1319:7;;;1339;;;;1332:15;;;1887:139:133;1982:5;;;1971:48;;;;;;-1:-1:-1;;;;;1971:48:133;;;;;;;;;;;;;;;;;;1982:5;;;;;1971:26;;:48;;;;;;;;;;;;;;;1982:5;;1971:48;;;5:2:-1;;;;30:1;27;20:12;5:2;1971:48:133;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1971:48:133;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;1887:139:133:o;427:1601::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;",
+  "source": "pragma solidity 0.4.24;\n\nimport \"openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol\";\nimport \"openzeppelin-solidity/contracts/AddressUtils.sol\";\nimport \"../BaseMediatorFeeManager.sol\";\n\n/**\n* @title ForeignFeeManagerAMBNativeToErc20\n* @dev Implements the logic to distribute fees from the native to erc20 mediator contract operations.\n* The fees are distributed in the form of tokens to the list of reward accounts.\n*/\ncontract ForeignFeeManagerAMBNativeToErc20 is BaseMediatorFeeManager {\n    address public token;\n\n    /**\n    * @dev Stores the initial parameters of the fee manager.\n    * @param _owner address of the owner of the fee manager contract.\n    * @param _fee the fee percentage amount.\n    * @param _rewardAccountList list of addresses that will receive the fee rewards.\n    * @param _token address of the token in which the fees will be received.\n    */\n    constructor(address _owner, uint256 _fee, address[] _rewardAccountList, address _mediatorContract, address _token)\n        public\n        BaseMediatorFeeManager(_owner, _fee, _rewardAccountList, _mediatorContract)\n    {\n        _setToken(_token);\n    }\n\n    /**\n    * @dev Sets the token address.\n    * Only the owner can call this method.\n    * @param _newToken address of the token in which the fees will be received.\n    */\n    function setToken(address _newToken) external onlyOwner {\n        _setToken(_newToken);\n    }\n\n    /**\n    * @dev Stores the token address.\n    * @param _newToken address of the token in which the fees will be received.\n    */\n    function _setToken(address _newToken) internal {\n        require(AddressUtils.isContract(_newToken));\n        token = _newToken;\n    }\n\n    /**\n    * @dev Transfer the fee amount of tokens to the reward account.\n    * @param _rewardAddress address that will receive the tokens.\n    * @param _fee amount of tokens to be transferred.\n    */\n    function onFeeDistribution(address _rewardAddress, uint256 _fee) internal {\n        ERC20Basic(token).transfer(_rewardAddress, _fee);\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/amb_native_to_erc20/ForeignFeeManagerAMBNativeToErc20.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/amb_native_to_erc20/ForeignFeeManagerAMBNativeToErc20.sol",
+    "exportedSymbols": {
+      "ForeignFeeManagerAMBNativeToErc20": [
+        21968
+      ]
+    },
+    "id": 21969,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 21890,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:133"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol",
+        "file": "openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol",
+        "id": 21891,
+        "nodeType": "ImportDirective",
+        "scope": 21969,
+        "sourceUnit": 475,
+        "src": "25:68:133",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "id": 21892,
+        "nodeType": "ImportDirective",
+        "scope": 21969,
+        "sourceUnit": 19,
+        "src": "94:58:133",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/BaseMediatorFeeManager.sol",
+        "file": "../BaseMediatorFeeManager.sol",
+        "id": 21893,
+        "nodeType": "ImportDirective",
+        "scope": 21969,
+        "sourceUnit": 11962,
+        "src": "153:39:133",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 21894,
+              "name": "BaseMediatorFeeManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 11961,
+              "src": "473:22:133",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseMediatorFeeManager_$11961",
+                "typeString": "contract BaseMediatorFeeManager"
+              }
+            },
+            "id": 21895,
+            "nodeType": "InheritanceSpecifier",
+            "src": "473:22:133"
+          }
+        ],
+        "contractDependencies": [
+          198,
+          11961
+        ],
+        "contractKind": "contract",
+        "documentation": "@title ForeignFeeManagerAMBNativeToErc20\n@dev Implements the logic to distribute fees from the native to erc20 mediator contract operations.\nThe fees are distributed in the form of tokens to the list of reward accounts.",
+        "fullyImplemented": true,
+        "id": 21968,
+        "linearizedBaseContracts": [
+          21968,
+          11961,
+          198
+        ],
+        "name": "ForeignFeeManagerAMBNativeToErc20",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 21897,
+            "name": "token",
+            "nodeType": "VariableDeclaration",
+            "scope": 21968,
+            "src": "502:20:133",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 21896,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "502:7:133",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 21921,
+              "nodeType": "Block",
+              "src": "1100:34:133",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 21918,
+                        "name": "_token",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 21908,
+                        "src": "1120:6:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 21917,
+                      "name": "_setToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 21951,
+                      "src": "1110:9:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 21919,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1110:17:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 21920,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1110:17:133"
+                }
+              ]
+            },
+            "documentation": "@dev Stores the initial parameters of the fee manager.\n@param _owner address of the owner of the fee manager contract.\n@param _fee the fee percentage amount.\n@param _rewardAccountList list of addresses that will receive the fee rewards.\n@param _token address of the token in which the fees will be received.",
+            "id": 21922,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 21911,
+                    "name": "_owner",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 21899,
+                    "src": "1043:6:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 21912,
+                    "name": "_fee",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 21901,
+                    "src": "1051:4:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 21913,
+                    "name": "_rewardAccountList",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 21904,
+                    "src": "1057:18:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                      "typeString": "address[] memory"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 21914,
+                    "name": "_mediatorContract",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 21906,
+                    "src": "1077:17:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                ],
+                "id": 21915,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 21910,
+                  "name": "BaseMediatorFeeManager",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 11961,
+                  "src": "1020:22:133",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_BaseMediatorFeeManager_$11961_$",
+                    "typeString": "type(contract BaseMediatorFeeManager)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1020:75:133"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 21909,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21899,
+                  "name": "_owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21922,
+                  "src": "894:14:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21898,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "894:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 21901,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21922,
+                  "src": "910:12:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 21900,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "910:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 21904,
+                  "name": "_rewardAccountList",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21922,
+                  "src": "924:28:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 21902,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "924:7:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 21903,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "924:9:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 21906,
+                  "name": "_mediatorContract",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21922,
+                  "src": "954:25:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21905,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "954:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 21908,
+                  "name": "_token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21922,
+                  "src": "981:14:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21907,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "981:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "893:103:133"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 21916,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1100:0:133"
+            },
+            "scope": 21968,
+            "src": "882:252:133",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 21933,
+              "nodeType": "Block",
+              "src": "1369:37:133",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 21930,
+                        "name": "_newToken",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 21924,
+                        "src": "1389:9:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 21929,
+                      "name": "_setToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 21951,
+                      "src": "1379:9:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 21931,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1379:20:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 21932,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1379:20:133"
+                }
+              ]
+            },
+            "documentation": "@dev Sets the token address.\nOnly the owner can call this method.\n@param _newToken address of the token in which the fees will be received.",
+            "id": 21934,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 21927,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 21926,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 146,
+                  "src": "1359:9:133",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1359:9:133"
+              }
+            ],
+            "name": "setToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 21925,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21924,
+                  "name": "_newToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21934,
+                  "src": "1331:17:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21923,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1331:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1330:19:133"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 21928,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1369:0:133"
+            },
+            "scope": 21968,
+            "src": "1313:93:133",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 21950,
+              "nodeType": "Block",
+              "src": "1591:87:133",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 21942,
+                            "name": "_newToken",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 21936,
+                            "src": "1633:9:133",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 21940,
+                            "name": "AddressUtils",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 18,
+                            "src": "1609:12:133",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_AddressUtils_$18_$",
+                              "typeString": "type(library AddressUtils)"
+                            }
+                          },
+                          "id": 21941,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "isContract",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 17,
+                          "src": "1609:23:133",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 21943,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1609:34:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 21939,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        31513,
+                        31514
+                      ],
+                      "referencedDeclaration": 31513,
+                      "src": "1601:7:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 21944,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1601:43:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 21945,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1601:43:133"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 21948,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 21946,
+                      "name": "token",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 21897,
+                      "src": "1654:5:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 21947,
+                      "name": "_newToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 21936,
+                      "src": "1662:9:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "1654:17:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 21949,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1654:17:133"
+                }
+              ]
+            },
+            "documentation": "@dev Stores the token address.\n@param _newToken address of the token in which the fees will be received.",
+            "id": 21951,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "_setToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 21937,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21936,
+                  "name": "_newToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21951,
+                  "src": "1563:17:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21935,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1563:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1562:19:133"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 21938,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1591:0:133"
+            },
+            "scope": 21968,
+            "src": "1544:134:133",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 21966,
+              "nodeType": "Block",
+              "src": "1961:65:133",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 21962,
+                        "name": "_rewardAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 21953,
+                        "src": "1998:14:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 21963,
+                        "name": "_fee",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 21955,
+                        "src": "2014:4:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 21959,
+                            "name": "token",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 21897,
+                            "src": "1982:5:133",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 21958,
+                          "name": "ERC20Basic",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 474,
+                          "src": "1971:10:133",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_ERC20Basic_$474_$",
+                            "typeString": "type(contract ERC20Basic)"
+                          }
+                        },
+                        "id": 21960,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1971:17:133",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_ERC20Basic_$474",
+                          "typeString": "contract ERC20Basic"
+                        }
+                      },
+                      "id": 21961,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "transfer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 465,
+                      "src": "1971:26:133",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
+                        "typeString": "function (address,uint256) external returns (bool)"
+                      }
+                    },
+                    "id": 21964,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1971:48:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 21965,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1971:48:133"
+                }
+              ]
+            },
+            "documentation": "@dev Transfer the fee amount of tokens to the reward account.\n@param _rewardAddress address that will receive the tokens.\n@param _fee amount of tokens to be transferred.",
+            "id": 21967,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "onFeeDistribution",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 21956,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21953,
+                  "name": "_rewardAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21967,
+                  "src": "1914:22:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21952,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1914:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 21955,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21967,
+                  "src": "1938:12:133",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 21954,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1938:7:133",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1913:38:133"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 21957,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1961:0:133"
+            },
+            "scope": 21968,
+            "src": "1887:139:133",
+            "stateMutability": "nonpayable",
+            "superFunction": 11960,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 21969,
+        "src": "427:1601:133"
+      }
+    ],
+    "src": "0:2029:133"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/amb_native_to_erc20/ForeignFeeManagerAMBNativeToErc20.sol",
+      "exportedSymbols": {
+        "ForeignFeeManagerAMBNativeToErc20": [
+          21968
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 21890,
+        "name": "PragmaDirective",
+        "src": "0:23:133"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 475,
+          "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol",
+          "file": "openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol",
+          "scope": 21969,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 21891,
+        "name": "ImportDirective",
+        "src": "25:68:133"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 19,
+          "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "scope": 21969,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 21892,
+        "name": "ImportDirective",
+        "src": "94:58:133"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 11962,
+          "absolutePath": "project:/contracts/upgradeable_contracts/BaseMediatorFeeManager.sol",
+          "file": "../BaseMediatorFeeManager.sol",
+          "scope": 21969,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 21893,
+        "name": "ImportDirective",
+        "src": "153:39:133"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            198,
+            11961
+          ],
+          "contractKind": "contract",
+          "documentation": "@title ForeignFeeManagerAMBNativeToErc20\n@dev Implements the logic to distribute fees from the native to erc20 mediator contract operations.\nThe fees are distributed in the form of tokens to the list of reward accounts.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            21968,
+            11961,
+            198
+          ],
+          "name": "ForeignFeeManagerAMBNativeToErc20",
+          "scope": 21969
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BaseMediatorFeeManager",
+                  "referencedDeclaration": 11961,
+                  "type": "contract BaseMediatorFeeManager"
+                },
+                "id": 21894,
+                "name": "UserDefinedTypeName",
+                "src": "473:22:133"
+              }
+            ],
+            "id": 21895,
+            "name": "InheritanceSpecifier",
+            "src": "473:22:133"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "token",
+              "scope": 21968,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 21896,
+                "name": "ElementaryTypeName",
+                "src": "502:7:133"
+              }
+            ],
+            "id": 21897,
+            "name": "VariableDeclaration",
+            "src": "502:20:133"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Stores the initial parameters of the fee manager.\n@param _owner address of the owner of the fee manager contract.\n@param _fee the fee percentage amount.\n@param _rewardAccountList list of addresses that will receive the fee rewards.\n@param _token address of the token in which the fees will be received.",
+              "implemented": true,
+              "isConstructor": true,
+              "name": "",
+              "payable": false,
+              "scope": 21968,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_owner",
+                      "scope": 21922,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21898,
+                        "name": "ElementaryTypeName",
+                        "src": "894:7:133"
+                      }
+                    ],
+                    "id": 21899,
+                    "name": "VariableDeclaration",
+                    "src": "894:14:133"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 21922,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 21900,
+                        "name": "ElementaryTypeName",
+                        "src": "910:7:133"
+                      }
+                    ],
+                    "id": 21901,
+                    "name": "VariableDeclaration",
+                    "src": "910:12:133"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_rewardAccountList",
+                      "scope": 21922,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "type": "address"
+                            },
+                            "id": 21902,
+                            "name": "ElementaryTypeName",
+                            "src": "924:7:133"
+                          }
+                        ],
+                        "id": 21903,
+                        "name": "ArrayTypeName",
+                        "src": "924:9:133"
+                      }
+                    ],
+                    "id": 21904,
+                    "name": "VariableDeclaration",
+                    "src": "924:28:133"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_mediatorContract",
+                      "scope": 21922,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21905,
+                        "name": "ElementaryTypeName",
+                        "src": "954:7:133"
+                      }
+                    ],
+                    "id": 21906,
+                    "name": "VariableDeclaration",
+                    "src": "954:25:133"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_token",
+                      "scope": 21922,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21907,
+                        "name": "ElementaryTypeName",
+                        "src": "981:7:133"
+                      }
+                    ],
+                    "id": 21908,
+                    "name": "VariableDeclaration",
+                    "src": "981:14:133"
+                  }
+                ],
+                "id": 21909,
+                "name": "ParameterList",
+                "src": "893:103:133"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 21916,
+                "name": "ParameterList",
+                "src": "1100:0:133"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 11961,
+                      "type": "type(contract BaseMediatorFeeManager)",
+                      "value": "BaseMediatorFeeManager"
+                    },
+                    "id": 21910,
+                    "name": "Identifier",
+                    "src": "1020:22:133"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 21899,
+                      "type": "address",
+                      "value": "_owner"
+                    },
+                    "id": 21911,
+                    "name": "Identifier",
+                    "src": "1043:6:133"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 21901,
+                      "type": "uint256",
+                      "value": "_fee"
+                    },
+                    "id": 21912,
+                    "name": "Identifier",
+                    "src": "1051:4:133"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 21904,
+                      "type": "address[] memory",
+                      "value": "_rewardAccountList"
+                    },
+                    "id": 21913,
+                    "name": "Identifier",
+                    "src": "1057:18:133"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 21906,
+                      "type": "address",
+                      "value": "_mediatorContract"
+                    },
+                    "id": 21914,
+                    "name": "Identifier",
+                    "src": "1077:17:133"
+                  }
+                ],
+                "id": 21915,
+                "name": "ModifierInvocation",
+                "src": "1020:75:133"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21951,
+                              "type": "function (address)",
+                              "value": "_setToken"
+                            },
+                            "id": 21917,
+                            "name": "Identifier",
+                            "src": "1110:9:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21908,
+                              "type": "address",
+                              "value": "_token"
+                            },
+                            "id": 21918,
+                            "name": "Identifier",
+                            "src": "1120:6:133"
+                          }
+                        ],
+                        "id": 21919,
+                        "name": "FunctionCall",
+                        "src": "1110:17:133"
+                      }
+                    ],
+                    "id": 21920,
+                    "name": "ExpressionStatement",
+                    "src": "1110:17:133"
+                  }
+                ],
+                "id": 21921,
+                "name": "Block",
+                "src": "1100:34:133"
+              }
+            ],
+            "id": 21922,
+            "name": "FunctionDefinition",
+            "src": "882:252:133"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Sets the token address.\nOnly the owner can call this method.\n@param _newToken address of the token in which the fees will be received.",
+              "implemented": true,
+              "isConstructor": false,
+              "name": "setToken",
+              "payable": false,
+              "scope": 21968,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_newToken",
+                      "scope": 21934,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21923,
+                        "name": "ElementaryTypeName",
+                        "src": "1331:7:133"
+                      }
+                    ],
+                    "id": 21924,
+                    "name": "VariableDeclaration",
+                    "src": "1331:17:133"
+                  }
+                ],
+                "id": 21925,
+                "name": "ParameterList",
+                "src": "1330:19:133"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 21928,
+                "name": "ParameterList",
+                "src": "1369:0:133"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 146,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 21926,
+                    "name": "Identifier",
+                    "src": "1359:9:133"
+                  }
+                ],
+                "id": 21927,
+                "name": "ModifierInvocation",
+                "src": "1359:9:133"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21951,
+                              "type": "function (address)",
+                              "value": "_setToken"
+                            },
+                            "id": 21929,
+                            "name": "Identifier",
+                            "src": "1379:9:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21924,
+                              "type": "address",
+                              "value": "_newToken"
+                            },
+                            "id": 21930,
+                            "name": "Identifier",
+                            "src": "1389:9:133"
+                          }
+                        ],
+                        "id": 21931,
+                        "name": "FunctionCall",
+                        "src": "1379:20:133"
+                      }
+                    ],
+                    "id": 21932,
+                    "name": "ExpressionStatement",
+                    "src": "1379:20:133"
+                  }
+                ],
+                "id": 21933,
+                "name": "Block",
+                "src": "1369:37:133"
+              }
+            ],
+            "id": 21934,
+            "name": "FunctionDefinition",
+            "src": "1313:93:133"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Stores the token address.\n@param _newToken address of the token in which the fees will be received.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "_setToken",
+              "payable": false,
+              "scope": 21968,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_newToken",
+                      "scope": 21951,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21935,
+                        "name": "ElementaryTypeName",
+                        "src": "1563:7:133"
+                      }
+                    ],
+                    "id": 21936,
+                    "name": "VariableDeclaration",
+                    "src": "1563:17:133"
+                  }
+                ],
+                "id": 21937,
+                "name": "ParameterList",
+                "src": "1562:19:133"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 21938,
+                "name": "ParameterList",
+                "src": "1591:0:133"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                31513,
+                                31514
+                              ],
+                              "referencedDeclaration": 31513,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 21939,
+                            "name": "Identifier",
+                            "src": "1601:7:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "bool",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "isContract",
+                                  "referencedDeclaration": 17,
+                                  "type": "function (address) view returns (bool)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 18,
+                                      "type": "type(library AddressUtils)",
+                                      "value": "AddressUtils"
+                                    },
+                                    "id": 21940,
+                                    "name": "Identifier",
+                                    "src": "1609:12:133"
+                                  }
+                                ],
+                                "id": 21941,
+                                "name": "MemberAccess",
+                                "src": "1609:23:133"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 21936,
+                                  "type": "address",
+                                  "value": "_newToken"
+                                },
+                                "id": 21942,
+                                "name": "Identifier",
+                                "src": "1633:9:133"
+                              }
+                            ],
+                            "id": 21943,
+                            "name": "FunctionCall",
+                            "src": "1609:34:133"
+                          }
+                        ],
+                        "id": 21944,
+                        "name": "FunctionCall",
+                        "src": "1601:43:133"
+                      }
+                    ],
+                    "id": 21945,
+                    "name": "ExpressionStatement",
+                    "src": "1601:43:133"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21897,
+                              "type": "address",
+                              "value": "token"
+                            },
+                            "id": 21946,
+                            "name": "Identifier",
+                            "src": "1654:5:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21936,
+                              "type": "address",
+                              "value": "_newToken"
+                            },
+                            "id": 21947,
+                            "name": "Identifier",
+                            "src": "1662:9:133"
+                          }
+                        ],
+                        "id": 21948,
+                        "name": "Assignment",
+                        "src": "1654:17:133"
+                      }
+                    ],
+                    "id": 21949,
+                    "name": "ExpressionStatement",
+                    "src": "1654:17:133"
+                  }
+                ],
+                "id": 21950,
+                "name": "Block",
+                "src": "1591:87:133"
+              }
+            ],
+            "id": 21951,
+            "name": "FunctionDefinition",
+            "src": "1544:134:133"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Transfer the fee amount of tokens to the reward account.\n@param _rewardAddress address that will receive the tokens.\n@param _fee amount of tokens to be transferred.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "onFeeDistribution",
+              "payable": false,
+              "scope": 21968,
+              "stateMutability": "nonpayable",
+              "superFunction": 11960,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_rewardAddress",
+                      "scope": 21967,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 21952,
+                        "name": "ElementaryTypeName",
+                        "src": "1914:7:133"
+                      }
+                    ],
+                    "id": 21953,
+                    "name": "VariableDeclaration",
+                    "src": "1914:22:133"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 21967,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 21954,
+                        "name": "ElementaryTypeName",
+                        "src": "1938:7:133"
+                      }
+                    ],
+                    "id": 21955,
+                    "name": "VariableDeclaration",
+                    "src": "1938:12:133"
+                  }
+                ],
+                "id": 21956,
+                "name": "ParameterList",
+                "src": "1913:38:133"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 21957,
+                "name": "ParameterList",
+                "src": "1961:0:133"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bool",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "transfer",
+                              "referencedDeclaration": 465,
+                              "type": "function (address,uint256) external returns (bool)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "contract ERC20Basic",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 474,
+                                      "type": "type(contract ERC20Basic)",
+                                      "value": "ERC20Basic"
+                                    },
+                                    "id": 21958,
+                                    "name": "Identifier",
+                                    "src": "1971:10:133"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 21897,
+                                      "type": "address",
+                                      "value": "token"
+                                    },
+                                    "id": 21959,
+                                    "name": "Identifier",
+                                    "src": "1982:5:133"
+                                  }
+                                ],
+                                "id": 21960,
+                                "name": "FunctionCall",
+                                "src": "1971:17:133"
+                              }
+                            ],
+                            "id": 21961,
+                            "name": "MemberAccess",
+                            "src": "1971:26:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21953,
+                              "type": "address",
+                              "value": "_rewardAddress"
+                            },
+                            "id": 21962,
+                            "name": "Identifier",
+                            "src": "1998:14:133"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21955,
+                              "type": "uint256",
+                              "value": "_fee"
+                            },
+                            "id": 21963,
+                            "name": "Identifier",
+                            "src": "2014:4:133"
+                          }
+                        ],
+                        "id": 21964,
+                        "name": "FunctionCall",
+                        "src": "1971:48:133"
+                      }
+                    ],
+                    "id": 21965,
+                    "name": "ExpressionStatement",
+                    "src": "1971:48:133"
+                  }
+                ],
+                "id": 21966,
+                "name": "Block",
+                "src": "1961:65:133"
+              }
+            ],
+            "id": 21967,
+            "name": "FunctionDefinition",
+            "src": "1887:139:133"
+          }
+        ],
+        "id": 21968,
+        "name": "ContractDefinition",
+        "src": "427:1601:133"
+      }
+    ],
+    "id": 21969,
+    "name": "SourceUnit",
+    "src": "0:2029:133"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:28.156Z",
+  "devdoc": {
+    "methods": {
+      "addRewardAccount(address)": {
+        "details": "Adds a new account to the list of accounts to receive rewards for the operations. Only the owner can call this method.",
+        "params": {
+          "_account": "new reward account"
+        }
+      },
+      "calculateFee(uint256)": {
+        "details": "Calculates the fee amount to be subtracted from the value.",
+        "params": {
+          "_value": "the base value from which fees are calculated"
+        }
+      },
+      "onTokenTransfer(address,uint256,bytes)": {
+        "details": "ERC677 transfer callback function, received fee is distributed.",
+        "params": {
+          "_value": "amount of transferred tokens"
+        }
+      },
+      "removeRewardAccount(address)": {
+        "details": "Removes an account from the list of accounts to receive rewards for the operations. Only the owner can call this method. finds the element, swaps it with the last element, and then deletes it;",
+        "params": {
+          "_account": "to be removed return boolean whether the element was found and deleted"
+        }
+      },
+      "renounceOwnership()": {
+        "details": "Allows the current owner to relinquish control of the contract."
+      },
+      "rewardAccountsCount()": {
+        "details": "Tells the amount of accounts in the list of reward accounts.",
+        "return": "amount of accounts."
+      },
+      "rewardAccountsList()": {
+        "details": "Tells the list of accounts that receives rewards for the operations.",
+        "return": "the list of reward accounts"
+      },
+      "setFee(uint256)": {
+        "details": "Sets the fee percentage amount for the mediator operations. Only the owner can call this method.",
+        "params": {
+          "_fee": "the fee percentage"
+        }
+      },
+      "setToken(address)": {
+        "details": "Sets the token address. Only the owner can call this method.",
+        "params": {
+          "_newToken": "address of the token in which the fees will be received."
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "_newOwner": "The address to transfer ownership to."
+        }
+      }
+    },
+    "title": "ForeignFeeManagerAMBNativeToErc20"
+  },
+  "userdoc": {
+    "methods": {
+      "renounceOwnership()": {
+        "notice": "Renouncing to ownership will leave the contract without an owner. It will not be possible to call the functions with the `onlyOwner` modifier anymore."
+      }
+    }
+  }
+}

@@ -1,0 +1,3276 @@
+{
+  "contractName": "BasicBridge",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isInitialized",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBridgeMode",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "requiredSignatures",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "validatorContract",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "deployedAtBlock",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBridgeInterfacesVersion",
+      "outputs": [
+        {
+          "name": "major",
+          "type": "uint64"
+        },
+        {
+          "name": "minor",
+          "type": "uint64"
+        },
+        {
+          "name": "patch",
+          "type": "uint64"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimalShift",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "gasPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "GasPriceChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "requiredBlockConfirmations",
+          "type": "uint256"
+        }
+      ],
+      "name": "RequiredBlockConfirmationChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_gasPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "setGasPrice",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "gasPrice",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_blockConfirmations",
+          "type": "uint256"
+        }
+      ],
+      "name": "setRequiredBlockConfirmations",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "requiredBlockConfirmations",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./Upgradeable.sol\";\nimport \"./InitializableBridge.sol\";\nimport \"openzeppelin-solidity/contracts/AddressUtils.sol\";\nimport \"./Validatable.sol\";\nimport \"./Ownable.sol\";\nimport \"./Claimable.sol\";\nimport \"./VersionableBridge.sol\";\nimport \"./DecimalShiftBridge.sol\";\n\ncontract BasicBridge is\n    InitializableBridge,\n    Validatable,\n    Ownable,\n    Upgradeable,\n    Claimable,\n    VersionableBridge,\n    DecimalShiftBridge\n{\n    event GasPriceChanged(uint256 gasPrice);\n    event RequiredBlockConfirmationChanged(uint256 requiredBlockConfirmations);\n\n    bytes32 internal constant GAS_PRICE = 0x55b3774520b5993024893d303890baa4e84b1244a43c60034d1ced2d3cf2b04b; // keccak256(abi.encodePacked(\"gasPrice\"))\n    bytes32 internal constant REQUIRED_BLOCK_CONFIRMATIONS = 0x916daedf6915000ff68ced2f0b6773fe6f2582237f92c3c95bb4d79407230071; // keccak256(abi.encodePacked(\"requiredBlockConfirmations\"))\n\n    /**\n    * @dev Public setter for fallback gas price value. Only bridge owner can call this method.\n    * @param _gasPrice new value for the gas price.\n    */\n    function setGasPrice(uint256 _gasPrice) external onlyOwner {\n        _setGasPrice(_gasPrice);\n    }\n\n    function gasPrice() external view returns (uint256) {\n        return uintStorage[GAS_PRICE];\n    }\n\n    function setRequiredBlockConfirmations(uint256 _blockConfirmations) external onlyOwner {\n        _setRequiredBlockConfirmations(_blockConfirmations);\n    }\n\n    function _setRequiredBlockConfirmations(uint256 _blockConfirmations) internal {\n        require(_blockConfirmations > 0);\n        uintStorage[REQUIRED_BLOCK_CONFIRMATIONS] = _blockConfirmations;\n        emit RequiredBlockConfirmationChanged(_blockConfirmations);\n    }\n\n    function requiredBlockConfirmations() external view returns (uint256) {\n        return uintStorage[REQUIRED_BLOCK_CONFIRMATIONS];\n    }\n\n    /**\n    * @dev Internal function for updating fallback gas price value.\n    * @param _gasPrice new value for the gas price, zero gas price is allowed.\n    */\n    function _setGasPrice(uint256 _gasPrice) internal {\n        uintStorage[GAS_PRICE] = _gasPrice;\n        emit GasPriceChanged(_gasPrice);\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/BasicBridge.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/BasicBridge.sol",
+    "exportedSymbols": {
+      "BasicBridge": [
+        12826
+      ]
+    },
+    "id": 12827,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12707,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:81"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/Upgradeable.sol",
+        "file": "./Upgradeable.sol",
+        "id": 12708,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 17647,
+        "src": "25:27:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/InitializableBridge.sol",
+        "file": "./InitializableBridge.sol",
+        "id": 12709,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 16055,
+        "src": "53:35:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+        "id": 12710,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 19,
+        "src": "89:58:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/Validatable.sol",
+        "file": "./Validatable.sol",
+        "id": 12711,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 17693,
+        "src": "148:27:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/Ownable.sol",
+        "file": "./Ownable.sol",
+        "id": 12712,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 16556,
+        "src": "176:23:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/Claimable.sol",
+        "file": "./Claimable.sol",
+        "id": 12713,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 15290,
+        "src": "200:25:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/VersionableBridge.sol",
+        "file": "./VersionableBridge.sol",
+        "id": 12714,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 17950,
+        "src": "226:33:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/DecimalShiftBridge.sol",
+        "file": "./DecimalShiftBridge.sol",
+        "id": 12715,
+        "nodeType": "ImportDirective",
+        "scope": 12827,
+        "sourceUnit": 15410,
+        "src": "260:34:81",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12716,
+              "name": "InitializableBridge",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 16054,
+              "src": "324:19:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_InitializableBridge_$16054",
+                "typeString": "contract InitializableBridge"
+              }
+            },
+            "id": 12717,
+            "nodeType": "InheritanceSpecifier",
+            "src": "324:19:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12718,
+              "name": "Validatable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 17692,
+              "src": "349:11:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Validatable_$17692",
+                "typeString": "contract Validatable"
+              }
+            },
+            "id": 12719,
+            "nodeType": "InheritanceSpecifier",
+            "src": "349:11:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12720,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 16555,
+              "src": "366:7:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$16555",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 12721,
+            "nodeType": "InheritanceSpecifier",
+            "src": "366:7:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12722,
+              "name": "Upgradeable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 17646,
+              "src": "379:11:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Upgradeable_$17646",
+                "typeString": "contract Upgradeable"
+              }
+            },
+            "id": 12723,
+            "nodeType": "InheritanceSpecifier",
+            "src": "379:11:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12724,
+              "name": "Claimable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 15289,
+              "src": "396:9:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Claimable_$15289",
+                "typeString": "contract Claimable"
+              }
+            },
+            "id": 12725,
+            "nodeType": "InheritanceSpecifier",
+            "src": "396:9:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12726,
+              "name": "VersionableBridge",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 17949,
+              "src": "411:17:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_VersionableBridge_$17949",
+                "typeString": "contract VersionableBridge"
+              }
+            },
+            "id": 12727,
+            "nodeType": "InheritanceSpecifier",
+            "src": "411:17:81"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 12728,
+              "name": "DecimalShiftBridge",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 15409,
+              "src": "434:18:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_DecimalShiftBridge_$15409",
+                "typeString": "contract DecimalShiftBridge"
+              }
+            },
+            "id": 12729,
+            "nodeType": "InheritanceSpecifier",
+            "src": "434:18:81"
+          }
+        ],
+        "contractDependencies": [
+          10503,
+          15289,
+          15409,
+          16035,
+          16054,
+          16555,
+          17646,
+          17692,
+          17698,
+          17949
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 12826,
+        "linearizedBaseContracts": [
+          12826,
+          15409,
+          17949,
+          15289,
+          17646,
+          16555,
+          17692,
+          17698,
+          16054,
+          16035,
+          10503
+        ],
+        "name": "BasicBridge",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 12733,
+            "name": "GasPriceChanged",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12731,
+                  "indexed": false,
+                  "name": "gasPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12733,
+                  "src": "481:16:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12730,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "481:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "480:18:81"
+            },
+            "src": "459:40:81"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 12737,
+            "name": "RequiredBlockConfirmationChanged",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12736,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12735,
+                  "indexed": false,
+                  "name": "requiredBlockConfirmations",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12737,
+                  "src": "543:34:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12734,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "543:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "542:36:81"
+            },
+            "src": "504:75:81"
+          },
+          {
+            "constant": true,
+            "id": 12740,
+            "name": "GAS_PRICE",
+            "nodeType": "VariableDeclaration",
+            "scope": 12826,
+            "src": "585:104:81",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 12738,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "585:7:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307835356233373734353230623539393330323438393364333033383930626161346538346231323434613433633630303334643163656432643363663262303462",
+              "id": 12739,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "623:66:81",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_38763680925669260495542946226476259471331119402801344276724947826521482113099_by_1",
+                "typeString": "int_const 3876...(69 digits omitted)...3099"
+              },
+              "value": "0x55b3774520b5993024893d303890baa4e84b1244a43c60034d1ced2d3cf2b04b"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": true,
+            "id": 12743,
+            "name": "REQUIRED_BLOCK_CONFIRMATIONS",
+            "nodeType": "VariableDeclaration",
+            "scope": 12826,
+            "src": "738:123:81",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 12741,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "738:7:81",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "307839313664616564663639313530303066663638636564326630623637373366653666323538323233376639326333633935626234643739343037323330303731",
+              "id": 12742,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "795:66:81",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_65779156301633348163074638005039170134908660688805947019981076325691818180721_by_1",
+                "typeString": "int_const 6577...(69 digits omitted)...0721"
+              },
+              "value": "0x916daedf6915000ff68ced2f0b6773fe6f2582237f92c3c95bb4d79407230071"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 12754,
+              "nodeType": "Block",
+              "src": "1150:40:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 12751,
+                        "name": "_gasPrice",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12745,
+                        "src": "1173:9:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 12750,
+                      "name": "_setGasPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12825,
+                      "src": "1160:12:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 12752,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1160:23:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12753,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1160:23:81"
+                }
+              ]
+            },
+            "documentation": "@dev Public setter for fallback gas price value. Only bridge owner can call this method.\n@param _gasPrice new value for the gas price.",
+            "id": 12755,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 12748,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 12747,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 16470,
+                  "src": "1140:9:81",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1140:9:81"
+              }
+            ],
+            "name": "setGasPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12745,
+                  "name": "_gasPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12755,
+                  "src": "1112:17:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12744,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1112:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1111:19:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12749,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1150:0:81"
+            },
+            "scope": 12826,
+            "src": "1091:99:81",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 12764,
+              "nodeType": "Block",
+              "src": "1248:46:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 12760,
+                      "name": "uintStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10482,
+                      "src": "1265:11:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                        "typeString": "mapping(bytes32 => uint256)"
+                      }
+                    },
+                    "id": 12762,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 12761,
+                      "name": "GAS_PRICE",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12740,
+                      "src": "1277:9:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1265:22:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 12759,
+                  "id": 12763,
+                  "nodeType": "Return",
+                  "src": "1258:29:81"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12765,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "gasPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12756,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1213:2:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12759,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12758,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12765,
+                  "src": "1239:7:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12757,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1239:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1238:9:81"
+            },
+            "scope": 12826,
+            "src": "1196:98:81",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 12776,
+              "nodeType": "Block",
+              "src": "1387:68:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 12773,
+                        "name": "_blockConfirmations",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12767,
+                        "src": "1428:19:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 12772,
+                      "name": "_setRequiredBlockConfirmations",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12799,
+                      "src": "1397:30:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 12774,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1397:51:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12775,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1397:51:81"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12777,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 12770,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 12769,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 16470,
+                  "src": "1377:9:81",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1377:9:81"
+              }
+            ],
+            "name": "setRequiredBlockConfirmations",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12768,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12767,
+                  "name": "_blockConfirmations",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12777,
+                  "src": "1339:27:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12766,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1339:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1338:29:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12771,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1387:0:81"
+            },
+            "scope": 12826,
+            "src": "1300:155:81",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 12798,
+              "nodeType": "Block",
+              "src": "1539:190:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 12785,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 12783,
+                          "name": "_blockConfirmations",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 12779,
+                          "src": "1557:19:81",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 12784,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1579:1:81",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "1557:23:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 12782,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        31513,
+                        31514
+                      ],
+                      "referencedDeclaration": 31513,
+                      "src": "1549:7:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 12786,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1549:32:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12787,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1549:32:81"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 12792,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 12788,
+                        "name": "uintStorage",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10482,
+                        "src": "1591:11:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                          "typeString": "mapping(bytes32 => uint256)"
+                        }
+                      },
+                      "id": 12790,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 12789,
+                        "name": "REQUIRED_BLOCK_CONFIRMATIONS",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12743,
+                        "src": "1603:28:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1591:41:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 12791,
+                      "name": "_blockConfirmations",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12779,
+                      "src": "1635:19:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1591:63:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 12793,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1591:63:81"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 12795,
+                        "name": "_blockConfirmations",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12779,
+                        "src": "1702:19:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 12794,
+                      "name": "RequiredBlockConfirmationChanged",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12737,
+                      "src": "1669:32:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 12796,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1669:53:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12797,
+                  "nodeType": "EmitStatement",
+                  "src": "1664:58:81"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12799,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "_setRequiredBlockConfirmations",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12780,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12779,
+                  "name": "_blockConfirmations",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12799,
+                  "src": "1501:27:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12778,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1501:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1500:29:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12781,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1539:0:81"
+            },
+            "scope": 12826,
+            "src": "1461:268:81",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 12808,
+              "nodeType": "Block",
+              "src": "1805:65:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 12804,
+                      "name": "uintStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10482,
+                      "src": "1822:11:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                        "typeString": "mapping(bytes32 => uint256)"
+                      }
+                    },
+                    "id": 12806,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 12805,
+                      "name": "REQUIRED_BLOCK_CONFIRMATIONS",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12743,
+                      "src": "1834:28:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1822:41:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 12803,
+                  "id": 12807,
+                  "nodeType": "Return",
+                  "src": "1815:48:81"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12809,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "requiredBlockConfirmations",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12800,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1770:2:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12803,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12802,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12809,
+                  "src": "1796:7:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12801,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1796:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1795:9:81"
+            },
+            "scope": 12826,
+            "src": "1735:135:81",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 12824,
+              "nodeType": "Block",
+              "src": "2088:92:81",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 12818,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 12814,
+                        "name": "uintStorage",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 10482,
+                        "src": "2098:11:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                          "typeString": "mapping(bytes32 => uint256)"
+                        }
+                      },
+                      "id": 12816,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 12815,
+                        "name": "GAS_PRICE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12740,
+                        "src": "2110:9:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "2098:22:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 12817,
+                      "name": "_gasPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12811,
+                      "src": "2123:9:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2098:34:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 12819,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2098:34:81"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 12821,
+                        "name": "_gasPrice",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 12811,
+                        "src": "2163:9:81",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 12820,
+                      "name": "GasPriceChanged",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 12733,
+                      "src": "2147:15:81",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 12822,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2147:26:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 12823,
+                  "nodeType": "EmitStatement",
+                  "src": "2142:31:81"
+                }
+              ]
+            },
+            "documentation": "@dev Internal function for updating fallback gas price value.\n@param _gasPrice new value for the gas price, zero gas price is allowed.",
+            "id": 12825,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "_setGasPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12812,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12811,
+                  "name": "_gasPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12825,
+                  "src": "2060:17:81",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12810,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2060:7:81",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2059:19:81"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 12813,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2088:0:81"
+            },
+            "scope": 12826,
+            "src": "2038:142:81",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 12827,
+        "src": "296:1886:81"
+      }
+    ],
+    "src": "0:2183:81"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/BasicBridge.sol",
+      "exportedSymbols": {
+        "BasicBridge": [
+          12826
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 12707,
+        "name": "PragmaDirective",
+        "src": "0:23:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 17647,
+          "absolutePath": "project:/contracts/upgradeable_contracts/Upgradeable.sol",
+          "file": "./Upgradeable.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12708,
+        "name": "ImportDirective",
+        "src": "25:27:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 16055,
+          "absolutePath": "project:/contracts/upgradeable_contracts/InitializableBridge.sol",
+          "file": "./InitializableBridge.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12709,
+        "name": "ImportDirective",
+        "src": "53:35:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 19,
+          "absolutePath": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "file": "openzeppelin-solidity/contracts/AddressUtils.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12710,
+        "name": "ImportDirective",
+        "src": "89:58:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 17693,
+          "absolutePath": "project:/contracts/upgradeable_contracts/Validatable.sol",
+          "file": "./Validatable.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12711,
+        "name": "ImportDirective",
+        "src": "148:27:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 16556,
+          "absolutePath": "project:/contracts/upgradeable_contracts/Ownable.sol",
+          "file": "./Ownable.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12712,
+        "name": "ImportDirective",
+        "src": "176:23:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 15290,
+          "absolutePath": "project:/contracts/upgradeable_contracts/Claimable.sol",
+          "file": "./Claimable.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12713,
+        "name": "ImportDirective",
+        "src": "200:25:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 17950,
+          "absolutePath": "project:/contracts/upgradeable_contracts/VersionableBridge.sol",
+          "file": "./VersionableBridge.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12714,
+        "name": "ImportDirective",
+        "src": "226:33:81"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 15410,
+          "absolutePath": "project:/contracts/upgradeable_contracts/DecimalShiftBridge.sol",
+          "file": "./DecimalShiftBridge.sol",
+          "scope": 12827,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 12715,
+        "name": "ImportDirective",
+        "src": "260:34:81"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            10503,
+            15289,
+            15409,
+            16035,
+            16054,
+            16555,
+            17646,
+            17692,
+            17698,
+            17949
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            12826,
+            15409,
+            17949,
+            15289,
+            17646,
+            16555,
+            17692,
+            17698,
+            16054,
+            16035,
+            10503
+          ],
+          "name": "BasicBridge",
+          "scope": 12827
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "InitializableBridge",
+                  "referencedDeclaration": 16054,
+                  "type": "contract InitializableBridge"
+                },
+                "id": 12716,
+                "name": "UserDefinedTypeName",
+                "src": "324:19:81"
+              }
+            ],
+            "id": 12717,
+            "name": "InheritanceSpecifier",
+            "src": "324:19:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Validatable",
+                  "referencedDeclaration": 17692,
+                  "type": "contract Validatable"
+                },
+                "id": 12718,
+                "name": "UserDefinedTypeName",
+                "src": "349:11:81"
+              }
+            ],
+            "id": 12719,
+            "name": "InheritanceSpecifier",
+            "src": "349:11:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Ownable",
+                  "referencedDeclaration": 16555,
+                  "type": "contract Ownable"
+                },
+                "id": 12720,
+                "name": "UserDefinedTypeName",
+                "src": "366:7:81"
+              }
+            ],
+            "id": 12721,
+            "name": "InheritanceSpecifier",
+            "src": "366:7:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Upgradeable",
+                  "referencedDeclaration": 17646,
+                  "type": "contract Upgradeable"
+                },
+                "id": 12722,
+                "name": "UserDefinedTypeName",
+                "src": "379:11:81"
+              }
+            ],
+            "id": 12723,
+            "name": "InheritanceSpecifier",
+            "src": "379:11:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Claimable",
+                  "referencedDeclaration": 15289,
+                  "type": "contract Claimable"
+                },
+                "id": 12724,
+                "name": "UserDefinedTypeName",
+                "src": "396:9:81"
+              }
+            ],
+            "id": 12725,
+            "name": "InheritanceSpecifier",
+            "src": "396:9:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "VersionableBridge",
+                  "referencedDeclaration": 17949,
+                  "type": "contract VersionableBridge"
+                },
+                "id": 12726,
+                "name": "UserDefinedTypeName",
+                "src": "411:17:81"
+              }
+            ],
+            "id": 12727,
+            "name": "InheritanceSpecifier",
+            "src": "411:17:81"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "DecimalShiftBridge",
+                  "referencedDeclaration": 15409,
+                  "type": "contract DecimalShiftBridge"
+                },
+                "id": 12728,
+                "name": "UserDefinedTypeName",
+                "src": "434:18:81"
+              }
+            ],
+            "id": 12729,
+            "name": "InheritanceSpecifier",
+            "src": "434:18:81"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "GasPriceChanged"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "gasPrice",
+                      "scope": 12733,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12730,
+                        "name": "ElementaryTypeName",
+                        "src": "481:7:81"
+                      }
+                    ],
+                    "id": 12731,
+                    "name": "VariableDeclaration",
+                    "src": "481:16:81"
+                  }
+                ],
+                "id": 12732,
+                "name": "ParameterList",
+                "src": "480:18:81"
+              }
+            ],
+            "id": 12733,
+            "name": "EventDefinition",
+            "src": "459:40:81"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "RequiredBlockConfirmationChanged"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "requiredBlockConfirmations",
+                      "scope": 12737,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12734,
+                        "name": "ElementaryTypeName",
+                        "src": "543:7:81"
+                      }
+                    ],
+                    "id": 12735,
+                    "name": "VariableDeclaration",
+                    "src": "543:34:81"
+                  }
+                ],
+                "id": 12736,
+                "name": "ParameterList",
+                "src": "542:36:81"
+              }
+            ],
+            "id": 12737,
+            "name": "EventDefinition",
+            "src": "504:75:81"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "GAS_PRICE",
+              "scope": 12826,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes32",
+                  "type": "bytes32"
+                },
+                "id": 12738,
+                "name": "ElementaryTypeName",
+                "src": "585:7:81"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "307835356233373734353230623539393330323438393364333033383930626161346538346231323434613433633630303334643163656432643363663262303462",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 3876...(69 digits omitted)...3099",
+                  "value": "0x55b3774520b5993024893d303890baa4e84b1244a43c60034d1ced2d3cf2b04b"
+                },
+                "id": 12739,
+                "name": "Literal",
+                "src": "623:66:81"
+              }
+            ],
+            "id": 12740,
+            "name": "VariableDeclaration",
+            "src": "585:104:81"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "REQUIRED_BLOCK_CONFIRMATIONS",
+              "scope": 12826,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bytes32",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bytes32",
+                  "type": "bytes32"
+                },
+                "id": 12741,
+                "name": "ElementaryTypeName",
+                "src": "738:7:81"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "307839313664616564663639313530303066663638636564326630623637373366653666323538323233376639326333633935626234643739343037323330303731",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 6577...(69 digits omitted)...0721",
+                  "value": "0x916daedf6915000ff68ced2f0b6773fe6f2582237f92c3c95bb4d79407230071"
+                },
+                "id": 12742,
+                "name": "Literal",
+                "src": "795:66:81"
+              }
+            ],
+            "id": 12743,
+            "name": "VariableDeclaration",
+            "src": "738:123:81"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Public setter for fallback gas price value. Only bridge owner can call this method.\n@param _gasPrice new value for the gas price.",
+              "implemented": true,
+              "isConstructor": false,
+              "name": "setGasPrice",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_gasPrice",
+                      "scope": 12755,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12744,
+                        "name": "ElementaryTypeName",
+                        "src": "1112:7:81"
+                      }
+                    ],
+                    "id": 12745,
+                    "name": "VariableDeclaration",
+                    "src": "1112:17:81"
+                  }
+                ],
+                "id": 12746,
+                "name": "ParameterList",
+                "src": "1111:19:81"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12749,
+                "name": "ParameterList",
+                "src": "1150:0:81"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 16470,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 12747,
+                    "name": "Identifier",
+                    "src": "1140:9:81"
+                  }
+                ],
+                "id": 12748,
+                "name": "ModifierInvocation",
+                "src": "1140:9:81"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12825,
+                              "type": "function (uint256)",
+                              "value": "_setGasPrice"
+                            },
+                            "id": 12750,
+                            "name": "Identifier",
+                            "src": "1160:12:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12745,
+                              "type": "uint256",
+                              "value": "_gasPrice"
+                            },
+                            "id": 12751,
+                            "name": "Identifier",
+                            "src": "1173:9:81"
+                          }
+                        ],
+                        "id": 12752,
+                        "name": "FunctionCall",
+                        "src": "1160:23:81"
+                      }
+                    ],
+                    "id": 12753,
+                    "name": "ExpressionStatement",
+                    "src": "1160:23:81"
+                  }
+                ],
+                "id": 12754,
+                "name": "Block",
+                "src": "1150:40:81"
+              }
+            ],
+            "id": 12755,
+            "name": "FunctionDefinition",
+            "src": "1091:99:81"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "gasPrice",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12756,
+                "name": "ParameterList",
+                "src": "1213:2:81"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12765,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12757,
+                        "name": "ElementaryTypeName",
+                        "src": "1239:7:81"
+                      }
+                    ],
+                    "id": 12758,
+                    "name": "VariableDeclaration",
+                    "src": "1239:7:81"
+                  }
+                ],
+                "id": 12759,
+                "name": "ParameterList",
+                "src": "1238:9:81"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 12759
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10482,
+                              "type": "mapping(bytes32 => uint256)",
+                              "value": "uintStorage"
+                            },
+                            "id": 12760,
+                            "name": "Identifier",
+                            "src": "1265:11:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12740,
+                              "type": "bytes32",
+                              "value": "GAS_PRICE"
+                            },
+                            "id": 12761,
+                            "name": "Identifier",
+                            "src": "1277:9:81"
+                          }
+                        ],
+                        "id": 12762,
+                        "name": "IndexAccess",
+                        "src": "1265:22:81"
+                      }
+                    ],
+                    "id": 12763,
+                    "name": "Return",
+                    "src": "1258:29:81"
+                  }
+                ],
+                "id": 12764,
+                "name": "Block",
+                "src": "1248:46:81"
+              }
+            ],
+            "id": 12765,
+            "name": "FunctionDefinition",
+            "src": "1196:98:81"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "name": "setRequiredBlockConfirmations",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_blockConfirmations",
+                      "scope": 12777,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12766,
+                        "name": "ElementaryTypeName",
+                        "src": "1339:7:81"
+                      }
+                    ],
+                    "id": 12767,
+                    "name": "VariableDeclaration",
+                    "src": "1339:27:81"
+                  }
+                ],
+                "id": 12768,
+                "name": "ParameterList",
+                "src": "1338:29:81"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12771,
+                "name": "ParameterList",
+                "src": "1387:0:81"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 16470,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "id": 12769,
+                    "name": "Identifier",
+                    "src": "1377:9:81"
+                  }
+                ],
+                "id": 12770,
+                "name": "ModifierInvocation",
+                "src": "1377:9:81"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12799,
+                              "type": "function (uint256)",
+                              "value": "_setRequiredBlockConfirmations"
+                            },
+                            "id": 12772,
+                            "name": "Identifier",
+                            "src": "1397:30:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12767,
+                              "type": "uint256",
+                              "value": "_blockConfirmations"
+                            },
+                            "id": 12773,
+                            "name": "Identifier",
+                            "src": "1428:19:81"
+                          }
+                        ],
+                        "id": 12774,
+                        "name": "FunctionCall",
+                        "src": "1397:51:81"
+                      }
+                    ],
+                    "id": 12775,
+                    "name": "ExpressionStatement",
+                    "src": "1397:51:81"
+                  }
+                ],
+                "id": 12776,
+                "name": "Block",
+                "src": "1387:68:81"
+              }
+            ],
+            "id": 12777,
+            "name": "FunctionDefinition",
+            "src": "1300:155:81"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "_setRequiredBlockConfirmations",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_blockConfirmations",
+                      "scope": 12799,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12778,
+                        "name": "ElementaryTypeName",
+                        "src": "1501:7:81"
+                      }
+                    ],
+                    "id": 12779,
+                    "name": "VariableDeclaration",
+                    "src": "1501:27:81"
+                  }
+                ],
+                "id": 12780,
+                "name": "ParameterList",
+                "src": "1500:29:81"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12781,
+                "name": "ParameterList",
+                "src": "1539:0:81"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                31513,
+                                31514
+                              ],
+                              "referencedDeclaration": 31513,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 12782,
+                            "name": "Identifier",
+                            "src": "1549:7:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 12779,
+                                  "type": "uint256",
+                                  "value": "_blockConfirmations"
+                                },
+                                "id": 12783,
+                                "name": "Identifier",
+                                "src": "1557:19:81"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "30",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 0",
+                                  "value": "0"
+                                },
+                                "id": 12784,
+                                "name": "Literal",
+                                "src": "1579:1:81"
+                              }
+                            ],
+                            "id": 12785,
+                            "name": "BinaryOperation",
+                            "src": "1557:23:81"
+                          }
+                        ],
+                        "id": 12786,
+                        "name": "FunctionCall",
+                        "src": "1549:32:81"
+                      }
+                    ],
+                    "id": 12787,
+                    "name": "ExpressionStatement",
+                    "src": "1549:32:81"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10482,
+                                  "type": "mapping(bytes32 => uint256)",
+                                  "value": "uintStorage"
+                                },
+                                "id": 12788,
+                                "name": "Identifier",
+                                "src": "1591:11:81"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 12743,
+                                  "type": "bytes32",
+                                  "value": "REQUIRED_BLOCK_CONFIRMATIONS"
+                                },
+                                "id": 12789,
+                                "name": "Identifier",
+                                "src": "1603:28:81"
+                              }
+                            ],
+                            "id": 12790,
+                            "name": "IndexAccess",
+                            "src": "1591:41:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12779,
+                              "type": "uint256",
+                              "value": "_blockConfirmations"
+                            },
+                            "id": 12791,
+                            "name": "Identifier",
+                            "src": "1635:19:81"
+                          }
+                        ],
+                        "id": 12792,
+                        "name": "Assignment",
+                        "src": "1591:63:81"
+                      }
+                    ],
+                    "id": 12793,
+                    "name": "ExpressionStatement",
+                    "src": "1591:63:81"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12737,
+                              "type": "function (uint256)",
+                              "value": "RequiredBlockConfirmationChanged"
+                            },
+                            "id": 12794,
+                            "name": "Identifier",
+                            "src": "1669:32:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12779,
+                              "type": "uint256",
+                              "value": "_blockConfirmations"
+                            },
+                            "id": 12795,
+                            "name": "Identifier",
+                            "src": "1702:19:81"
+                          }
+                        ],
+                        "id": 12796,
+                        "name": "FunctionCall",
+                        "src": "1669:53:81"
+                      }
+                    ],
+                    "id": 12797,
+                    "name": "EmitStatement",
+                    "src": "1664:58:81"
+                  }
+                ],
+                "id": 12798,
+                "name": "Block",
+                "src": "1539:190:81"
+              }
+            ],
+            "id": 12799,
+            "name": "FunctionDefinition",
+            "src": "1461:268:81"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "requiredBlockConfirmations",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12800,
+                "name": "ParameterList",
+                "src": "1770:2:81"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 12809,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12801,
+                        "name": "ElementaryTypeName",
+                        "src": "1796:7:81"
+                      }
+                    ],
+                    "id": 12802,
+                    "name": "VariableDeclaration",
+                    "src": "1796:7:81"
+                  }
+                ],
+                "id": 12803,
+                "name": "ParameterList",
+                "src": "1795:9:81"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 12803
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10482,
+                              "type": "mapping(bytes32 => uint256)",
+                              "value": "uintStorage"
+                            },
+                            "id": 12804,
+                            "name": "Identifier",
+                            "src": "1822:11:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12743,
+                              "type": "bytes32",
+                              "value": "REQUIRED_BLOCK_CONFIRMATIONS"
+                            },
+                            "id": 12805,
+                            "name": "Identifier",
+                            "src": "1834:28:81"
+                          }
+                        ],
+                        "id": 12806,
+                        "name": "IndexAccess",
+                        "src": "1822:41:81"
+                      }
+                    ],
+                    "id": 12807,
+                    "name": "Return",
+                    "src": "1815:48:81"
+                  }
+                ],
+                "id": 12808,
+                "name": "Block",
+                "src": "1805:65:81"
+              }
+            ],
+            "id": 12809,
+            "name": "FunctionDefinition",
+            "src": "1735:135:81"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": "@dev Internal function for updating fallback gas price value.\n@param _gasPrice new value for the gas price, zero gas price is allowed.",
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "_setGasPrice",
+              "payable": false,
+              "scope": 12826,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_gasPrice",
+                      "scope": 12825,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 12810,
+                        "name": "ElementaryTypeName",
+                        "src": "2060:7:81"
+                      }
+                    ],
+                    "id": 12811,
+                    "name": "VariableDeclaration",
+                    "src": "2060:17:81"
+                  }
+                ],
+                "id": 12812,
+                "name": "ParameterList",
+                "src": "2059:19:81"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12813,
+                "name": "ParameterList",
+                "src": "2088:0:81"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10482,
+                                  "type": "mapping(bytes32 => uint256)",
+                                  "value": "uintStorage"
+                                },
+                                "id": 12814,
+                                "name": "Identifier",
+                                "src": "2098:11:81"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 12740,
+                                  "type": "bytes32",
+                                  "value": "GAS_PRICE"
+                                },
+                                "id": 12815,
+                                "name": "Identifier",
+                                "src": "2110:9:81"
+                              }
+                            ],
+                            "id": 12816,
+                            "name": "IndexAccess",
+                            "src": "2098:22:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12811,
+                              "type": "uint256",
+                              "value": "_gasPrice"
+                            },
+                            "id": 12817,
+                            "name": "Identifier",
+                            "src": "2123:9:81"
+                          }
+                        ],
+                        "id": 12818,
+                        "name": "Assignment",
+                        "src": "2098:34:81"
+                      }
+                    ],
+                    "id": 12819,
+                    "name": "ExpressionStatement",
+                    "src": "2098:34:81"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12733,
+                              "type": "function (uint256)",
+                              "value": "GasPriceChanged"
+                            },
+                            "id": 12820,
+                            "name": "Identifier",
+                            "src": "2147:15:81"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 12811,
+                              "type": "uint256",
+                              "value": "_gasPrice"
+                            },
+                            "id": 12821,
+                            "name": "Identifier",
+                            "src": "2163:9:81"
+                          }
+                        ],
+                        "id": 12822,
+                        "name": "FunctionCall",
+                        "src": "2147:26:81"
+                      }
+                    ],
+                    "id": 12823,
+                    "name": "EmitStatement",
+                    "src": "2142:31:81"
+                  }
+                ],
+                "id": 12824,
+                "name": "Block",
+                "src": "2088:92:81"
+              }
+            ],
+            "id": 12825,
+            "name": "FunctionDefinition",
+            "src": "2038:142:81"
+          }
+        ],
+        "id": 12826,
+        "name": "ContractDefinition",
+        "src": "296:1886:81"
+      }
+    ],
+    "id": 12827,
+    "name": "SourceUnit",
+    "src": "0:2183:81"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.819Z",
+  "devdoc": {
+    "methods": {
+      "decimalShift()": {
+        "details": "Returns the value of foreign-to-home decimal shift.",
+        "return": "decimal shift."
+      },
+      "owner()": {
+        "details": "Tells the address of the owner",
+        "return": "the address of the owner"
+      },
+      "setGasPrice(uint256)": {
+        "details": "Public setter for fallback gas price value. Only bridge owner can call this method.",
+        "params": {
+          "_gasPrice": "new value for the gas price."
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "newOwner": "the address to transfer ownership to."
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,1729 @@
+{
+  "contractName": "BasicStakeTokenMediator",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_receiver",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "relayTokens",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "fixFailedMessage",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_bridgeContract",
+          "type": "address"
+        }
+      ],
+      "name": "setBridgeContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "erc677token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_day",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalSpentPerDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isInitialized",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExecutionDailyLimit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getCurrentDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "executionDailyLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_day",
+          "type": "uint256"
+        }
+      ],
+      "name": "totalExecutedPerDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "messageFixed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dailyLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_mediatorContract",
+          "type": "address"
+        }
+      ],
+      "name": "setMediatorContractOnOtherSide",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "mediatorContractOnOtherSide",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withinExecutionLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "executionMaxPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "handleBridgedTokens",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxAvailablePerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "requestFailedMessageFix",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "outOfLimitAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_minPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMinPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "name": "_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onTokenTransfer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "name": "unlockOnOtherSide",
+          "type": "bool"
+        },
+        {
+          "name": "valueToUnlock",
+          "type": "uint256"
+        }
+      ],
+      "name": "fixAssetsAboveLimits",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDailyLimit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "requestGasLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_bridgeContract",
+          "type": "address"
+        },
+        {
+          "name": "_mediatorContract",
+          "type": "address"
+        },
+        {
+          "name": "_erc677token",
+          "type": "address"
+        },
+        {
+          "name": "_dailyLimitMaxPerTxMinPerTxArray",
+          "type": "uint256[3]"
+        },
+        {
+          "name": "_executionDailyLimitExecutionMaxPerTxArray",
+          "type": "uint256[2]"
+        },
+        {
+          "name": "_requestGasLimit",
+          "type": "uint256"
+        },
+        {
+          "name": "_decimalShift",
+          "type": "int256"
+        },
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_maxPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "bridgeContract",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimalShift",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withinLimit",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_maxPerTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setExecutionMaxPerTx",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_requestGasLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setRequestGasLimit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxPerTx",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "FailedMessageFixed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TokensBridgingInitiated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TokensBridged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "DailyLimitChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "ExecutionDailyLimitChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "MediatorAmountLimitExceeded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "transactionHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "messageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AmountLimitExceeded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "messageId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "remaining",
+          "type": "uint256"
+        }
+      ],
+      "name": "AssetAboveLimitsFixed",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBridgeInterfacesVersion",
+      "outputs": [
+        {
+          "name": "major",
+          "type": "uint64"
+        },
+        {
+          "name": "minor",
+          "type": "uint64"
+        },
+        {
+          "name": "patch",
+          "type": "uint64"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBridgeMode",
+      "outputs": [
+        {
+          "name": "_data",
+          "type": "bytes4"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./BasicAMBErc677ToErc677.sol\";\n\ncontract BasicStakeTokenMediator is BasicAMBErc677ToErc677 {\n    function getBridgeInterfacesVersion() external pure returns (uint64 major, uint64 minor, uint64 patch) {\n        return (1, 3, 0);\n    }\n\n    function getBridgeMode() external pure returns (bytes4 _data) {\n        return 0x16ea01e9; // bytes4(keccak256(abi.encodePacked(\"stake-erc-to-erc-amb\")))\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/amb_erc677_to_erc677/BasicStakeTokenMediator.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/amb_erc677_to_erc677/BasicStakeTokenMediator.sol",
+    "exportedSymbols": {
+      "BasicStakeTokenMediator": [
+        20435
+      ]
+    },
+    "id": 20436,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 20408,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:125"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/amb_erc677_to_erc677/BasicAMBErc677ToErc677.sol",
+        "file": "./BasicAMBErc677ToErc677.sol",
+        "id": 20409,
+        "nodeType": "ImportDirective",
+        "scope": 20436,
+        "sourceUnit": 20407,
+        "src": "25:38:125",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 20410,
+              "name": "BasicAMBErc677ToErc677",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 20406,
+              "src": "101:22:125",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BasicAMBErc677ToErc677_$20406",
+                "typeString": "contract BasicAMBErc677ToErc677"
+              }
+            },
+            "id": 20411,
+            "nodeType": "InheritanceSpecifier",
+            "src": "101:22:125"
+          }
+        ],
+        "contractDependencies": [
+          2737,
+          10503,
+          11327,
+          12108,
+          12705,
+          14153,
+          15191,
+          15289,
+          15409,
+          15594,
+          16035,
+          16555,
+          16572,
+          17498,
+          17627,
+          17646,
+          17949,
+          20406
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 20435,
+        "linearizedBaseContracts": [
+          20435,
+          20406,
+          17498,
+          17627,
+          11327,
+          15191,
+          15594,
+          2737,
+          14153,
+          15409,
+          12705,
+          16555,
+          12108,
+          17949,
+          15289,
+          17646,
+          16572,
+          16035,
+          10503
+        ],
+        "name": "BasicStakeTokenMediator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 20425,
+              "nodeType": "Block",
+              "src": "233:33:125",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "components": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 20420,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "251:1:125",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "33",
+                        "id": 20421,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "254:1:125",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_3_by_1",
+                          "typeString": "int_const 3"
+                        },
+                        "value": "3"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "30",
+                        "id": 20422,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "257:1:125",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_0_by_1",
+                          "typeString": "int_const 0"
+                        },
+                        "value": "0"
+                      }
+                    ],
+                    "id": 20423,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "250:9:125",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_rational_1_by_1_$_t_rational_3_by_1_$_t_rational_0_by_1_$",
+                      "typeString": "tuple(int_const 1,int_const 3,int_const 0)"
+                    }
+                  },
+                  "functionReturnParameters": 20419,
+                  "id": 20424,
+                  "nodeType": "Return",
+                  "src": "243:16:125"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 20426,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getBridgeInterfacesVersion",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 20412,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "165:2:125"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 20419,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 20414,
+                  "name": "major",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 20426,
+                  "src": "191:12:125",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 20413,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "191:6:125",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 20416,
+                  "name": "minor",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 20426,
+                  "src": "205:12:125",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 20415,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "205:6:125",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 20418,
+                  "name": "patch",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 20426,
+                  "src": "219:12:125",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 20417,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "219:6:125",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "190:42:125"
+            },
+            "scope": 20435,
+            "src": "130:136:125",
+            "stateMutability": "pure",
+            "superFunction": 20260,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 20433,
+              "nodeType": "Block",
+              "src": "334:97:125",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "30783136656130316539",
+                    "id": 20431,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "351:10:125",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_384434665_by_1",
+                      "typeString": "int_const 384434665"
+                    },
+                    "value": "0x16ea01e9"
+                  },
+                  "functionReturnParameters": 20430,
+                  "id": 20432,
+                  "nodeType": "Return",
+                  "src": "344:17:125"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 20434,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getBridgeMode",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 20427,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "294:2:125"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 20430,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 20429,
+                  "name": "_data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 20434,
+                  "src": "320:12:125",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 20428,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "320:6:125",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "319:14:125"
+            },
+            "scope": 20435,
+            "src": "272:159:125",
+            "stateMutability": "pure",
+            "superFunction": 20268,
+            "visibility": "external"
+          }
+        ],
+        "scope": 20436,
+        "src": "65:368:125"
+      }
+    ],
+    "src": "0:434:125"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/amb_erc677_to_erc677/BasicStakeTokenMediator.sol",
+      "exportedSymbols": {
+        "BasicStakeTokenMediator": [
+          20435
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 20408,
+        "name": "PragmaDirective",
+        "src": "0:23:125"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 20407,
+          "absolutePath": "project:/contracts/upgradeable_contracts/amb_erc677_to_erc677/BasicAMBErc677ToErc677.sol",
+          "file": "./BasicAMBErc677ToErc677.sol",
+          "scope": 20436,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 20409,
+        "name": "ImportDirective",
+        "src": "25:38:125"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            2737,
+            10503,
+            11327,
+            12108,
+            12705,
+            14153,
+            15191,
+            15289,
+            15409,
+            15594,
+            16035,
+            16555,
+            16572,
+            17498,
+            17627,
+            17646,
+            17949,
+            20406
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            20435,
+            20406,
+            17498,
+            17627,
+            11327,
+            15191,
+            15594,
+            2737,
+            14153,
+            15409,
+            12705,
+            16555,
+            12108,
+            17949,
+            15289,
+            17646,
+            16572,
+            16035,
+            10503
+          ],
+          "name": "BasicStakeTokenMediator",
+          "scope": 20436
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BasicAMBErc677ToErc677",
+                  "referencedDeclaration": 20406,
+                  "type": "contract BasicAMBErc677ToErc677"
+                },
+                "id": 20410,
+                "name": "UserDefinedTypeName",
+                "src": "101:22:125"
+              }
+            ],
+            "id": 20411,
+            "name": "InheritanceSpecifier",
+            "src": "101:22:125"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getBridgeInterfacesVersion",
+              "payable": false,
+              "scope": 20435,
+              "stateMutability": "pure",
+              "superFunction": 20260,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 20412,
+                "name": "ParameterList",
+                "src": "165:2:125"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "major",
+                      "scope": 20426,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 20413,
+                        "name": "ElementaryTypeName",
+                        "src": "191:6:125"
+                      }
+                    ],
+                    "id": 20414,
+                    "name": "VariableDeclaration",
+                    "src": "191:12:125"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "minor",
+                      "scope": 20426,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 20415,
+                        "name": "ElementaryTypeName",
+                        "src": "205:6:125"
+                      }
+                    ],
+                    "id": 20416,
+                    "name": "VariableDeclaration",
+                    "src": "205:12:125"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "patch",
+                      "scope": 20426,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint64",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint64",
+                          "type": "uint64"
+                        },
+                        "id": 20417,
+                        "name": "ElementaryTypeName",
+                        "src": "219:6:125"
+                      }
+                    ],
+                    "id": 20418,
+                    "name": "VariableDeclaration",
+                    "src": "219:12:125"
+                  }
+                ],
+                "id": 20419,
+                "name": "ParameterList",
+                "src": "190:42:125"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 20419
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "type": "tuple(int_const 1,int_const 3,int_const 0)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 20420,
+                            "name": "Literal",
+                            "src": "251:1:125"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "33",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 3",
+                              "value": "3"
+                            },
+                            "id": 20421,
+                            "name": "Literal",
+                            "src": "254:1:125"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 20422,
+                            "name": "Literal",
+                            "src": "257:1:125"
+                          }
+                        ],
+                        "id": 20423,
+                        "name": "TupleExpression",
+                        "src": "250:9:125"
+                      }
+                    ],
+                    "id": 20424,
+                    "name": "Return",
+                    "src": "243:16:125"
+                  }
+                ],
+                "id": 20425,
+                "name": "Block",
+                "src": "233:33:125"
+              }
+            ],
+            "id": 20426,
+            "name": "FunctionDefinition",
+            "src": "130:136:125"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getBridgeMode",
+              "payable": false,
+              "scope": 20435,
+              "stateMutability": "pure",
+              "superFunction": 20268,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 20427,
+                "name": "ParameterList",
+                "src": "294:2:125"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_data",
+                      "scope": 20434,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes4",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes4",
+                          "type": "bytes4"
+                        },
+                        "id": 20428,
+                        "name": "ElementaryTypeName",
+                        "src": "320:6:125"
+                      }
+                    ],
+                    "id": 20429,
+                    "name": "VariableDeclaration",
+                    "src": "320:12:125"
+                  }
+                ],
+                "id": 20430,
+                "name": "ParameterList",
+                "src": "319:14:125"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 20430
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "30783136656130316539",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "number",
+                          "type": "int_const 384434665",
+                          "value": "0x16ea01e9"
+                        },
+                        "id": 20431,
+                        "name": "Literal",
+                        "src": "351:10:125"
+                      }
+                    ],
+                    "id": 20432,
+                    "name": "Return",
+                    "src": "344:17:125"
+                  }
+                ],
+                "id": 20433,
+                "name": "Block",
+                "src": "334:97:125"
+              }
+            ],
+            "id": 20434,
+            "name": "FunctionDefinition",
+            "src": "272:159:125"
+          }
+        ],
+        "id": 20435,
+        "name": "ContractDefinition",
+        "src": "65:368:125"
+      }
+    ],
+    "id": 20436,
+    "name": "SourceUnit",
+    "src": "0:434:125"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:28.094Z",
+  "devdoc": {
+    "methods": {
+      "bridgeContract()": {
+        "details": "Get the AMB interface for the bridge contract address",
+        "return": "AMB interface for the bridge contract address"
+      },
+      "decimalShift()": {
+        "details": "Returns the value of foreign-to-home decimal shift.",
+        "return": "decimal shift."
+      },
+      "erc677token()": {
+        "details": "Public getter for token contract.",
+        "return": "address of the used token contract"
+      },
+      "fixAssetsAboveLimits(bytes32,bool,uint256)": {
+        "details": "Fixes locked tokens, that were out of execution limits during the call to handleBridgedTokens",
+        "params": {
+          "messageId": "reference for bridge operation that was out of execution limits",
+          "unlockOnOtherSide": "true if fixed tokens should be unlocked to the other side of the bridge",
+          "valueToUnlock": "unlocked amount of tokens, should be less than saved txAboveLimitsValue. Should be less than maxPerTx(), if tokens need to be unlocked on the other side."
+        }
+      },
+      "fixFailedMessage(bytes32)": {
+        "details": "Handles the request to fix transferred assets which bridged message execution failed on the other network. It uses the information stored by passMessage method when the assets were initially transferred",
+        "params": {
+          "_messageId": "id of the message which execution failed on the other network."
+        }
+      },
+      "handleBridgedTokens(address,uint256)": {
+        "details": "Handles the bridged tokens. Checks that the value is inside the execution limits and invokes the method to execute the Mint or Unlock accordingly.",
+        "params": {
+          "_recipient": "address that will receive the tokens",
+          "_value": "amount of tokens to be received"
+        }
+      },
+      "maxAvailablePerTx()": {
+        "details": "Retrieves maximum available bridge amount per one transaction taking into account maxPerTx() and dailyLimit() parameters.",
+        "return": "minimum of maxPerTx parameter and remaining daily quota."
+      },
+      "mediatorContractOnOtherSide()": {
+        "details": "Tells the mediator contract address from the other network.",
+        "return": "the address of the mediator contract."
+      },
+      "messageFixed(bytes32)": {
+        "details": "Tells if a message sent to the AMB bridge has been fixed.",
+        "return": "bool indicating the status of the message."
+      },
+      "outOfLimitAmount()": {
+        "details": "Total amount coins/tokens that were bridged from the other side and are out of execution limits.",
+        "return": "total amount of all bridge operations above limits."
+      },
+      "owner()": {
+        "details": "Tells the address of the owner",
+        "return": "the address of the owner"
+      },
+      "relayTokens(address,uint256)": {
+        "details": "Initiates the bridge operation that will lock the amount of tokens transferred and mint the tokens on the other network. The user should first call Approve method of the ERC677 token.",
+        "params": {
+          "_receiver": "address that will receive the minted tokens on the other network.",
+          "_value": "amount of tokens to be transferred to the other network."
+        }
+      },
+      "requestFailedMessageFix(bytes32)": {
+        "details": "Method to be called when a bridged message execution failed. It will generate a new message requesting to fix/roll back the transferred assets on the other network.",
+        "params": {
+          "_messageId": "id of the message which execution failed."
+        }
+      },
+      "requestGasLimit()": {
+        "details": "Tells the gas limit to be used in the message execution by the AMB bridge on the other network.",
+        "return": "the gas limit for the message execution."
+      },
+      "setBridgeContract(address)": {
+        "details": "Sets the AMB bridge contract address. Only the owner can call this method.",
+        "params": {
+          "_bridgeContract": "the address of the bridge contract."
+        }
+      },
+      "setMediatorContractOnOtherSide(address)": {
+        "details": "Sets the mediator contract address from the other network. Only the owner can call this method.",
+        "params": {
+          "_mediatorContract": "the address of the mediator contract."
+        }
+      },
+      "setRequestGasLimit(uint256)": {
+        "details": "Sets the gas limit to be used in the message execution by the AMB bridge on the other network. This value can't exceed the parameter maxGasPerTx defined on the AMB bridge. Only the owner can call this method.",
+        "params": {
+          "_requestGasLimit": "the gas limit for the message execution."
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "newOwner": "the address to transfer ownership to."
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

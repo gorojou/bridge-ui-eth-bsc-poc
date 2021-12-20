@@ -1,0 +1,1165 @@
+{
+  "contractName": "FeeManagerMock",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setForeignFee",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setHomeFee",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getHomeFee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "name": "_recover",
+          "type": "bool"
+        },
+        {
+          "name": "_feeType",
+          "type": "bytes32"
+        }
+      ],
+      "name": "calculateFee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getForeignFee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "HomeFeeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "ForeignFeeUpdated",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "distributeFeeFromAffirmation",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "distributeFeeFromSignatures",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getFeeManagerMode",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_count",
+          "type": "uint256"
+        }
+      ],
+      "name": "randomTest",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"distributeFeeFromAffirmation\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"setForeignFee\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"setHomeFee\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_fee\",\"type\":\"uint256\"}],\"name\":\"distributeFeeFromSignatures\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_count\",\"type\":\"uint256\"}],\"name\":\"randomTest\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getHomeFee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_value\",\"type\":\"uint256\"},{\"name\":\"_recover\",\"type\":\"bool\"},{\"name\":\"_feeType\",\"type\":\"bytes32\"}],\"name\":\"calculateFee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getFeeManagerMode\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getForeignFee\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"fee\",\"type\":\"uint256\"}],\"name\":\"HomeFeeUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"fee\",\"type\":\"uint256\"}],\"name\":\"ForeignFeeUpdated\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"calculateFee(uint256,bool,bytes32)\":{\"details\":\"Calculated the amount of fee for the particular bridge operation.\",\"params\":{\"_feeType\":\"type of the fee, should be either HOME_FEE of FOREIGN_FEE.\",\"_recover\":\"true, if the fee was already subtracted from the given _value and needs to be restored.\",\"_value\":\"bridged amount of tokens/coins for which fee amount is calculated.\"},\"return\":\"calculated fee amount.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/mocks/FeeManagerMock.sol\":\"FeeManagerMock\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xa1c5e1d9ebbf654d332ca8e7a5c04a6a6a9d142eeaab3b988c2c909c81a62bef\",\"urls\":[\"bzzr://d062fb4a1b6de1f036ee0e73364a2532c4757eb68e95dd8c5cbb2d17b8732c6a\"]},\"project:/contracts/interfaces/IRewardableValidators.sol\":{\"keccak256\":\"0xc7255d4bf3078fdd726aad9777c7c4af6f62c12ba105241113f74fefdca6e88b\",\"urls\":[\"bzzr://7d4a27c8659ee4026820ae9a9373422432cea27a3d0e64a4e75bbd6f85f49f01\"]},\"project:/contracts/mocks/FeeManagerMock.sol\":{\"keccak256\":\"0x4d336d536034a7f0bdf6eb7148dc2b62348269f5f7e421422b69c59959b1203b\",\"urls\":[\"bzzr://e13e0b93ddffc774c6b388951e9ab2e324536b77b7ac79a78725429fd7db3925\"]},\"project:/contracts/upgradeability/EternalStorage.sol\":{\"keccak256\":\"0x8f2df79a1cda812d4be25da8f2b138f9b7492e76da1dfba21d87012e649cc51c\",\"urls\":[\"bzzr://0846d08e1b7a84e541ae31c91d2c0b34d88cf3abbd18891ec6eedeea7e958af2\"]},\"project:/contracts/upgradeable_contracts/BaseFeeManager.sol\":{\"keccak256\":\"0xb2a17da787bd512036a764046b76d117ed3c0093eb46c63f82433697a1f5aa89\",\"urls\":[\"bzzr://4575424462dbf592d2ccf9094a7ee2807f202ccf7d763c160d52d1ca2cac7548\"]},\"project:/contracts/upgradeable_contracts/FeeTypes.sol\":{\"keccak256\":\"0x616a31f082774642c463dd50b180ce659663dfb317ffc4983d41821b2b6f230a\",\"urls\":[\"bzzr://abc13bd945f3332fe35c4e5cd3ff0b5ce06640427cf66753711b15ad8d659b5f\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610559806100206000396000f3006080604052600436106100985763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663054d46ec811461009d578063286c4066146100b757806334a9e148146100cf57806359d784641461009d5780636dd0a998146100e757806394da17cd146101115780639862f26f14610126578063f2ba956114610146578063ffd6619614610190575b600080fd5b3480156100a957600080fd5b506100b56004356101a5565b005b3480156100c357600080fd5b506100b56004356101a8565b3480156100db57600080fd5b506100b5600435610244565b3480156100f357600080fd5b506100ff6004356102e0565b60408051918252519081900360200190f35b34801561011d57600080fd5b506100ff6102f1565b34801561013257600080fd5b506100ff600435602435151560443561033f565b34801561015257600080fd5b5061015b610446565b604080517fffffffff000000000000000000000000000000000000000000000000000000009092168252519081900360200190f35b34801561019c57600080fd5b506100ff61046a565b50565b80670de0b6b3a764000081106101bd57600080fd5b7f68c305f6c823f4d2fa4140f9cf28d32a1faccf9b8081ff1c2de11cf32c733efc600090815260209081527ffc8184861980b909b08b1c0a3bc8f07d63e2a591b0ee38baf91ff70732f793a48390556040805184815290517fa1bb1f345e2d0374ec182de8bb6e574798f6b4b3e89046d75c479d7d5620c216929181900390910190a15050565b80670de0b6b3a7640000811061025957600080fd5b7fc3781f3cec62d28f56efe98358f59c2105504b194242dbcb2cc0806850c306e7600090815260209081527f1d18a249ebed58dc38c0390af3a90c7c1c247e1be783f19d84a8f7c82cd2a4ba8390556040805184815290517f64afb51b44460415972849f8c01723cf624c005cbadf1024a2d8568694b73ac1929181900390910190a15050565b60006102eb826104b8565b92915050565b7fc3781f3cec62d28f56efe98358f59c2105504b194242dbcb2cc0806850c306e760009081526020527f1d18a249ebed58dc38c0390af3a90c7c1c247e1be783f19d84a8f7c82cd2a4ba5490565b600080827f89d93e5e92f7e37e490c25f0e50f7f4aad7cc94b308a566553280967be38bcf181148061039057507fdeb7f3adca07d6d1f708c1774389db532a2b2f18fd05a62b957e4089f4696ed581145b151561039b57600080fd5b7f89d93e5e92f7e37e490c25f0e50f7f4aad7cc94b308a566553280967be38bcf184146103cf576103ca61046a565b6103d7565b6103d76102f1565b915084151561040f57610408670de0b6b3a76400006103fc888563ffffffff6104dd16565b9063ffffffff61050616565b925061043d565b61043a61042a670de0b6b3a76400008463ffffffff61051b16565b6103fc888563ffffffff6104dd16565b92505b50509392505050565b7ff2aed8f70000000000000000000000000000000000000000000000000000000090565b7f68c305f6c823f4d2fa4140f9cf28d32a1faccf9b8081ff1c2de11cf32c733efc60009081526020527ffc8184861980b909b08b1c0a3bc8f07d63e2a591b0ee38baf91ff70732f793a45490565b6000816104cc43600163ffffffff61051b16565b408115156104d657fe5b0692915050565b60008215156104ee575060006102eb565b508181028183828115156104fe57fe5b04146102eb57fe5b6000818381151561051357fe5b049392505050565b60008282111561052757fe5b509003905600a165627a7a723058206581b43a651b15c2f4c087e15f9a936560dbd7ea873aa55b31dd32f5bac1ea450029",
+  "deployedBytecode": "0x6080604052600436106100985763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663054d46ec811461009d578063286c4066146100b757806334a9e148146100cf57806359d784641461009d5780636dd0a998146100e757806394da17cd146101115780639862f26f14610126578063f2ba956114610146578063ffd6619614610190575b600080fd5b3480156100a957600080fd5b506100b56004356101a5565b005b3480156100c357600080fd5b506100b56004356101a8565b3480156100db57600080fd5b506100b5600435610244565b3480156100f357600080fd5b506100ff6004356102e0565b60408051918252519081900360200190f35b34801561011d57600080fd5b506100ff6102f1565b34801561013257600080fd5b506100ff600435602435151560443561033f565b34801561015257600080fd5b5061015b610446565b604080517fffffffff000000000000000000000000000000000000000000000000000000009092168252519081900360200190f35b34801561019c57600080fd5b506100ff61046a565b50565b80670de0b6b3a764000081106101bd57600080fd5b7f68c305f6c823f4d2fa4140f9cf28d32a1faccf9b8081ff1c2de11cf32c733efc600090815260209081527ffc8184861980b909b08b1c0a3bc8f07d63e2a591b0ee38baf91ff70732f793a48390556040805184815290517fa1bb1f345e2d0374ec182de8bb6e574798f6b4b3e89046d75c479d7d5620c216929181900390910190a15050565b80670de0b6b3a7640000811061025957600080fd5b7fc3781f3cec62d28f56efe98358f59c2105504b194242dbcb2cc0806850c306e7600090815260209081527f1d18a249ebed58dc38c0390af3a90c7c1c247e1be783f19d84a8f7c82cd2a4ba8390556040805184815290517f64afb51b44460415972849f8c01723cf624c005cbadf1024a2d8568694b73ac1929181900390910190a15050565b60006102eb826104b8565b92915050565b7fc3781f3cec62d28f56efe98358f59c2105504b194242dbcb2cc0806850c306e760009081526020527f1d18a249ebed58dc38c0390af3a90c7c1c247e1be783f19d84a8f7c82cd2a4ba5490565b600080827f89d93e5e92f7e37e490c25f0e50f7f4aad7cc94b308a566553280967be38bcf181148061039057507fdeb7f3adca07d6d1f708c1774389db532a2b2f18fd05a62b957e4089f4696ed581145b151561039b57600080fd5b7f89d93e5e92f7e37e490c25f0e50f7f4aad7cc94b308a566553280967be38bcf184146103cf576103ca61046a565b6103d7565b6103d76102f1565b915084151561040f57610408670de0b6b3a76400006103fc888563ffffffff6104dd16565b9063ffffffff61050616565b925061043d565b61043a61042a670de0b6b3a76400008463ffffffff61051b16565b6103fc888563ffffffff6104dd16565b92505b50509392505050565b7ff2aed8f70000000000000000000000000000000000000000000000000000000090565b7f68c305f6c823f4d2fa4140f9cf28d32a1faccf9b8081ff1c2de11cf32c733efc60009081526020527ffc8184861980b909b08b1c0a3bc8f07d63e2a591b0ee38baf91ff70732f793a45490565b6000816104cc43600163ffffffff61051b16565b408115156104d657fe5b0692915050565b60008215156104ee575060006102eb565b508181028183828115156104fe57fe5b04146102eb57fe5b6000818381151561051357fe5b049392505050565b60008282111561052757fe5b509003905600a165627a7a723058206581b43a651b15c2f4c087e15f9a936560dbd7ea873aa55b31dd32f5bac1ea450029",
+  "sourceMap": "80:587:49:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;80:587:49;;;;;;;",
+  "deployedSourceMap": "80:587:49:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;128:125;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;128:125:49;;;;;;;2051:159:76;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2051:159:76;;;;;1780:150;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1780:150:76;;;;;553:112:49;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;553:112:49;;;;;;;;;;;;;;;;;;;;;1936:109:76;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1936:109:76;;;;1270:382;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1270:382:76;;;;;;;;;;;389:158:49;;8:9:-1;5:2;;;30:1;27;20:12;5:2;389:158:49;;;;;;;;;;;;;;;;;;;;;;;2216:115:76;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2216:115:76;;;;128:125:49;;:::o;2051:159:76:-;2106:4;511:7;1708:14;;1700:23;;;;;;739:66;2122:11;:36;;;;;;;;:43;;;:36;2180:23;;;;;;;;;;;;;;;;;;2051:159;;:::o;1780:150::-;1832:4;511:7;1708:14;;1700:23;;;;;;573:66;1848:11;:33;;;;;;;;:40;;;:33;1903:20;;;;;;;;;;;;;;;;;;1780:150;;:::o;553:112:49:-;612:7;638:20;651:6;638:12;:20::i;:::-;631:27;553:112;-1:-1:-1;;553:112:49:o;1936:109:76:-;573:66;1979:7;2005:33;;;;;;;1936:109;:::o;1270:382::-;1417:7;;1390:8;86:66:96;481:20;;;:47;;-1:-1:-1;241:66:96;505:23;;481:47;473:56;;;;;;;;86:66;1454:20:76;;:53;;1492:15;:13;:15::i;:::-;1454:53;;;1477:12;:10;:12::i;:::-;1440:67;;1522:8;1521:9;1517:75;;;1553:28;511:7;1553:15;:6;1564:3;1553:15;:10;:15;:::i;:::-;:19;:28;:19;:28;:::i;:::-;1546:35;;;;1517:75;1608:37;1628:16;511:7;1640:3;1628:16;:11;:16;:::i;:::-;1608:15;:6;1619:3;1608:15;:10;:15;:::i;:37::-;1601:44;;572:1:96;1270:382:76;;;;;;;:::o;389:158:49:-;459:17;389:158;:::o;2216:115:76:-;739:66;2262:7;2288:36;;;;;;;2216:115;:::o;2623:136::-;2678:7;2746:6;2722:19;:12;2739:1;2722:19;:16;:19;:::i;:::-;2712:30;2704:48;;;;;;;;;2623:136;-1:-1:-1;;2623:136:76:o;203:380:1:-;263:9;489:7;;485:36;;;-1:-1:-1;513:1:1;506:8;;485:36;-1:-1:-1;531:7:1;;;536:2;531;:7;551:6;;;;;;;;:12;544:20;;;665:283;725:7;941:2;936;:7;;;;;;;;;665:283;-1:-1:-1;;;665:283:1:o;1060:116::-;1120:7;1142:8;;;;1135:16;;;;-1:-1:-1;1164:7:1;;;1060:116::o",
+  "source": "pragma solidity 0.4.24;\n\nimport \"../upgradeable_contracts/BaseFeeManager.sol\";\n\ncontract FeeManagerMock is BaseFeeManager {\n    function distributeFeeFromAffirmation(uint256 _fee) external {\n        // solhint-disable-previous-line no-empty-blocks\n    }\n\n    function distributeFeeFromSignatures(uint256 _fee) external {\n        // solhint-disable-previous-line no-empty-blocks\n    }\n\n    function getFeeManagerMode() external pure returns (bytes4) {\n        return 0xf2aed8f7; // bytes4(keccak256(abi.encodePacked(\"manages-one-direction\")))\n    }\n\n    function randomTest(uint256 _count) external view returns (uint256) {\n        return super.random(_count);\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/mocks/FeeManagerMock.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/mocks/FeeManagerMock.sol",
+    "exportedSymbols": {
+      "FeeManagerMock": [
+        6797
+      ]
+    },
+    "id": 6798,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6760,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:49"
+      },
+      {
+        "absolutePath": "project:/contracts/upgradeable_contracts/BaseFeeManager.sol",
+        "file": "../upgradeable_contracts/BaseFeeManager.sol",
+        "id": 6761,
+        "nodeType": "ImportDirective",
+        "scope": 6798,
+        "sourceUnit": 11513,
+        "src": "25:53:49",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 6762,
+              "name": "BaseFeeManager",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 11512,
+              "src": "107:14:49",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseFeeManager_$11512",
+                "typeString": "contract BaseFeeManager"
+              }
+            },
+            "id": 6763,
+            "nodeType": "InheritanceSpecifier",
+            "src": "107:14:49"
+          }
+        ],
+        "contractDependencies": [
+          10503,
+          11512,
+          15619
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6797,
+        "linearizedBaseContracts": [
+          6797,
+          11512,
+          15619,
+          10503
+        ],
+        "name": "FeeManagerMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 6768,
+              "nodeType": "Block",
+              "src": "189:64:49",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 6769,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "distributeFeeFromAffirmation",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6766,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6765,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6769,
+                  "src": "166:12:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6764,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "166:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:14:49"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 6767,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "189:0:49"
+            },
+            "scope": 6797,
+            "src": "128:125:49",
+            "stateMutability": "nonpayable",
+            "superFunction": 11481,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 6774,
+              "nodeType": "Block",
+              "src": "319:64:49",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 6775,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "distributeFeeFromSignatures",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6772,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6771,
+                  "name": "_fee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6775,
+                  "src": "296:12:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6770,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "296:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "295:14:49"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 6773,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "319:0:49"
+            },
+            "scope": 6797,
+            "src": "259:124:49",
+            "stateMutability": "nonpayable",
+            "superFunction": 11486,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 6782,
+              "nodeType": "Block",
+              "src": "449:98:49",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "30786632616564386637",
+                    "id": 6780,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "466:10:49",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_4071545079_by_1",
+                      "typeString": "int_const 4071545079"
+                    },
+                    "value": "0xf2aed8f7"
+                  },
+                  "functionReturnParameters": 6779,
+                  "id": 6781,
+                  "nodeType": "Return",
+                  "src": "459:17:49"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 6783,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getFeeManagerMode",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6776,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "415:2:49"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 6779,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6778,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6783,
+                  "src": "441:6:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 6777,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "441:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "440:8:49"
+            },
+            "scope": 6797,
+            "src": "389:158:49",
+            "stateMutability": "pure",
+            "superFunction": 11491,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 6795,
+              "nodeType": "Block",
+              "src": "621:44:49",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 6792,
+                        "name": "_count",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6785,
+                        "src": "651:6:49",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 6790,
+                        "name": "super",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31668,
+                        "src": "638:5:49",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_super$_FeeManagerMock_$6797",
+                          "typeString": "contract super FeeManagerMock"
+                        }
+                      },
+                      "id": 6791,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "random",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 11511,
+                      "src": "638:12:49",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256) view returns (uint256)"
+                      }
+                    },
+                    "id": 6793,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "638:20:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 6789,
+                  "id": 6794,
+                  "nodeType": "Return",
+                  "src": "631:27:49"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 6796,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "randomTest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6786,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6785,
+                  "name": "_count",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6796,
+                  "src": "573:14:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6784,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "573:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "572:16:49"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 6789,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6788,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6796,
+                  "src": "612:7:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6787,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "612:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "611:9:49"
+            },
+            "scope": 6797,
+            "src": "553:112:49",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 6798,
+        "src": "80:587:49"
+      }
+    ],
+    "src": "0:668:49"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/mocks/FeeManagerMock.sol",
+      "exportedSymbols": {
+        "FeeManagerMock": [
+          6797
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 6760,
+        "name": "PragmaDirective",
+        "src": "0:23:49"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 11513,
+          "absolutePath": "project:/contracts/upgradeable_contracts/BaseFeeManager.sol",
+          "file": "../upgradeable_contracts/BaseFeeManager.sol",
+          "scope": 6798,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 6761,
+        "name": "ImportDirective",
+        "src": "25:53:49"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            10503,
+            11512,
+            15619
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            6797,
+            11512,
+            15619,
+            10503
+          ],
+          "name": "FeeManagerMock",
+          "scope": 6798
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BaseFeeManager",
+                  "referencedDeclaration": 11512,
+                  "type": "contract BaseFeeManager"
+                },
+                "id": 6762,
+                "name": "UserDefinedTypeName",
+                "src": "107:14:49"
+              }
+            ],
+            "id": 6763,
+            "name": "InheritanceSpecifier",
+            "src": "107:14:49"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "distributeFeeFromAffirmation",
+              "payable": false,
+              "scope": 6797,
+              "stateMutability": "nonpayable",
+              "superFunction": 11481,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 6769,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 6764,
+                        "name": "ElementaryTypeName",
+                        "src": "166:7:49"
+                      }
+                    ],
+                    "id": 6765,
+                    "name": "VariableDeclaration",
+                    "src": "166:12:49"
+                  }
+                ],
+                "id": 6766,
+                "name": "ParameterList",
+                "src": "165:14:49"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6767,
+                "name": "ParameterList",
+                "src": "189:0:49"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6768,
+                "name": "Block",
+                "src": "189:64:49"
+              }
+            ],
+            "id": 6769,
+            "name": "FunctionDefinition",
+            "src": "128:125:49"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "distributeFeeFromSignatures",
+              "payable": false,
+              "scope": 6797,
+              "stateMutability": "nonpayable",
+              "superFunction": 11486,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_fee",
+                      "scope": 6775,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 6770,
+                        "name": "ElementaryTypeName",
+                        "src": "296:7:49"
+                      }
+                    ],
+                    "id": 6771,
+                    "name": "VariableDeclaration",
+                    "src": "296:12:49"
+                  }
+                ],
+                "id": 6772,
+                "name": "ParameterList",
+                "src": "295:14:49"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6773,
+                "name": "ParameterList",
+                "src": "319:0:49"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6774,
+                "name": "Block",
+                "src": "319:64:49"
+              }
+            ],
+            "id": 6775,
+            "name": "FunctionDefinition",
+            "src": "259:124:49"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getFeeManagerMode",
+              "payable": false,
+              "scope": 6797,
+              "stateMutability": "pure",
+              "superFunction": 11491,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6776,
+                "name": "ParameterList",
+                "src": "415:2:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 6783,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes4",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes4",
+                          "type": "bytes4"
+                        },
+                        "id": 6777,
+                        "name": "ElementaryTypeName",
+                        "src": "441:6:49"
+                      }
+                    ],
+                    "id": 6778,
+                    "name": "VariableDeclaration",
+                    "src": "441:6:49"
+                  }
+                ],
+                "id": 6779,
+                "name": "ParameterList",
+                "src": "440:8:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 6779
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "30786632616564386637",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "number",
+                          "type": "int_const 4071545079",
+                          "value": "0xf2aed8f7"
+                        },
+                        "id": 6780,
+                        "name": "Literal",
+                        "src": "466:10:49"
+                      }
+                    ],
+                    "id": 6781,
+                    "name": "Return",
+                    "src": "459:17:49"
+                  }
+                ],
+                "id": 6782,
+                "name": "Block",
+                "src": "449:98:49"
+              }
+            ],
+            "id": 6783,
+            "name": "FunctionDefinition",
+            "src": "389:158:49"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "randomTest",
+              "payable": false,
+              "scope": 6797,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_count",
+                      "scope": 6796,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 6784,
+                        "name": "ElementaryTypeName",
+                        "src": "573:7:49"
+                      }
+                    ],
+                    "id": 6785,
+                    "name": "VariableDeclaration",
+                    "src": "573:14:49"
+                  }
+                ],
+                "id": 6786,
+                "name": "ParameterList",
+                "src": "572:16:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 6796,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 6787,
+                        "name": "ElementaryTypeName",
+                        "src": "612:7:49"
+                      }
+                    ],
+                    "id": 6788,
+                    "name": "VariableDeclaration",
+                    "src": "612:7:49"
+                  }
+                ],
+                "id": 6789,
+                "name": "ParameterList",
+                "src": "611:9:49"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 6789
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "random",
+                              "referencedDeclaration": 11511,
+                              "type": "function (uint256) view returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 31668,
+                                  "type": "contract super FeeManagerMock",
+                                  "value": "super"
+                                },
+                                "id": 6790,
+                                "name": "Identifier",
+                                "src": "638:5:49"
+                              }
+                            ],
+                            "id": 6791,
+                            "name": "MemberAccess",
+                            "src": "638:12:49"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6785,
+                              "type": "uint256",
+                              "value": "_count"
+                            },
+                            "id": 6792,
+                            "name": "Identifier",
+                            "src": "651:6:49"
+                          }
+                        ],
+                        "id": 6793,
+                        "name": "FunctionCall",
+                        "src": "638:20:49"
+                      }
+                    ],
+                    "id": 6794,
+                    "name": "Return",
+                    "src": "631:27:49"
+                  }
+                ],
+                "id": 6795,
+                "name": "Block",
+                "src": "621:44:49"
+              }
+            ],
+            "id": 6796,
+            "name": "FunctionDefinition",
+            "src": "553:112:49"
+          }
+        ],
+        "id": 6797,
+        "name": "ContractDefinition",
+        "src": "80:587:49"
+      }
+    ],
+    "id": 6798,
+    "name": "SourceUnit",
+    "src": "0:668:49"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.487Z",
+  "devdoc": {
+    "methods": {
+      "calculateFee(uint256,bool,bytes32)": {
+        "details": "Calculated the amount of fee for the particular bridge operation.",
+        "params": {
+          "_feeType": "type of the fee, should be either HOME_FEE of FOREIGN_FEE.",
+          "_recover": "true, if the fee was already subtracted from the given _value and needs to be restored.",
+          "_value": "bridged amount of tokens/coins for which fee amount is calculated."
+        },
+        "return": "calculated fee amount."
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

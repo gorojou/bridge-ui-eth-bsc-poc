@@ -1,0 +1,210 @@
+{
+  "contractName": "Staking",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/mocks/Staking.sol\":\"Staking\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/mocks/Staking.sol\":{\"keccak256\":\"0xf15543b291994ef5b217d6719daec12ce304cf102d6c5965b3ae7c9809655d63\",\"urls\":[\"bzzr://3dd51acdb181b6afe225da649f059bab3da29c44b520bb059cedac36b77b644c\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058201c4adbc07b1ce4e01e235760c92c2949846227aa00dc95b13907304854e477a40029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058201c4adbc07b1ce4e01e235760c92c2949846227aa00dc95b13907304854e477a40029",
+  "sourceMap": "25:110:64:-;;;48:85;8:9:-1;5:2;;;30:1;27;20:12;5:2;48:85:64;25:110;;;;;;",
+  "deployedSourceMap": "25:110:64:-;;;;;",
+  "source": "pragma solidity 0.4.24;\n\ncontract Staking {\n    constructor() public {\n        // solhint-disable-previous-line no-empty-blocks\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/mocks/Staking.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/mocks/Staking.sol",
+    "exportedSymbols": {
+      "Staking": [
+        8638
+      ]
+    },
+    "id": 8639,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8633,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:64"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 8638,
+        "linearizedBaseContracts": [
+          8638
+        ],
+        "name": "Staking",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 8636,
+              "nodeType": "Block",
+              "src": "69:64:64",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 8637,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8634,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "59:2:64"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 8635,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:64"
+            },
+            "scope": 8638,
+            "src": "48:85:64",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 8639,
+        "src": "25:110:64"
+      }
+    ],
+    "src": "0:136:64"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/mocks/Staking.sol",
+      "exportedSymbols": {
+        "Staking": [
+          8638
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 8633,
+        "name": "PragmaDirective",
+        "src": "0:23:64"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            8638
+          ],
+          "name": "Staking",
+          "scope": 8639
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "payable": false,
+              "scope": 8638,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8634,
+                "name": "ParameterList",
+                "src": "59:2:64"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8635,
+                "name": "ParameterList",
+                "src": "69:0:64"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8636,
+                "name": "Block",
+                "src": "69:64:64"
+              }
+            ],
+            "id": 8637,
+            "name": "FunctionDefinition",
+            "src": "48:85:64"
+          }
+        ],
+        "id": 8638,
+        "name": "ContractDefinition",
+        "src": "25:110:64"
+      }
+    ],
+    "id": 8639,
+    "name": "SourceUnit",
+    "src": "0:136:64"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.584Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

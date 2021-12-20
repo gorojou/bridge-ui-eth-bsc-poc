@@ -1,0 +1,333 @@
+{
+  "contractName": "TokenSwapper",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensSwapped",
+      "type": "event"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TokensSwapped\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/upgradeable_contracts/TokenSwapper.sol\":\"TokenSwapper\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/upgradeable_contracts/TokenSwapper.sol\":{\"keccak256\":\"0x8cdae2071df8f14678885ac9c81dc41197f0f5022cbecbd637dc9da8b62d1a6c\",\"urls\":[\"bzzr://6d981a0a2c78f1b80db7f0e8eaf80582ebd14ffd5bf1f479b93a497bc976cf29\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820ee977358ac7d07cff51de28491ba4f0ccf9c15780eeb6948f7469ed91955f6550029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820ee977358ac7d07cff51de28491ba4f0ccf9c15780eeb6948f7469ed91955f6550029",
+  "sourceMap": "25:181:112:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:181:112;;;;;;;",
+  "deployedSourceMap": "25:181:112:-;;;;;",
+  "source": "pragma solidity 0.4.24;\n\ncontract TokenSwapper {\n    // emitted when two tokens is swapped (e. g. Sai to Dai, Chai to Dai)\n    event TokensSwapped(address indexed from, address indexed to, uint256 value);\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/TokenSwapper.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/TokenSwapper.sol",
+    "exportedSymbols": {
+      "TokenSwapper": [
+        17509
+      ]
+    },
+    "id": 17510,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 17500,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:112"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 17509,
+        "linearizedBaseContracts": [
+          17509
+        ],
+        "name": "TokenSwapper",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 17508,
+            "name": "TokensSwapped",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 17507,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17502,
+                  "indexed": true,
+                  "name": "from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17508,
+                  "src": "147:20:112",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17501,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "147:7:112",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 17504,
+                  "indexed": true,
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17508,
+                  "src": "169:18:112",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 17503,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "169:7:112",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 17506,
+                  "indexed": false,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17508,
+                  "src": "189:13:112",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 17505,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "189:7:112",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "146:57:112"
+            },
+            "src": "127:77:112"
+          }
+        ],
+        "scope": 17510,
+        "src": "25:181:112"
+      }
+    ],
+    "src": "0:207:112"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/TokenSwapper.sol",
+      "exportedSymbols": {
+        "TokenSwapper": [
+          17509
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 17500,
+        "name": "PragmaDirective",
+        "src": "0:23:112"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            17509
+          ],
+          "name": "TokenSwapper",
+          "scope": 17510
+        },
+        "children": [
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "TokensSwapped"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "from",
+                      "scope": 17508,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 17501,
+                        "name": "ElementaryTypeName",
+                        "src": "147:7:112"
+                      }
+                    ],
+                    "id": 17502,
+                    "name": "VariableDeclaration",
+                    "src": "147:20:112"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "to",
+                      "scope": 17508,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 17503,
+                        "name": "ElementaryTypeName",
+                        "src": "169:7:112"
+                      }
+                    ],
+                    "id": 17504,
+                    "name": "VariableDeclaration",
+                    "src": "169:18:112"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "value",
+                      "scope": 17508,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 17505,
+                        "name": "ElementaryTypeName",
+                        "src": "189:7:112"
+                      }
+                    ],
+                    "id": 17506,
+                    "name": "VariableDeclaration",
+                    "src": "189:13:112"
+                  }
+                ],
+                "id": 17507,
+                "name": "ParameterList",
+                "src": "146:57:112"
+              }
+            ],
+            "id": 17508,
+            "name": "EventDefinition",
+            "src": "127:77:112"
+          }
+        ],
+        "id": 17509,
+        "name": "ContractDefinition",
+        "src": "25:181:112"
+      }
+    ],
+    "id": 17510,
+    "name": "SourceUnit",
+    "src": "0:207:112"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.997Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

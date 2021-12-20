@@ -1,0 +1,306 @@
+{
+  "contractName": "IMediatorFeeManager",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateFee",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\ninterface IMediatorFeeManager {\n    function calculateFee(uint256) external view returns (uint256);\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/interfaces/IMediatorFeeManager.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IMediatorFeeManager.sol",
+    "exportedSymbols": {
+      "IMediatorFeeManager": [
+        3025
+      ]
+    },
+    "id": 3026,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3017,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:25"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 3025,
+        "linearizedBaseContracts": [
+          3025
+        ],
+        "name": "IMediatorFeeManager",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3024,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "calculateFee",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3020,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3019,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3024,
+                  "src": "83:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3018,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "83:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "82:9:25"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3022,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3024,
+                  "src": "115:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3021,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "114:9:25"
+            },
+            "scope": 3025,
+            "src": "61:63:25",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3026,
+        "src": "25:101:25"
+      }
+    ],
+    "src": "0:127:25"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/IMediatorFeeManager.sol",
+      "exportedSymbols": {
+        "IMediatorFeeManager": [
+          3025
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 3017,
+        "name": "PragmaDirective",
+        "src": "0:23:25"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            3025
+          ],
+          "name": "IMediatorFeeManager",
+          "scope": 3026
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "constant": true,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "calculateFee",
+              "payable": false,
+              "scope": 3025,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3024,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3018,
+                        "name": "ElementaryTypeName",
+                        "src": "83:7:25"
+                      }
+                    ],
+                    "id": 3019,
+                    "name": "VariableDeclaration",
+                    "src": "83:7:25"
+                  }
+                ],
+                "id": 3020,
+                "name": "ParameterList",
+                "src": "82:9:25"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3024,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3021,
+                        "name": "ElementaryTypeName",
+                        "src": "115:7:25"
+                      }
+                    ],
+                    "id": 3022,
+                    "name": "VariableDeclaration",
+                    "src": "115:7:25"
+                  }
+                ],
+                "id": 3023,
+                "name": "ParameterList",
+                "src": "114:9:25"
+              }
+            ],
+            "id": 3024,
+            "name": "FunctionDefinition",
+            "src": "61:63:25"
+          }
+        ],
+        "id": 3025,
+        "name": "ContractDefinition",
+        "src": "25:101:25"
+      }
+    ],
+    "id": 3026,
+    "name": "SourceUnit",
+    "src": "0:127:25"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.269Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

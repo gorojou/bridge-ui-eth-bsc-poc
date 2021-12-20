@@ -1,0 +1,458 @@
+{
+  "contractName": "ReentrancyGuard",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/upgradeable_contracts/ReentrancyGuard.sol\":\"ReentrancyGuard\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/upgradeable_contracts/ReentrancyGuard.sol\":{\"keccak256\":\"0x70c68c35294a3f3e68ea99b9c64a6fef804f4f98a3f56312ddd5773ae5640ec3\",\"urls\":[\"bzzr://6a952821a114048c8ea64016981c5f124f90662dcc9ee10ab2de3cb6350fef27\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820e6c8ba5c13b275df1a78ea81cd54f37d1673b57a2b63c6fe31e8d575b0c84b8e0029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820e6c8ba5c13b275df1a78ea81cd54f37d1673b57a2b63c6fe31e8d575b0c84b8e0029",
+  "sourceMap": "25:1048:106:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:1048:106;;;;;;;",
+  "deployedSourceMap": "25:1048:106:-;;;;;",
+  "source": "pragma solidity 0.4.24;\n\ncontract ReentrancyGuard {\n    function lock() internal returns (bool res) {\n        assembly {\n            // Even though this is not the same as boolStorage[keccak256(abi.encodePacked(\"lock\"))],\n            // since solidity mapping introduces another level of addressing, such slot change is safe\n            // for temporary variables which are cleared at the end of the call execution.\n            res := sload(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92) // keccak256(abi.encodePacked(\"lock\"))\n        }\n    }\n\n    function setLock(bool _lock) internal {\n        assembly {\n            // Even though this is not the same as boolStorage[keccak256(abi.encodePacked(\"lock\"))],\n            // since solidity mapping introduces another level of addressing, such slot change is safe\n            // for temporary variables which are cleared at the end of the call execution.\n            sstore(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92, _lock) // keccak256(abi.encodePacked(\"lock\"))\n        }\n    }\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/upgradeable_contracts/ReentrancyGuard.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/upgradeable_contracts/ReentrancyGuard.sol",
+    "exportedSymbols": {
+      "ReentrancyGuard": [
+        16572
+      ]
+    },
+    "id": 16573,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 16557,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:106"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 16572,
+        "linearizedBaseContracts": [
+          16572
+        ],
+        "name": "ReentrancyGuard",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 16563,
+              "nodeType": "Block",
+              "src": "100:463:106",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "res": {
+                        "declaration": 16560,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "428:3:106",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 16562,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    res := sload(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92)\n}",
+                  "src": "110:453:106"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 16564,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "lock",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16558,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:2:106"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16561,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16560,
+                  "name": "res",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16564,
+                  "src": "90:8:106",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16559,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "90:4:106",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "89:10:106"
+            },
+            "scope": 16572,
+            "src": "56:507:106",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 16570,
+              "nodeType": "Block",
+              "src": "607:464:106",
+              "statements": [
+                {
+                  "externalReferences": [
+                    {
+                      "_lock": {
+                        "declaration": 16566,
+                        "isOffset": false,
+                        "isSlot": false,
+                        "src": "1010:5:106",
+                        "valueSize": 1
+                      }
+                    }
+                  ],
+                  "id": 16569,
+                  "nodeType": "InlineAssembly",
+                  "operations": "{\n    sstore(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92, _lock)\n}",
+                  "src": "617:454:106"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 16571,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setLock",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 16567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16566,
+                  "name": "_lock",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 16571,
+                  "src": "586:10:106",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 16565,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "586:4:106",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "585:12:106"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 16568,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "607:0:106"
+            },
+            "scope": 16572,
+            "src": "569:502:106",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 16573,
+        "src": "25:1048:106"
+      }
+    ],
+    "src": "0:1074:106"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/upgradeable_contracts/ReentrancyGuard.sol",
+      "exportedSymbols": {
+        "ReentrancyGuard": [
+          16572
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 16557,
+        "name": "PragmaDirective",
+        "src": "0:23:106"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            16572
+          ],
+          "name": "ReentrancyGuard",
+          "scope": 16573
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "lock",
+              "payable": false,
+              "scope": 16572,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16558,
+                "name": "ParameterList",
+                "src": "69:2:106"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "res",
+                      "scope": 16564,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 16559,
+                        "name": "ElementaryTypeName",
+                        "src": "90:4:106"
+                      }
+                    ],
+                    "id": 16560,
+                    "name": "VariableDeclaration",
+                    "src": "90:8:106"
+                  }
+                ],
+                "id": 16561,
+                "name": "ParameterList",
+                "src": "89:10:106"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "res": {
+                            "declaration": 16560,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "428:3:106",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    res := sload(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92)\n}"
+                    },
+                    "children": [],
+                    "id": 16562,
+                    "name": "InlineAssembly",
+                    "src": "110:453:106"
+                  }
+                ],
+                "id": 16563,
+                "name": "Block",
+                "src": "100:463:106"
+              }
+            ],
+            "id": 16564,
+            "name": "FunctionDefinition",
+            "src": "56:507:106"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "setLock",
+              "payable": false,
+              "scope": 16572,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_lock",
+                      "scope": 16571,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 16565,
+                        "name": "ElementaryTypeName",
+                        "src": "586:4:106"
+                      }
+                    ],
+                    "id": 16566,
+                    "name": "VariableDeclaration",
+                    "src": "586:10:106"
+                  }
+                ],
+                "id": 16567,
+                "name": "ParameterList",
+                "src": "585:12:106"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 16568,
+                "name": "ParameterList",
+                "src": "607:0:106"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "externalReferences": [
+                        {
+                          "_lock": {
+                            "declaration": 16566,
+                            "isOffset": false,
+                            "isSlot": false,
+                            "src": "1010:5:106",
+                            "valueSize": 1
+                          }
+                        }
+                      ],
+                      "operations": "{\n    sstore(0x6168652c307c1e813ca11cfb3a601f1cf3b22452021a5052d8b05f1f1f8a3e92, _lock)\n}"
+                    },
+                    "children": [],
+                    "id": 16569,
+                    "name": "InlineAssembly",
+                    "src": "617:454:106"
+                  }
+                ],
+                "id": 16570,
+                "name": "Block",
+                "src": "607:464:106"
+              }
+            ],
+            "id": 16571,
+            "name": "FunctionDefinition",
+            "src": "569:502:106"
+          }
+        ],
+        "id": 16572,
+        "name": "ContractDefinition",
+        "src": "25:1048:106"
+      }
+    ],
+    "id": 16573,
+    "name": "SourceUnit",
+    "src": "0:1074:106"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.964Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "contractName": "IMintHandler",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\ninterface IMintHandler {\n    function mint(address _to, uint256 _amount) external returns (bool);\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/interfaces/IMintHandler.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IMintHandler.sol",
+    "exportedSymbols": {
+      "IMintHandler": [
+        3037
+      ]
+    },
+    "id": 3038,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3027,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 3037,
+        "linearizedBaseContracts": [
+          3037
+        ],
+        "name": "IMintHandler",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3036,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "mint",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3032,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3029,
+                  "name": "_to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3036,
+                  "src": "68:11:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3028,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "68:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3031,
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3036,
+                  "src": "81:15:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3030,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "81:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "67:30:26"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3035,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3034,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3036,
+                  "src": "116:4:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3033,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "116:4:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "115:6:26"
+            },
+            "scope": 3037,
+            "src": "54:68:26",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3038,
+        "src": "25:99:26"
+      }
+    ],
+    "src": "0:125:26"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/IMintHandler.sol",
+      "exportedSymbols": {
+        "IMintHandler": [
+          3037
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 3027,
+        "name": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            3037
+          ],
+          "name": "IMintHandler",
+          "scope": 3038
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "mint",
+              "payable": false,
+              "scope": 3037,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_to",
+                      "scope": 3036,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 3028,
+                        "name": "ElementaryTypeName",
+                        "src": "68:7:26"
+                      }
+                    ],
+                    "id": 3029,
+                    "name": "VariableDeclaration",
+                    "src": "68:11:26"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_amount",
+                      "scope": 3036,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3030,
+                        "name": "ElementaryTypeName",
+                        "src": "81:7:26"
+                      }
+                    ],
+                    "id": 3031,
+                    "name": "VariableDeclaration",
+                    "src": "81:15:26"
+                  }
+                ],
+                "id": 3032,
+                "name": "ParameterList",
+                "src": "67:30:26"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3036,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 3033,
+                        "name": "ElementaryTypeName",
+                        "src": "116:4:26"
+                      }
+                    ],
+                    "id": 3034,
+                    "name": "VariableDeclaration",
+                    "src": "116:4:26"
+                  }
+                ],
+                "id": 3035,
+                "name": "ParameterList",
+                "src": "115:6:26"
+              }
+            ],
+            "id": 3036,
+            "name": "FunctionDefinition",
+            "src": "54:68:26"
+          }
+        ],
+        "id": 3037,
+        "name": "ContractDefinition",
+        "src": "25:99:26"
+      }
+    ],
+    "id": 3038,
+    "name": "SourceUnit",
+    "src": "0:125:26"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.270Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,526 @@
+{
+  "contractName": "IPot",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "chi",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rho",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "drip",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity 0.4.24;\n\ninterface IPot {\n    function chi() external view returns (uint256);\n    function rho() external view returns (uint256);\n    function drip() external returns (uint256);\n}\n",
+  "sourcePath": "/home/analiser/bridge-frontend/contracts/interfaces/IPot.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IPot.sol",
+    "exportedSymbols": {
+      "IPot": [
+        3055
+      ]
+    },
+    "id": 3056,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3039,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:27"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 3055,
+        "linearizedBaseContracts": [
+          3055
+        ],
+        "name": "IPot",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3044,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "chi",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3040,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "58:2:27"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3043,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3042,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3044,
+                  "src": "84:7:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3041,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "84:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "83:9:27"
+            },
+            "scope": 3055,
+            "src": "46:47:27",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3049,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "rho",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3045,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "110:2:27"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3048,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3047,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3049,
+                  "src": "136:7:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3046,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "136:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "135:9:27"
+            },
+            "scope": 3055,
+            "src": "98:47:27",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 3054,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "drip",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3050,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "163:2:27"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3053,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3052,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3054,
+                  "src": "184:7:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3051,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "184:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "183:9:27"
+            },
+            "scope": 3055,
+            "src": "150:43:27",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3056,
+        "src": "25:170:27"
+      }
+    ],
+    "src": "0:196:27"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/IPot.sol",
+      "exportedSymbols": {
+        "IPot": [
+          3055
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 3039,
+        "name": "PragmaDirective",
+        "src": "0:23:27"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            3055
+          ],
+          "name": "IPot",
+          "scope": 3056
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "constant": true,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "chi",
+              "payable": false,
+              "scope": 3055,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3040,
+                "name": "ParameterList",
+                "src": "58:2:27"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3044,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3041,
+                        "name": "ElementaryTypeName",
+                        "src": "84:7:27"
+                      }
+                    ],
+                    "id": 3042,
+                    "name": "VariableDeclaration",
+                    "src": "84:7:27"
+                  }
+                ],
+                "id": 3043,
+                "name": "ParameterList",
+                "src": "83:9:27"
+              }
+            ],
+            "id": 3044,
+            "name": "FunctionDefinition",
+            "src": "46:47:27"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": true,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "rho",
+              "payable": false,
+              "scope": 3055,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3045,
+                "name": "ParameterList",
+                "src": "110:2:27"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3049,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3046,
+                        "name": "ElementaryTypeName",
+                        "src": "136:7:27"
+                      }
+                    ],
+                    "id": 3047,
+                    "name": "VariableDeclaration",
+                    "src": "136:7:27"
+                  }
+                ],
+                "id": 3048,
+                "name": "ParameterList",
+                "src": "135:9:27"
+              }
+            ],
+            "id": 3049,
+            "name": "FunctionDefinition",
+            "src": "98:47:27"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "documentation": null,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "drip",
+              "payable": false,
+              "scope": 3055,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3050,
+                "name": "ParameterList",
+                "src": "163:2:27"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 3054,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3051,
+                        "name": "ElementaryTypeName",
+                        "src": "184:7:27"
+                      }
+                    ],
+                    "id": 3052,
+                    "name": "VariableDeclaration",
+                    "src": "184:7:27"
+                  }
+                ],
+                "id": 3053,
+                "name": "ParameterList",
+                "src": "183:9:27"
+              }
+            ],
+            "id": 3054,
+            "name": "FunctionDefinition",
+            "src": "150:43:27"
+          }
+        ],
+        "id": 3055,
+        "name": "ContractDefinition",
+        "src": "25:170:27"
+      }
+    ],
+    "id": 3056,
+    "name": "SourceUnit",
+    "src": "0:196:27"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-03T05:10:27.271Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
